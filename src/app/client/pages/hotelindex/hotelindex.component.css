@@ -1,0 +1,55 @@
+.card-tam1{
+    height: 300px;
+    width: 100%;
+    background-image: url("../../../../assets/img/reg1.jpg");
+    background-size:cover;
+}
+.card-tam2{
+    height: 300px;
+    width: 100%;
+    background-image: url("../../../../assets/img/reg2.jpg");
+    background-size: cover;
+}
+.card-tam3{
+    height: 300px;
+    width: 100%;
+    background-image: url("../../../../assets/img/reg3.jpg");
+    background-size: cover;
+}
+
+h2,h3 {
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+  }
+.sec-descr{
+    position: relative;
+}
+.sec-descr h2 {
+    font-size: 100px;
+    font-weight: 500;
+    opacity: 0.1;
+    font-family: serif;
+    position: absolute;
+    top: -70px;
+  }
+.about-tam1{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi1.jpg");
+    background-size: cover;
+    
+}
+.about-tam2{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi2.jpg");
+    background-size: cover;
+    background-repeat:space;
+}
+.about-tam3{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi3.jpg");
+    background-size: cover;
+}

@@ -1,0 +1,26 @@
+.sec-descr{
+    position: relative;
+}
+.sec-descr h2 {
+    font-size: 100px;
+    font-weight: 500;
+    opacity: 0.1;
+    font-family: serif;
+    position: absolute;
+    top: -70px;
+    width: 100%;
+   
+  }
+  
+  .testimonio-img {
+    width: 90px !important;
+    border-radius: 50%;
+    border: 5px solid #474a4d;
+    margin: 0 auto;
+    
+  }
+
+  .sombra{
+    box-shadow: 0px 10px 10px 5px rgba(35, 101, 187, 0.2) ;
+    
+  }
