@@ -1,0 +1,20 @@
+.social-icons span,
+.social-icons div {
+  margin-left: 1.2rem;
+}
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+mat-icon {
+  font-size: 1.6rem;
+}
+.marge {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.flexicon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

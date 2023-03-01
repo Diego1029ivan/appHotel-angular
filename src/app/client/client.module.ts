@@ -21,9 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 
-
-
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -39,7 +36,7 @@ import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.compo
     SliderFotosComponent,
     TestimonioComponent,
     DetalleHotelComponent,
-    ReservaHotelComponent
+    ReservaHotelComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +46,7 @@ import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.compo
     NgBoostrapModule,
     NgbCarouselModule,
     CarouselModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class ClientModule { }
+export class ClientModule {}
