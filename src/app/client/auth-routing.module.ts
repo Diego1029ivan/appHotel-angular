@@ -8,7 +8,7 @@ import { RegionesComponent } from './pages/regiones/regiones.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
-
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -34,6 +34,7 @@ const routes: Routes = [
       {
         path: 'regiones/detalle-hotel/reserva-hotel',
         component: ReservaHotelComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'contacto',
@@ -49,9 +50,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,RouterModule.forChild(routes)
-  ],
-  exports: [RouterModule]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

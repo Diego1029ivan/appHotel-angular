@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light ">
+  <div class="container container-fluid">
+    <a class="navbar-brand" routerLink="../sistema-hotel/index" href="#">
+      Sistema Booking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="../sistema-hotel/index" href="#">Principal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="../sistema-hotel/nosotros" href="#">Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="../sistema-hotel/regiones" href="#">Regiones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="../sistema-hotel/contacto" href="#">Contacto</a>
+        </li>
+        <li class="nav-item" *ngIf="!logeado()">
+          <a class="nav-link " routerLink="/auth/login" href="#">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="logeado()">
+          <a class="nav-link " (click)="logout()" href="#">logout</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscando..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+      </form>
+      <div *ngIf=" logeado()">
+        <p>{{mostrarNombre() | titlecase}}</p>
+      </div>
+
+    </div>
+  </div>
+</nav>
+<div class="containerlogin">
+
+  <router-outlet></router-outlet>
+</div>

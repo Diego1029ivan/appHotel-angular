@@ -1,0 +1,6 @@
+<div class="social-icons">
+  <div matTooltip="Usuario logeado" class="flexicon">
+    <mat-icon>account_circle</mat-icon>{{mostrarNombre() | titlecase}}
+  </div>
+  <mat-icon class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
+</div>

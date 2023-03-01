@@ -1,0 +1,17 @@
+.nav-pos {
+  position: absolute;
+  width: 100%;
+}
+.containerlogin {
+  height: 120vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  background-color: #23242a;
+}
+@media (min-width: 768px) {
+  .containerlogin {
+    height: 92vh;
+  }
+}
