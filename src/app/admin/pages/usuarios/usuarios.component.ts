@@ -6,6 +6,8 @@ import { MatSort } from '@angular/material/sort';
 
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from '../../service/usuarios.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuariosCrudComponent } from '../../components/modal/usuarios-crud/usuarios-crud.component';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +21,10 @@ export class UsuariosComponent implements OnInit {
 
   finaldata: any;
 
-  constructor(private usuariosServices: UsuariosService) {}
+  constructor(
+    private usuariosServices: UsuariosService,
+    private dialog: MatDialog
+  ) {}
 
   displayedColumns: string[] = [
     'username',
@@ -41,6 +46,24 @@ export class UsuariosComponent implements OnInit {
       this.finaldata.paginator = this._paginator;
       this.finaldata.sort = this._sort;
     });
+  }
+
+  Openpopup(id: any) {
+    const _popup = this.dialog.open(UsuariosCrudComponent, {
+      width: '600px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadUsuarios();
+    });
+  }
+  editar(id: any) {
+    this.Openpopup(id);
   }
 
   applyFilter(event: Event) {

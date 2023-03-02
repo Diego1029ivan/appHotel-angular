@@ -18,6 +18,10 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(`${this.baseUrl}${this.urlEndPoint}`);
   }
 
+  getUsuario(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.baseUrl}${this.urlEndPoint}/${id}`);
+  }
+
   crearteClient(usuario: Usuario): Observable<Usuario> {
     return this.http.post(`${this.baseUrl}${this.urlEndPoint}`, usuario).pipe(
       map((response: any) => response.usuario as Usuario),

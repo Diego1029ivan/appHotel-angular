@@ -36,12 +36,14 @@ const routes: Routes = [
       {
         path: 'listarusuario',
         component: UsuariosComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'ROLE_SUPADMIN' },
       },
       {
         path: 'listarhoteles',
         component: ListhotelesComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'ROLE_SUPADMIN' },
       },
       {
         path: 'listarbares',

@@ -14,6 +14,7 @@ import { ListgaleriaComponent } from './pages/listgaleria/listgaleria.component'
 import { ListpreciosComponent } from './pages/listprecios/listprecios.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { HotelComponent } from './pages/hotel/hotel.component';
+import { UsuariosCrudComponent } from './components/modal/usuarios-crud/usuarios-crud.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HotelComponent } from './pages/hotel/hotel.component';
     ListpreciosComponent,
     UsuariosComponent,
     HotelComponent,
+    UsuariosCrudComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
 })
