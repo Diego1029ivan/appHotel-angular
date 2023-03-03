@@ -20,6 +20,9 @@ import { TestimonioComponent } from './components/testimonio/testimonio.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
+import { TokenInterceptor } from '../auth/interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,10 @@ import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.compo
     NgbCarouselModule,
     CarouselModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 })
 export class ClientModule {}

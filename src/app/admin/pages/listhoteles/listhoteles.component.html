@@ -13,7 +13,12 @@
 </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-
+    <!-- nombre Column -->
+    <ng-container matColumnDef="Dueño" `>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Dueño</th>
+      <td mat-cell *matCellDef="let element"> {{element.usuario
+        .nombre}} </td>
+    </ng-container>
     <!-- nombre Column -->
     <ng-container matColumnDef="nombre" `>
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Nombre</th>

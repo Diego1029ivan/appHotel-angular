@@ -15,6 +15,9 @@ import { ListpreciosComponent } from './pages/listprecios/listprecios.component'
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { HotelComponent } from './pages/hotel/hotel.component';
 import { UsuariosCrudComponent } from './components/modal/usuarios-crud/usuarios-crud.component';
+import { TokenInterceptor } from '../auth/interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,5 +36,9 @@ import { UsuariosCrudComponent } from './components/modal/usuarios-crud/usuarios
     UsuariosCrudComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 })
 export class AdminModule {}

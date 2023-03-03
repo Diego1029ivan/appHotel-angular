@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -26,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatDividerModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     HttpClientModule,

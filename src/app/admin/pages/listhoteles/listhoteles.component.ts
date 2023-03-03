@@ -24,6 +24,7 @@ export class ListhotelesComponent implements OnInit {
   dataSource!: _MatTableDataSource<any>;
 
   displayedColumns: string[] = [
+    'Dueño',
     'nombre',
     'ruc',
     'cantidadH',
@@ -40,6 +41,7 @@ export class ListhotelesComponent implements OnInit {
   LoadHoteles() {
     this.hotelServices.getHoteles().subscribe((data) => {
       this.hoteles = data;
+      console.log(this.hoteles);
       this.dataSource = new MatTableDataSource(this.hoteles);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

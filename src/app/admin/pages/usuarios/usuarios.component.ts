@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import swal from 'sweetalert2';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from '../../service/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -64,6 +64,34 @@ export class UsuariosComponent implements OnInit {
   }
   editar(id: any) {
     this.Openpopup(id);
+  }
+
+  eliminar(id: any) {
+    swal
+      .fire({
+        title: '¿Estas seguro?',
+        text: 'No podras revertir esta acción',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.usuariosServices.deleteUsuario(id).subscribe(
+            (data) => {
+              console.log(data);
+              swal.fire('Eliminado', 'El usuario ha sido eliminado', 'success');
+              this.LoadUsuarios();
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      });
   }
 
   applyFilter(event: Event) {
