@@ -5,6 +5,7 @@ import {
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
+import swal from 'sweetalert2';
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { environment } from 'src/environments/environment';
 import { HotelesService } from '../../service/hoteles.service';
@@ -41,13 +42,41 @@ export class ListhotelesComponent implements OnInit {
   LoadHoteles() {
     this.hotelServices.getHoteles().subscribe((data) => {
       this.hoteles = data;
-      console.log(this.hoteles);
       this.dataSource = new MatTableDataSource(this.hoteles);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
-
+  eliminarHotel(hotel: Hoteles) {
+    swal
+      .fire({
+        title: '¿Estas seguro?',
+        text: `¿Seguro que desea eliminar el Hotel ${hotel.nombre}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.hotelServices.deleteHotel(hotel.id).subscribe(
+            (data) => {
+              swal.fire(
+                'Eliminado',
+                `El Hotel ${hotel.nombre} ha sido eliminado`,
+                'success'
+              );
+              this.LoadHoteles();
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      });
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

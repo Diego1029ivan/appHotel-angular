@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from '../../service/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuariosCrudComponent } from '../../components/modal/usuarios-crud/usuarios-crud.component';
+import { Hoteles } from '../../../interfaces/hoteles';
 
 @Component({
   selector: 'app-usuarios',
@@ -66,11 +67,11 @@ export class UsuariosComponent implements OnInit {
     this.Openpopup(id);
   }
 
-  eliminar(id: any) {
+  eliminar(usuario: Usuario) {
     swal
       .fire({
         title: '¿Estas seguro?',
-        text: 'No podras revertir esta acción',
+        text: `¿Seguro que desea eliminar al cliente ${usuario.nombre} ${usuario.apellido}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -80,10 +81,13 @@ export class UsuariosComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.usuariosServices.deleteUsuario(id).subscribe(
+          this.usuariosServices.deleteUsuario(usuario.id).subscribe(
             (data) => {
-              console.log(data);
-              swal.fire('Eliminado', 'El usuario ha sido eliminado', 'success');
+              swal.fire(
+                'Eliminado',
+                `Cliente ${usuario.nombre} eliminado con éxito.`,
+                'success'
+              );
               this.LoadUsuarios();
             },
             (err) => {

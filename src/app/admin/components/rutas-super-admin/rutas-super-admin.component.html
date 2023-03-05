@@ -1,0 +1,13 @@
+<li routerLink="/admin/listarusuario" routerLinkActive="activelink" *ngIf="rolSuperAdmin() ">
+  <a>
+    <mat-icon>person</mat-icon>
+    <span>Usuarios</span>
+  </a>
+</li>
+<li routerLink="/admin/listarhoteles" routerLinkActive="activelink" *ngIf="rolSuperAdmin()">
+  <a>
+
+    <mat-icon>hotel</mat-icon>
+    <span>Hoteles</span>
+  </a>
+</li>

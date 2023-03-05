@@ -18,6 +18,8 @@ import { UsuariosCrudComponent } from './components/modal/usuarios-crud/usuarios
 import { TokenInterceptor } from '../auth/interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
+import { RutasAdminComponent } from './components/rutas-admin/rutas-admin.component';
+import { RutasSuperAdminComponent } from './components/rutas-super-admin/rutas-super-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
     UsuariosComponent,
     HotelComponent,
     UsuariosCrudComponent,
+    RutasAdminComponent,
+    RutasSuperAdminComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
   providers: [

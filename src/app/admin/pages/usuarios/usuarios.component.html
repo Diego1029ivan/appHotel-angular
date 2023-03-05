@@ -48,8 +48,7 @@
         <a class="pointer" style="color: #1f516f" matTooltip="Editar Usuario "
           (click)="editar(element.id)"><mat-icon>edit</mat-icon></a>
         <a class="pointer" style="color: #e15635" matTooltip="Eliminar Usuario"
-          *ngIf="element.roles[0].nombreRol != 'ROLE_SUPADMIN' "
-          (click)="eliminar(element.id)"><mat-icon>delete</mat-icon></a>
+          *ngIf="element.roles[0].nombreRol == 'ROLE_USER' " (click)="eliminar(element)"><mat-icon>delete</mat-icon></a>
       </td>
     </ng-container>
 
