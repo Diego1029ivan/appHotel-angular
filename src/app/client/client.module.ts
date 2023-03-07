@@ -25,6 +25,7 @@ import { MaterialModule } from '../material/material.module';
 
 
 
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -51,6 +52,8 @@ import { MaterialModule } from '../material/material.module';
     NgbCarouselModule,
     CarouselModule,
     ReactiveFormsModule,
+    NgBoostrapModule
+    
     
     
     
