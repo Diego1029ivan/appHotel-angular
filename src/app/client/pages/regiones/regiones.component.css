@@ -13,10 +13,10 @@
 }
 .img-banner2{
     position: absolute;
-    height: 500px;
+    height: 400px;
     width: 100%;
     left: 0;
-    z-index: -10;
+    
     background-image: url("../../../../assets/banner/banner-2.jpg");
     background-size: cover;
     background-position: center;
@@ -26,10 +26,10 @@
 }
 .img-banner3{
     position: absolute;
-    height: 500px;
+    height: 400px;
     width: 100%;
     left: 0;
-    z-index: -10;
+    
     background-image: url("../../../../assets/banner/banner-3.jpg");
     background-size: cover;
     background-position: center;
@@ -50,10 +50,11 @@
 }
 
 h2,h3 {
-    font-family: sans-serif;
+    
     font-weight: 400;
     font-size: 50px;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
     
   }
 .sec-descr{
@@ -66,4 +67,5 @@ h2,h3 {
     font-family: serif;
     position: absolute;
     top: -70px;
+    font-family: 'Dancing Script', cursive;
   }

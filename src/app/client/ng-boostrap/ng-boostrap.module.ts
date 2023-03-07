@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
+import { BootstrapIconsModule } from 'ng-bootstrap-icons';
+import { allIcons } from 'ng-bootstrap-icons/icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 
@@ -9,11 +12,14 @@ import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
   declarations: [],
   imports: [
     CommonModule,
-    NgxBootstrapIconsModule.pick(allIcons)
+    BootstrapIconsModule.pick(allIcons),
+    FontAwesomeModule
     
   ],
   exports:[
     NgbCarouselModule,
+    BootstrapIconsModule
+    
   ]
 })
 export class NgBoostrapModule { }

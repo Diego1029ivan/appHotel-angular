@@ -42,6 +42,20 @@ ngb-carousel {
 .carousel-indicators{
     z-index: 20;
 }
+
+.carousel-caption{
+    top: 20%;
+}
+.carousel-caption h3{
+    font-size: 5rem;
+    font-family: 'Dancing Script', cursive;
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+  color: transparent; 
+}
+.carousel-caption p{
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
 .imagen-slider1{
     background-image: url("../../../../assets/img/sl4.jpg");
     width: 100%;

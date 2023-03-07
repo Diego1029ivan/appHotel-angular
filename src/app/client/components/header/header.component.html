@@ -23,16 +23,22 @@
         <li class="nav-item" *ngIf="!logeado()">
           <a class="nav-link " routerLink="/auth/login" href="#">Login</a>
         </li>
-        <li class="nav-item logout" *ngIf="logeado()">
-          <a class="nav-link " (click)="logout()">logout</a>
-        </li>
+        
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Buscando..." aria-label="Search">
         <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
-      <div *ngIf=" logeado()">
-        <p>{{mostrarNombre() | titlecase}}</p>
+      <div *ngIf=" logeado()" class="row">
+        <div class="col d-flex align-items-center ms-2">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="col text-center pt-2">
+          <p>{{mostrarNombre() | titlecase}}</p>
+        </div>
+        <div class="col d-flex align-items-center ms-2">
+          <mat-icon *ngIf="logeado()" class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
+        </div>
       </div>
 
     </div>

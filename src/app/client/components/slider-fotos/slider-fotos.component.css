@@ -1,5 +1,5 @@
 h2,h3 {
-    font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 50px;
     
@@ -14,4 +14,5 @@ h2,h3 {
     font-family: serif;
     position: absolute;
     top: -70px;
+    font-family: 'Dancing Script', cursive;
   }

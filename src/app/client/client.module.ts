@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 
+
 import { HomeComponent } from './pages/home/home.component';
 import { HotelindexComponent } from './pages/hotelindex/hotelindex.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,9 +21,9 @@ import { TestimonioComponent } from './components/testimonio/testimonio.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
-import { TokenInterceptor } from '../auth/interceptors/token.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
+import { MaterialModule } from '../material/material.module';
+import { BootstrapIconsModule } from 'ng-bootstrap-icons';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -47,13 +48,13 @@ import { AuthInterceptor } from '../auth/interceptors/auth.interceptor';
     NgbCarouselModule,
     NgIf,
     NgBoostrapModule,
+    MaterialModule,
     NgbCarouselModule,
     CarouselModule,
     ReactiveFormsModule,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    SweetAlert2Module
+    
+    
   ],
 })
 export class ClientModule {}
