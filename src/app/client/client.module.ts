@@ -22,8 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 import { MaterialModule } from '../material/material.module';
-import { BootstrapIconsModule } from 'ng-bootstrap-icons';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+
 
 @NgModule({
   declarations: [
@@ -47,12 +47,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     AuthRoutingModule,
     NgbCarouselModule,
     NgIf,
-    NgBoostrapModule,
     MaterialModule,
     NgbCarouselModule,
     CarouselModule,
     ReactiveFormsModule,
-    SweetAlert2Module
+    
     
     
   ],

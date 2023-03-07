@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.3",
+    "moment": "^2.29.4",
     "ngx-bootstrap-icons": "^1.9.2",
     "ngx-owl-carousel-o": "^15.0.0",
     "popper.js": "^1.16.1",
