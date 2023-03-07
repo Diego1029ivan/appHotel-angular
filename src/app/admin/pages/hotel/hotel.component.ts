@@ -53,8 +53,8 @@ export class HotelComponent implements OnInit {
 
   LoadHotel() {
     const idlogeado = this.authService.usuario.id;
-    this.hotelServices.getHoteles().subscribe((data) => {
-      this.hotel = data.filter((hotel) => hotel.usuario.id === idlogeado);
+    this.hotelServices.getusuarioxhotel(idlogeado).subscribe((data) => {
+      this.hotel = data;
       this.dataSource = new MatTableDataSource(this.hotel);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

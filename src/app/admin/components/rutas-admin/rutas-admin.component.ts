@@ -23,8 +23,8 @@ export class RutasAdminComponent implements OnInit {
   }
   cargarHotel() {
     const idlogeado = this.authService.usuario.id;
-    this.hotelServices.getHoteles().subscribe((data) => {
-      this.hoteles = data.filter((hotel) => hotel.usuario.id === idlogeado);
+    this.hotelServices.getusuarioxhotel(idlogeado).subscribe((data) => {
+      this.hoteles = data;
     });
   }
 }

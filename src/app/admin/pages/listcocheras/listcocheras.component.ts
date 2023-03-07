@@ -29,7 +29,7 @@ export class ListcocherasComponent implements OnInit {
 
   hotelSeleccionadoId: number;
 
-  public baseUrl: string = environment.baseUrl;
+  public baseUrl: string = environment.baseUrl; //para mostrar la imagen
 
   dataSource!: _MatTableDataSource<any>;
 
@@ -48,17 +48,18 @@ export class ListcocherasComponent implements OnInit {
   LoadHotel() {
     const idlogeado = this.authService.usuario.id;
 
-    this.hotelServices.getHoteles().subscribe(
+    this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
-        this.hotel = data.filter((hotel) => hotel.usuario.id === idlogeado);
+        this.hotel = data;
+        this.cochera = this.hotel[0].cocheras;
+        this.dataSource = new MatTableDataSource(this.cochera);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (err) => {
         console.log(err);
       }
     );
-    this.dataSource = new MatTableDataSource(this.cochera);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   onSelect(cochera: Cocheras) {
@@ -68,11 +69,7 @@ export class ListcocherasComponent implements OnInit {
       (hotel) => hotel.id === this.hotelSeleccionadoId
     );
     this.cochera = cocher[0].cocheras;
-    console.log(this.cochera);
     if (this.cochera.length > 0) {
-      this.LoadHotel();
-    } else {
-      this.cochera = [];
       this.LoadHotel();
     }
   }

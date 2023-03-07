@@ -1,1 +1,76 @@
-<p>listgaleria works!</p>
+<div class="dash-title">
+  <h2>Listado de Galeria </h2>
+</div>
+<button mat-raised-button color="primary">Crear</button>
+<br>
+<br>
+
+<div class="selectAncho">
+  <mat-form-field appearance="fill">
+    <mat-label>Selecione un Hotel</mat-label>
+    <mat-select (selectionChange)="onSelect($event.value)">
+      <mat-option *ngFor="let item of hotel" [value]="item.id">
+        {{item.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div *ngIf="galeria?.length >0">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Descripción Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+      </ng-container>
+
+      <!-- Foto Column -->
+      <ng-container matColumnDef="foto">
+        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <td mat-cell *matCellDef="let element">
+          <img src='{{baseUrl}}/api/uploads/img/{{element.foto}}' alt="{{element.foto}}" style="width: 100px;" />
+        </td>
+      </ng-container>
+      <!-- Foto2 Column -->
+      <ng-container matColumnDef="foto2">
+        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <td mat-cell *matCellDef="let element">
+          <img src='{{baseUrl}}/api/uploads/img/{{element.foto2}}' alt="{{element.foto2}}" style="width: 100px;" />
+        </td>
+      </ng-container>
+      <!-- Foto3 Column -->
+      <ng-container matColumnDef="foto3">
+        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <td mat-cell *matCellDef="let element">
+          <img src='{{baseUrl}}/api/uploads/img/{{element.foto3}}' alt="{{element.foto3}}" style="width: 100px;" />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones</th>
+        <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
+          <a class="pointer" style="color: #1f516f" matTooltip="Editar Usuario "><mat-icon>edit</mat-icon></a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay data "{{input.value}}"</td>
+      </tr>
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="galeria?.length == 0" class="alert alert-info">
+  No hay registros en la base de datos!
+</div>
