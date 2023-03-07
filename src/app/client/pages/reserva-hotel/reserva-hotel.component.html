@@ -1,0 +1,255 @@
+<div class="container mb-5">
+    
+      <div class="py-5 text-center">
+       
+        <div class=" sec-descr pt-5">
+            <h2 class=" pt-5">Pagos</h2>
+            <h3>Pago de reserva</h3>
+          </div>
+        <p class="lead">Los pagos de hoteles online son una forma rápida y conveniente de reservar una estadía en cualquier lugar del mundo. Los viajeros pueden elegir entre una amplia gama de opciones de alojamiento y pagar fácilmente con una tarjeta de crédito o débito. Con esta forma de pago, los huéspedes pueden asegurarse de que su reserva esté confirmada y reservada antes de llegar al destino, lo que les brinda tranquilidad y seguridad durante su viaje.</p>
+      </div>
+  
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Tu boleta</span>
+            
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Hotel</h6>
+                <small class="text-muted">Nombre del hotel</small>
+              </div>
+              <span class="text-muted">{{hotelid?.nombre}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Tipo de Habitación</h6>
+                <small class="text-muted">Nombre-habitación</small>
+              </div>
+              <span class="text-muted">{{nombreHab()}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+              <div>
+                <h6 class="my-0">Pago Adelantado</h6>
+                <small class="text-muted">#</small>
+              </div>
+              <span class="text-muted">{{this.miFormulario.controls['pagadelantado'].value}}</span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Tipo de Pago</h6>
+                  <small class="text-muted">Tarjeta o crédito</small>
+                </div>
+                <span class="text-muted">{{valorTipoPago()}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Entrada</h6>
+                  <small class="text-muted">fecha</small>
+                </div>
+                <span class="text-muted">{{this.miFormulario.controls['fechaentrada'].value}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Salida</h6>
+                  <small class="text-muted">fecha</small>
+                </div>
+                <span class="text-muted">{{this.miFormulario.controls['fechasalida'].value}}</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (soles)</span>
+              <strong *ngIf="(this.miFormulario.controls['tipo'].value && this.miFormulario.controls['cantidad'].value)">{{valorCosto()*this.miFormulario.controls['cantidad'].value}}</strong>
+            </li>
+          </ul>
+  
+          
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Solicitud de datos</h4>
+          <form class="sombra"
+          (ngSubmit)="register()"
+          [formGroup]="miFormulario"
+          autocomplete="off">
+            <div class="row g-3">
+              
+                <div class="form-floating col-sm-6">
+                    <input class="form-control"  type="text" 
+                           value="{{user.username}}"
+                           />
+                    <label >Nombre</label>
+                    <!-- <span  class="form-text text-danger"
+                           >
+                    Un nombre es requerido
+                    </span> -->
+                </div>
+  
+              <div class="form-floating  col-sm-6">
+                <input type="text" class="form-control"  
+                formControlName="id">
+                <label >Id</label>
+                
+                <!-- <span >
+                  Valid last name is required.
+                </span> -->
+              </div>
+              
+              <div class="form-floating col-sm-6">
+                <input class="form-control"  type="date" 
+                formControlName="fechaentrada" />
+                <label for="name">Fecha entrada</label>
+                <span class="form-text text-danger"
+                *ngIf="campoEsValido('fechaentrada')">
+            
+                Ete campo es obligatorio
+             </span>
+              </div>
+
+              
+
+          <div class="form-floating  col-sm-6">
+            <input type="text" class="form-control"  type="date" 
+            formControlName="fechasalida"
+            >
+            <label for="lastName">Fecha Salida</label>
+            
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('fechasalida')">
+            
+                Ete campo es obligatorio
+             </span>
+          </div>
+
+              <div class=" form-floating col-sm-6">
+                <input type="number" class="form-control"  
+                type="number" 
+                formControlName="pagadelantado"
+                placeholder="pago">
+            <label >Pago Adenlantado</label>
+            
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('pagadelantado')">
+            
+                Ete campo es obligatorio
+             </span>
+              </div>
+
+              <div class=" form-floating col-sm-6">
+                <input type="number" class="form-control"  type="number" 
+                placeholder="Ingrese su nombre..."
+                formControlName="cantidad">
+            <label >Cantidad de habitaciones</label>
+            
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('cantidad')">
+            
+                Ete campo es obligatorio
+             </span>
+              </div>
+  
+              <div class=" col-sm-6">
+                <label >Tipo de habitación</label>
+                <select class="form-select" id="state" formControlName="tipo">
+                  
+                  <option *ngFor="let tipo of hotelid?.precioxtipohabitacion"
+                          [value]="tipo.id">{{tipo.tipoHabitacion}}</option>
+                  
+                </select>
+                <span class="form-text text-danger"
+                *ngIf="campoEsValido('tipo')">
+            
+                Ete campo es obligatorio
+             </span>
+              </div>
+
+              
+
+          <div class="form-floating  col-sm-6">
+            <input type="text" class="form-control"  type="number"
+             placeholder="costo..." value="{{valorCosto()}}">
+            <label for="lastName">Costo x Tipo</label>
+            
+            <!-- <span >
+              Valid last name is required.
+            </span> -->
+          </div>
+            </div>
+  
+            
+  
+            <div class="form-check mt-4">
+              <input type="checkbox" class="form-check-input" 
+              id="same-address"
+              name="terminos"
+              formControlName="condiciones">
+              <label class="form-check-label" for="same-address">Acepto los términos y condiciones</label>
+            </div>
+            <span class="form-text text-danger"
+            *ngIf="campoEsValido('condiciones')">
+        
+            Ete campo es obligatorio
+            </span>
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input"
+               id="save-info"
+               name="recomendaciones"
+              formControlName="recomendaciones">
+               
+              <label class="form-check-label" for="save-info">Leí las recomendaciones</label>
+              
+            </div>
+            <span class="form-text text-danger"
+            *ngIf="campoEsValido('recomendaciones')">
+        
+            Ete campo es obligatorio
+            </span>
+  
+            <hr class="my-4">
+  
+            <h4 class="mb-3">Tipo de pago</h4>
+  
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit"  type="radio" 
+                class="form-check-input" 
+                value="1" 
+                id="radioEfectivo"
+                formControlName="pago">
+                <label class="form-check-label"for="radioEfectivo" >Pago en efectivo</label>
+              </div>
+              <div class="form-check">
+                <input id="debit"  type="radio" 
+                class="form-check-input"
+                value="2" 
+                id="radioCredito"
+                formControlName="pago">
+                <label class="form-check-label" for="radioCredito">Tarjeta de crédito</label>
+              </div>
+              
+            </div>
+            <span class="form-text text-danger"
+            *ngIf="campoEsValido('pago')">
+        
+            Ete campo es obligatorio
+            </span>
+  
+              
+            <hr class="my-4">
+  
+            <button class="w-100 btn btn-primary btn-lg" type="submit"
+            [disabled]="miFormulario.invalid">Registrar Pago</button>
+          </form>
+        </div>
+      </div>
+    
+      <span>Valid</span>
+      <pre>{{miFormulario.valid}}</pre>
+      <br>
+      <span>Value</span>
+      <pre>{{miFormulario.value | json}}</pre>
+    
+  </div>

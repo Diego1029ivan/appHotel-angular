@@ -1,0 +1,45 @@
+.card-tam img{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+
+h2,h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+  }
+.sec-descr{
+    position: relative;
+}
+.sec-descr h2 {
+    font-size: 100px;
+    font-weight: 500;
+    opacity: 0.1;
+    font-family: serif;
+    position: absolute;
+    top: -70px;
+    font-family: 'Dancing Script', cursive;
+  }
+.about-tam1{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi1.jpg");
+    background-size: cover;
+    
+}
+.about-tam2{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi2.jpg");
+    background-size: cover;
+    background-repeat:space;
+}
+.about-tam3{
+    height: 400px;
+    width: 100%;
+    background-image: url("../../../../assets/img/publi3.jpg");
+    background-size: cover;
+}

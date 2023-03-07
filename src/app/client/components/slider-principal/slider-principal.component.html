@@ -1,0 +1,42 @@
+<ngb-carousel *ngIf="images"
+[showNavigationArrows]="true" 
+[showNavigationIndicators]="true"
+[interval]=5000
+[keyboard]="true"
+[pauseOnHover]="true"
+[wrap]="true"
+[activeId]="'secondSlide'">
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<div class="imagen-slider1">
+			
+			</div>
+		</div>
+		<div class="carousel-caption">
+			<h3>Destinos Increibles</h3>
+			<p>¡Descubre los mejores hoteles para tu próximo destino y reserva ahora mismo!</p>
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<div class="imagen-slider2">
+			
+			</div>
+		</div>
+		<div class="carousel-caption">
+			<h3>¡Planifica tus vacaciones de ensueño!</h3>
+			<p>¿Buscando un lugar perfecto para alojarte? Nuestra página de reserva de hoteles tiene todo lo que necesitas.</p>
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<div class="imagen-slider3">
+			
+			</div>
+		</div>
+		<div class="carousel-caption">
+			<h3>Beneficios de nuestro hoteles</h3>
+			<p>Nuestros hoteles ofrecen comodidades excepcionales para que disfrutes de una estancia inolvidable.</p>
+		</div>
+	</ng-template>
+</ngb-carousel>

@@ -1,0 +1,26 @@
+<div class="box">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <h2>Login</h2>
+    <div class="inputBox">
+      <input type="text" required autocomplete="off" formControlName="username">
+      <span>Usereame</span>
+      <i></i>
+    </div>
+
+    <div class="inputBox">
+      <input type="password" required autocomplete="off" formControlName="password">
+      <span>Password</span>
+      <i></i>
+    </div>
+    <span *ngIf="this.loginForm.get('password')?.errors?.['minlength']?.requiredLength" class="errors">
+      minimo 6 caracteres
+    </span>
+    <div class="links">
+      <span></span>
+      <a routerLink="/auth/registro">Signin</a>
+    </div>
+    <!-- -->
+    <input type="submit" value="Login" class="center" [disabled]="loginForm.invalid"
+      [ngClass]="loginForm.invalid ?  'desactive': '' ">
+  </form>
+</div>

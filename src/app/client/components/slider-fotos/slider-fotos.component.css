@@ -1,0 +1,18 @@
+h2,h3 {
+  font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    
+  }
+.sec-descr{
+    position: relative;
+}
+.sec-descr h2 {
+    font-size: 100px;
+    font-weight: 500;
+    opacity: 0.1;
+    font-family: serif;
+    position: absolute;
+    top: -70px;
+    font-family: 'Dancing Script', cursive;
+  }

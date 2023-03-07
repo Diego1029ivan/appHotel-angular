@@ -1,0 +1,141 @@
+<section class=" text-center container ">
+  <div class="img-banner1 "></div>
+    <div class="row py-lg-5 ">
+      <div class="col-lg-6 col-md-8 mx-auto letras">
+        <div class=" sec-descr pt-5">
+            <h2 class="pt-5 ">Lamas</h2>
+            <h3>Hoteles en Lamas</h3>
+          </div>
+        <p class="lead text-muted">En esta sección, les presentaré una selección de hoteles de lujo de todo el mundo, con características y servicios únicos que los hacen destacar. Desde hoteles de diseño contemporáneo hasta castillos históricos restaurados, esta galería tiene algo para todos los gustos y presupuestos.</p>
+        <div class="gx-5">
+          <a href="#" class="btn btn-primary m-2">Reservas</a>
+          <a href="#" class="btn btn-secondary m-2">Contacto</a>
+        </div>
+      </div>
+    </div>
+</section>
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        
+        <div class="col" *ngFor="let hotel of hotelesL" >
+
+          <div class="card shadow-sm" >
+
+              <div class="foto-hotel" *ngIf="hotel.galeria[0].foto">
+                  <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
+              </div>
+
+              <div class="card-body">
+                <h4>{{hotel.nombre}}</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" routerLink="./detalle-hotel/{{hotel.id}}">Reserva</a>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Info</button>
+                      </div>
+                        <small class="text-muted">9 mins</small>
+                  </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      
+<!-- MOYOBAMBA -->
+
+  <section class="text-center container mt-5">
+    <div class="img-banner2 "></div>
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <div class=" sec-descr pt-5">
+            <h2 class="pt-5 ">Moyobamba</h2>
+            <h3>Hoteles en Moyobamba</h3>
+          </div>
+        <p class="lead text-muted">En esta sección, les presentaré una selección de hoteles de lujo de todo el mundo, con características y servicios únicos que los hacen destacar. Desde hoteles de diseño contemporáneo hasta castillos históricos restaurados, esta galería tiene algo para todos los gustos y presupuestos.</p>
+        <div class="gx-5">
+          <a href="#" class="btn btn-primary m-2">Reservas</a>
+          <a href="#" class="btn btn-secondary m-2">Contacto</a>
+        </div>
+      </div>
+    </div>
+</section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let hotel of hotelesM">
+          <div class="card shadow-sm" >
+
+            <div class="foto-hotel" *ngIf="hotel.galeria[0].foto">
+                <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
+            </div>
+
+            <div class="card-body">
+              <h4>{{hotel.nombre}}</h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary"routerLink="./detalle-hotel/{{hotel.id}}">Reserva</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Contacto</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TARAPOTO -->
+
+  <section class=" text-center container mt-5">
+    <div class="img-banner3 "></div>
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <div class=" sec-descr pt-5">
+            <h2 class="pt-5 ">Tarapoto</h2>
+            <h3>Hoteles en Tarapoto</h3>
+          </div>
+        <p class="lead text-muted">En esta sección, les presentaré una selección de hoteles de lujo de todo el mundo, con características y servicios únicos que los hacen destacar. Desde hoteles de diseño contemporáneo hasta castillos históricos restaurados, esta galería tiene algo para todos los gustos y presupuestos.</p>
+        <div class="gx-5">
+          <a href="#" class="btn btn-primary m-2">Reservas</a>
+          <a href="#" class="btn btn-secondary m-2">Contacto</a>
+        </div>
+      </div>
+    </div>
+</section>
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let hotel of hotelesT">
+          <div class="card shadow-sm" >
+
+            <div class="foto-hotel" *ngIf="hotel.galeria[0]">
+                <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
+            </div>
+
+            <div class="card-body">
+              <h4>{{hotel.nombre}}</h4>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" routerLink="./detalle-hotel/{{hotel.id}}">Reservas</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Contacto</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

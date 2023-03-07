@@ -1,0 +1,101 @@
+<app-slider-principal></app-slider-principal>
+
+<div class="container">
+  <hr class="featurette-divider">
+  <app-form-compra></app-form-compra>
+  <hr class="featurette-divider">
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing mt-3">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4 " *ngFor="let ubicacion of ubicaciones">
+        <div class="card" style="width: 18rem;">
+          <div class="card-img-top card-tam">
+            <img src='{{baseUrl}}/api/uploads/img/{{ubicacion.fotoCiudad}}' alt="">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ubicacion.ciudad}}</h5>
+            <p class="card-text">{{ubicacion.descripcionCiudad}}</p>
+            <a href="#" class="btn btn-primary">Buscar Hoteles</a>
+          </div>
+        </div>
+      </div><!-- /.col-lg-4 -->
+      
+    </div><!-- /.row -->
+
+
+    <!-- SECCIONES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette ">
+      <div class="col-md-7 sec-descr ">
+        <div class="pt-5">
+          <h2 class="pt-5">Planifica</h2>
+          <h3>Estructura tu hospedaje</h3>
+        </div>
+        <p class="lead">Cuando planificamos unas vacaciones, uno de los aspectos más importantes a considerar es el
+          alojamiento. La elección del hotel puede tener un gran impacto en la calidad de nuestras vacaciones, por lo
+          que es importante encontrar el hotel perfecto que se adapte a nuestras necesidades y presupuesto. </p>
+        <button class="btn btn-primary">Reservar</button>
+      </div>
+      <div class="col-md-5">
+        <div class="about-tam1"></div>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2 sec-descr">
+        <div class="pt-5">
+          <h2 class="pt-5">Necesidades</h2>
+          <h3>
+            Analiza tus ventajas
+          </h3>
+        </div>
+        <p class="lead">Antes de comenzar a buscar un hotel, es importante definir tus
+          necesidades. ¿Viajas solo o en grupo? ¿Necesitas una ubicación cerca de las atracciones turísticas o prefieres
+          un lugar más tranquilo? ¿Cuál es tu presupuesto? Al definir tus necesidades, podrás reducir tu búsqueda a
+          hoteles que se adapten a tus requisitos.</p>
+        <button class="btn btn-primary">Reservar</button>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <div class="about-tam2"></div>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 sec-descr">
+        <div class="pt-5">
+          <h2 class="pt-5">Investiga</h2>
+          <h3>Búsqueda de hoteles</h3>
+        </div>
+        <p class="lead">Realiza una investigación exhaustiva en línea antes de reservar un hotel. Busca en
+          sitios web de reseñas como TripAdvisor o Booking para leer las opiniones de otros huéspedes que han estado en
+          el hotel. También puedes buscar en los sitios web de los hoteles para obtener información detallada sobre las
+          habitaciones, servicios y tarifas.</p>
+        <button class="btn btn-primary">Reservar</button>
+      </div>
+      <div class="col-md-5">
+        <div class="about-tam3"></div>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+    <app-slider-fotos></app-slider-fotos>
+
+    <hr class="featurette-divider">
+  </div><!-- /.container -->
