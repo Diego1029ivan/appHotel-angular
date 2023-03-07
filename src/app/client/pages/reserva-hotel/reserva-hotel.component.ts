@@ -31,6 +31,7 @@ export class ReservaHotelComponent implements OnInit{
 
   hotelid: Hoteles 
   user:Usuario
+  
 
   ngOnInit(): void {
     this.user=this.authService.usuario;
