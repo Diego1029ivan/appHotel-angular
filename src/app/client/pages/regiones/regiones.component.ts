@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { Galeria } from 'src/app/interfaces/galeria';
+
+import { environment } from 'src/environments/environment';
+import { HotelesService } from '../../services/hoteles.service';
+import { ReqResResponse } from '../../models/reqres-response';
+import { Hoteles } from 'src/app/interfaces/hoteles';
 
 @Component({
   selector: 'app-regiones',
@@ -7,4 +13,50 @@ import { Component } from '@angular/core';
 })
 export class RegionesComponent {
 
+  //public galeria : any =[]
+  private baseUrl: string = environment.baseUrl;
+  hoteles:Hoteles[]=[]
+  hotelesL:Hoteles[]=[]
+  hotelesM:Hoteles[]=[]
+  hotelesT:Hoteles[]=[]
+  
+  
+  galerias:Galeria[]=[]
+ 
+  ngOnInit(): void {
+    this.LoadHoteles();
+    
+  }
+
+  constructor(private hotelesService: HotelesService){}
+  LoadHoteles(){
+    this.hotelesService.getHoteles()
+      .subscribe( (hoteles) =>{
+        this.hoteles=hoteles;
+        for(let i = 0 ; i < this.hoteles.length ; i++){
+          this.galerias.push(this.hoteles[i].galeria[0])
+          
+        }
+
+        for(let i = 0 ; i < this.hoteles.length ; i++){
+          (this.hoteles[i].ubicacion['ciudad']=='Tarapoto')?this.hotelesT.push(this.hoteles[i]):
+          (this.hoteles[i].ubicacion['ciudad']=='Moyobamba')?this.hotelesM.push(this.hoteles[i]):
+          (this.hoteles[i].ubicacion['ciudad']=='Lamas')?this.hotelesL.push(this.hoteles[i]):
+          false
+        }
+        
+        // console.log(this.hoteles[0].galeria[0].foto)
+        // console.log(this.galerias[0].foto)
+        //  console.log(this.hotelesT)
+        //  console.log(this.hotelesL)
+        //  console.log(this.hotelesM)
+        // console.log(this.galerias)
+         
+        
+        
+        
+      });
+      
+  }
+  
 }

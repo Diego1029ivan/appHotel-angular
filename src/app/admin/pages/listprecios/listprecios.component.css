@@ -1,0 +1,31 @@
+.spinner {
+  margin: 20rem auto;
+}
+.selectAncho {
+  width: 400px;
+  margin: 0 auto;
+}
+.alert {
+  margin: 8rem auto;
+  width: 100%;
+  font-size: 1rem;
+  height: 60px;
+  padding: 20px;
+  background-color: #e2e3e5;
+}
+.dash-title {
+  width: 100%;
+  font-size: 1rem;
+
+  margin: 1rem 0;
+}
+table {
+  width: 100%;
+}
+.pointer {
+  cursor: pointer;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}

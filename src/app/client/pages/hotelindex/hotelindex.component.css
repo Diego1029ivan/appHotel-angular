@@ -1,24 +1,13 @@
-.card-tam1{
+.card-tam img{
     height: 300px;
     width: 100%;
-    background-image: url("../../../../assets/img/reg1.jpg");
-    background-size:cover;
-}
-.card-tam2{
-    height: 300px;
-    width: 100%;
-    background-image: url("../../../../assets/img/reg2.jpg");
-    background-size: cover;
-}
-.card-tam3{
-    height: 300px;
-    width: 100%;
-    background-image: url("../../../../assets/img/reg3.jpg");
-    background-size: cover;
+    object-fit: cover;
+    
 }
 
+
 h2,h3 {
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 50px;
   }
@@ -32,6 +21,7 @@ h2,h3 {
     font-family: serif;
     position: absolute;
     top: -70px;
+    font-family: 'Dancing Script', cursive;
   }
 .about-tam1{
     height: 400px;

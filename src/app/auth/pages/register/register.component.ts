@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 import { Usuario } from '../../../interfaces/usuario';
+
+import { UsuariosService } from '../../../admin/service/usuarios.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,7 +13,12 @@ import { Usuario } from '../../../interfaces/usuario';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   usuario: Usuario;
-  constructor(private fb: FormBuilder) {
+  errores: string[];
+  constructor(
+    private fb: FormBuilder,
+    private usuariosService: UsuariosService,
+    private router: Router
+  ) {
     this.usuario = new Usuario();
   }
 
@@ -32,6 +41,49 @@ export class RegisterComponent implements OnInit {
     this.usuario.apellido = this.registerForm.value.apellido.trim();
     this.usuario.celular = this.registerForm.value.celular;
     this.usuario.email = this.registerForm.value.email.trim();
-    console.log(this.usuario);
+
+    if (this.registerForm.value.tipousuario == 'Empresa') {
+      this.usuariosService.crearteAdmin(this.usuario).subscribe(
+        (response) => {
+          swal.fire(
+            'Registro',
+            `has registrado ${this.usuario.username} con éxito!`,
+            'success'
+          );
+
+          this.router.navigate(['auth/login']);
+          this.registerForm.reset();
+        },
+        (err) => {
+          swal.fire(
+            'Error Registro',
+            ` Algo salio mal ingrese bien tus datos !`,
+            'error'
+          );
+        }
+      );
+    } else if (this.registerForm.value.tipousuario == 'Cliente') {
+      this.usuariosService.crearteClient(this.usuario).subscribe(
+        (response) => {
+          swal.fire(
+            'Registro',
+            `has registrado ${this.usuario.username} con éxito!`,
+            'success'
+          );
+
+          this.router.navigate(['auth/login']);
+          this.registerForm.reset();
+        },
+        (err) => {
+          swal.fire(
+            'Error Registro',
+            ` Algo salio mal ingrese bien tus datos !`,
+            'error'
+          );
+        }
+      );
+    } else {
+      console.log('seleccione un tipo de usuario');
+    }
   }
 }

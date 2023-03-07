@@ -11,3 +11,11 @@ table {
 .spinner {
   margin: 20rem auto;
 }
+.alert {
+  margin: 8rem auto;
+  width: 100%;
+  font-size: 1rem;
+  height: 60px;
+  padding: 20px;
+  background-color: #e2e3e5;
+}

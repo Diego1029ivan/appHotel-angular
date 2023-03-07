@@ -24,6 +24,7 @@
     font-weight: 400;
     font-size: 50px;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
     
   }
 .sec-descr{
@@ -36,6 +37,7 @@
     font-family: serif;
     position: absolute;
     top: -70px;
+    font-family: 'Dancing Script', cursive;
   }
 
   .sombra{

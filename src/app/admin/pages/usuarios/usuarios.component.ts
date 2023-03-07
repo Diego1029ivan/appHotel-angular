@@ -3,9 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import swal from 'sweetalert2';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from '../../service/usuarios.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuariosCrudComponent } from '../../components/modal/usuarios-crud/usuarios-crud.component';
+import { Hoteles } from '../../../interfaces/hoteles';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +22,10 @@ export class UsuariosComponent implements OnInit {
 
   finaldata: any;
 
-  constructor(private usuariosServices: UsuariosService) {}
+  constructor(
+    private usuariosServices: UsuariosService,
+    private dialog: MatDialog
+  ) {}
 
   displayedColumns: string[] = [
     'username',
@@ -41,6 +47,55 @@ export class UsuariosComponent implements OnInit {
       this.finaldata.paginator = this._paginator;
       this.finaldata.sort = this._sort;
     });
+  }
+
+  Openpopup(id: any) {
+    const _popup = this.dialog.open(UsuariosCrudComponent, {
+      width: '600px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadUsuarios();
+    });
+  }
+  editar(id: any) {
+    this.Openpopup(id);
+  }
+
+  eliminar(usuario: Usuario) {
+    swal
+      .fire({
+        title: '¿Estas seguro?',
+        text: `¿Seguro que desea eliminar al cliente ${usuario.nombre} ${usuario.apellido}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.usuariosServices.deleteUsuario(usuario.id).subscribe(
+            (data) => {
+              swal.fire(
+                'Eliminado',
+                `Cliente ${usuario.nombre} eliminado con éxito.`,
+                'success'
+              );
+              this.LoadUsuarios();
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      });
   }
 
   applyFilter(event: Event) {

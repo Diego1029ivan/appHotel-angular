@@ -13,39 +13,19 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-4 ">
+      <div class="col-lg-4 " *ngFor="let ubicacion of ubicaciones">
         <div class="card" style="width: 18rem;">
-          <div class="card-img-top card-tam1"></div>
+          <div class="card-img-top card-tam">
+            <img src='{{baseUrl}}/api/uploads/img/{{ubicacion.fotoCiudad}}' alt="">
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Región 1</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Buscar Hotel</a>
+            <h5 class="card-title">{{ubicacion.ciudad}}</h5>
+            <p class="card-text">{{ubicacion.descripcionCiudad}}</p>
+            <a href="#" class="btn btn-primary">Buscar Hoteles</a>
           </div>
         </div>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-img-top card-tam2"></div>
-          <div class="card-body">
-            <h5 class="card-title">Región 2</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Buscar Hotel</a>
-          </div>
-        </div>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-img-top card-tam3"></div>
-          <div class="card-body">
-            <h5 class="card-title">Región 3</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="btn btn-primary">Buscar Hotel</a>
-          </div>
-        </div>
-      </div><!-- /.col-lg-4 -->
+      
     </div><!-- /.row -->
 
 
@@ -56,8 +36,8 @@
     <div class="row featurette ">
       <div class="col-md-7 sec-descr ">
         <div class="pt-5">
-          <h2 class="pt-5">sección 1</h2>
-          <h3>Desarrollo sec1</h3>
+          <h2 class="pt-5">Planifica</h2>
+          <h3>Estructura tu hospedaje</h3>
         </div>
         <p class="lead">Cuando planificamos unas vacaciones, uno de los aspectos más importantes a considerar es el
           alojamiento. La elección del hotel puede tener un gran impacto en la calidad de nuestras vacaciones, por lo
@@ -75,10 +55,12 @@
     <div class="row featurette">
       <div class="col-md-7 order-md-2 sec-descr">
         <div class="pt-5">
-          <h2 class="pt-5">sección 2</h2>
-          <h3>Desarrollo sec2</h3>
+          <h2 class="pt-5">Necesidades</h2>
+          <h3>
+            Analiza tus ventajas
+          </h3>
         </div>
-        <p class="lead">Define tus necesidades: Antes de comenzar a buscar un hotel, es importante definir tus
+        <p class="lead">Antes de comenzar a buscar un hotel, es importante definir tus
           necesidades. ¿Viajas solo o en grupo? ¿Necesitas una ubicación cerca de las atracciones turísticas o prefieres
           un lugar más tranquilo? ¿Cuál es tu presupuesto? Al definir tus necesidades, podrás reducir tu búsqueda a
           hoteles que se adapten a tus requisitos.</p>
@@ -95,10 +77,10 @@
     <div class="row featurette">
       <div class="col-md-7 sec-descr">
         <div class="pt-5">
-          <h2 class="pt-5">sección 3</h2>
-          <h3>Desarrollo sec3</h3>
+          <h2 class="pt-5">Investiga</h2>
+          <h3>Búsqueda de hoteles</h3>
         </div>
-        <p class="lead">Investiga: Realiza una investigación exhaustiva en línea antes de reservar un hotel. Busca en
+        <p class="lead">Realiza una investigación exhaustiva en línea antes de reservar un hotel. Busca en
           sitios web de reseñas como TripAdvisor o Booking para leer las opiniones de otros huéspedes que han estado en
           el hotel. También puedes buscar en los sitios web de los hoteles para obtener información detallada sobre las
           habitaciones, servicios y tarifas.</p>

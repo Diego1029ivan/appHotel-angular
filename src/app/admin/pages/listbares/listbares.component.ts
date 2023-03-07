@@ -29,7 +29,7 @@ export class ListbaresComponent implements OnInit {
   public userlogeado: Usuario;
   hotelSeleccionadoId: number;
 
-  public baseUrl: string = environment.baseUrl;
+  public baseUrl: string = environment.baseUrl; //para mostrar la imagen
 
   dataSource!: _MatTableDataSource<any>;
 
@@ -48,17 +48,18 @@ export class ListbaresComponent implements OnInit {
   LoadHotel() {
     const idlogeado = this.authService.usuario.id;
 
-    this.hotelServices.getHoteles().subscribe(
+    this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
-        this.hotel = data.filter((hotel) => hotel.usuario.id === idlogeado);
+        this.hotel = data;
+        this.bares = this.hotel[0].bares;
+        this.dataSource = new MatTableDataSource(this.bares);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (err) => {
         console.log(err);
       }
     );
-    this.dataSource = new MatTableDataSource(this.bares);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
   onSelect(hotel: Hoteles) {
     let bar: any;
@@ -66,9 +67,6 @@ export class ListbaresComponent implements OnInit {
     bar = this.hotel.filter((hotel) => hotel.id === this.hotelSeleccionadoId);
     this.bares = bar[0].bares;
     if (this.bares.length > 0) {
-      this.LoadHotel();
-    } else {
-      this.bares = [];
       this.LoadHotel();
     }
   }

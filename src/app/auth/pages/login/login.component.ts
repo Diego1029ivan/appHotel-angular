@@ -35,17 +35,15 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.usuario).subscribe(
       (response) => {
-        console.log(response, 'response');
-
         this.authService.guardarUsuario(response.access_token);
         this.authService.guardarToken(response.access_token);
         let usuario = this.authService.usuario;
         if (usuario.roles[0] == 'ROLE_USER') {
           this.router.navigate(['../sistema-hotel/index']);
         } else if (usuario.roles[0] == 'ROLE_ADMIN') {
-          this.router.navigate(['/admin/listar']);
+          this.router.navigate(['/admin/listarhotel']);
         } else if (usuario.roles[0] == 'ROLE_SUPADMIN') {
-          this.router.navigate(['/admin/listar']);
+          this.router.navigate(['/admin/listarusuario']);
         }
         swal.fire(
           'Login',

@@ -28,11 +28,12 @@ const routes: Routes = [
         component: RegionesComponent,
       },
       {
-        path: 'regiones/detalle-hotel',
+        path: 'regiones/detalle-hotel/:id',
         component: DetalleHotelComponent,
       },
+      
       {
-        path: 'regiones/detalle-hotel/reserva-hotel',
+        path: 'regiones/detalle-hotel/:id/reserva-hotel',
         component: ReservaHotelComponent,
         canActivate: [AuthGuard],
       },

@@ -4,6 +4,7 @@ import { Usuario } from './usuario';
 import { Bares } from './bares';
 import { Cocheras } from './cocheras';
 import { Piscinas } from './piscinas';
+import { Ubicacion } from './ubicacion';
 
 export class Hoteles {
   id: number = 0;
@@ -17,5 +18,6 @@ export class Hoteles {
   cocheras: Array<Cocheras> = [];
   piscinas: Array<Piscinas> = [];
   galeria: Array<Galeria> = [];
+  ubicacion: Array<Ubicacion> = [];
   precioxtipohabitacion: Array<Precioxtipohabitacion> = [];
 }
