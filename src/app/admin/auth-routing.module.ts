@@ -1,13 +1,13 @@
-import { HotelComponent } from './pages/hotel/hotel.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from '../auth/guards/auth.guard';
+import { RoleGuard } from '../auth/guards/role.guard';
 
 import { RefenciaDUbicacionComponent } from './pages/refencia-dubicacion/refencia-dubicacion.component';
 import { AdminindexComponent } from './pages/adminindex/adminindex.component';
 import { HomeComponent } from './pages/home/home.component';
 
-import { AuthGuard } from '../auth/guards/auth.guard';
-import { RoleGuard } from '../auth/guards/role.guard';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListhotelesComponent } from './pages/listhoteles/listhoteles.component';
 import { ListbaresComponent } from './pages/listbares/listbares.component';
@@ -15,6 +15,7 @@ import { ListcocherasComponent } from './pages/listcocheras/listcocheras.compone
 import { ListpicinaComponent } from './pages/listpicina/listpicina.component';
 import { ListgaleriaComponent } from './pages/listgaleria/listgaleria.component';
 import { ListpreciosComponent } from './pages/listprecios/listprecios.component';
+import { HotelComponent } from './pages/hotel/hotel.component';
 
 const routes: Routes = [
   {

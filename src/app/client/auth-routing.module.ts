@@ -9,6 +9,7 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { ReservasComponent } from './pages/reservas/reservas.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
       {
         path: 'regiones',
         component: RegionesComponent,
+      },
+      {
+        path: 'reservas',
+        component: ReservasComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'regiones/detalle-hotel/:id',

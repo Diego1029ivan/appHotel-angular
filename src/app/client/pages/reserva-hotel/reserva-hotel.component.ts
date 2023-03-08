@@ -10,27 +10,101 @@ import { Reserva } from '../../../interfaces/reserva';
 import { ReservaService } from '../../services/reserva.service';
 import swal from 'sweetalert2';
 import * as moment from 'moment';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
 @Component({
   selector: 'app-reserva-hotel',
   templateUrl: './reserva-hotel.component.html',
-  styleUrls: ['./reserva-hotel.component.css']
+  styleUrls: ['./reserva-hotel.component.css'],
+  
 })
 export class ReservaHotelComponent implements OnInit{
   public userlogeado: Usuario;
+  hoveredDate: NgbDate | null = null;
+
+	fromDate: NgbDate;
+	toDate: NgbDate | null = null;
   constructor(public authService: AuthService, private router: Router,
               private fb:FormBuilder,
               private hotelesService: HotelesService,
               private activatedRoute: ActivatedRoute,
-              private reservaService: ReservaService) {
+              private reservaService: ReservaService,
+              private calendar: NgbCalendar
+              ) {
     this.userlogeado = new Usuario();
+    this.fromDate = calendar.getToday();
+		this.toDate = calendar.getNext(calendar.getToday(), 'd', 2);
   }
 
+	/*PRUEBA CALENDARIO */
+  
+  onDateSelection(date: NgbDate) {
+		if (!this.fromDate && !this.toDate) {
+			this.fromDate = date;
+		} else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
+			this.toDate = date;
+		} else {
+			this.toDate = null;
+			this.fromDate = date;
+		}
+	}
 
+	isHovered(date: NgbDate) {
+		return (
+			this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate)
+		);
+	}
+
+	isInside(date: NgbDate) {
+		return this.toDate && date.after(this.fromDate) && date.before(this.toDate);
+	}
+
+	isRange(date: NgbDate) {
+		return (
+			date.equals(this.fromDate) ||
+			(this.toDate && date.equals(this.toDate)) ||
+			this.isInside(date) ||
+			this.isHovered(date)
+      
+		);
+    
+	}
+  formatDate(date: NgbDate) {
+    
+    const myMoment: moment.Moment = moment(date);
+    
+    // NgbDates use 1 for Jan, Moement uses 0, must substract 1 month for proper date conversion
+    var convertedMoment = myMoment.subtract(1, 'months');
+    
+    if (convertedMoment.isValid()) {
+      return convertedMoment.format('YYYY-MM-DD');
+    } else {
+      return '';
+    }
+  }
+
+  /************* */
+
+
+
+
+
+
+
+
+
+
+
+
+
+  model: NgbDateStruct;
   hotelid: Hoteles 
   user:Usuario
+  
 
   ngOnInit(): void {
     this.user=this.authService.usuario;
@@ -38,12 +112,13 @@ export class ReservaHotelComponent implements OnInit{
     this.miFormulario.reset({
       nombre:this.user.username,
       id:this.user.id,
+      
       condiciones:true,
       recomendaciones:true,
       pagadelantado:500,
       cantidad:2,
       pago:"1",
-      tipo:String(this.hotelid?.precioxtipohabitacion[0].id)
+      tipo:this.hotelid?.precioxtipohabitacion[0].id
       
     })
 
@@ -65,12 +140,11 @@ export class ReservaHotelComponent implements OnInit{
   miFormulario:FormGroup=this.fb.group({
     
     id:['',[Validators.required]],
-    fechaentrada:['',[Validators.required]],
-    fechasalida:['',[Validators.required]],
+    
     pagadelantado:['',[Validators.required]],
     cantidad:['',[Validators.required]],
     
-    tipo:['',[Validators.required]],
+    tipo:[null,[Validators.required]],
     pago:['',[Validators.required]],
     condiciones:[true,Validators.requiredTrue],
     recomendaciones:[true,Validators.requiredTrue]
@@ -160,14 +234,14 @@ export class ReservaHotelComponent implements OnInit{
     }
 }
   register() {
-    if(this.miFormulario != undefined){
-      console.log('saco valor')
+    if(this.miFormulario.valid){
+      
       // console.log(this.miFormulario.controls['fechaentrada'].value,typeof(this.miFormulario.controls['fechaentrada'].value) )
       // const dateen = moment(this.miFormulario.controls['fechaentrada'].value,'YYYY-MM-DD').toDate();
       // console.log(dateen, "valor de la fecha",typeof(dateen))
-      this.reserva.fechaEntrada= moment(this.miFormulario.controls['fechaentrada'].value,'YYYY-MM-DD').toDate();
-    
-    this.reserva.fechaSalida = moment(this.miFormulario.controls['fechasalida'].value,'YYYY-MM-DD').toDate();
+      this.reserva.fechaEntrada= moment(this.formatDate(this.fromDate)).toDate();
+    console.log(this.reserva.fechaEntrada)
+    this.reserva.fechaSalida = moment(this.formatDate(this.toDate)).toDate();;
     this.reserva.adelantoReservas = Number(this.miFormulario?.controls['pagadelantado'].value);
     this.reserva.cantidadHab = Number(this.miFormulario?.controls['cantidad'].value);
     this.reserva.tipohab['id'] = Number(this.miFormulario?.controls['tipo'].value);
