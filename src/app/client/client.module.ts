@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.component';
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 import { MaterialModule } from '../material/material.module';
+import { ReservasComponent } from './pages/reservas/reservas.component';
+
 
 
 
@@ -41,6 +43,7 @@ import { MaterialModule } from '../material/material.module';
     TestimonioComponent,
     DetalleHotelComponent,
     ReservaHotelComponent,
+    ReservasComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +54,8 @@ import { MaterialModule } from '../material/material.module';
     NgbCarouselModule,
     CarouselModule,
     ReactiveFormsModule,
+    NgBoostrapModule
+    
     
     
     
