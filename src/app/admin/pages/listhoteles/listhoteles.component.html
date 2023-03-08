@@ -1,70 +1,68 @@
 <h2 class="dash-title">Listado de Hoteles</h2>
 
-<button mat-raised-button color="primary">Crear</button>
-<br>
-<br>
-
 <div *ngIf="hoteles?.length == 0" class="alert alert-info">
   No hay registros en la base de datos!
 </div>
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
-</mat-form-field>
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <!-- nombre Column -->
-    <ng-container matColumnDef="Dueño" `>
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Dueño</th>
-      <td mat-cell *matCellDef="let element"> {{element.usuario
-        .nombre}} </td>
-    </ng-container>
-    <!-- nombre Column -->
-    <ng-container matColumnDef="nombre" `>
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Nombre</th>
-      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-    </ng-container>
+<div *ngIf="hoteles?.length != 0">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- nombre Column -->
+      <ng-container matColumnDef="Dueño" `>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Dueño</th>
+        <td mat-cell *matCellDef="let element"> {{element.usuario
+          .nombre}} </td>
+      </ng-container>
+      <!-- nombre Column -->
+      <ng-container matColumnDef="nombre" `>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="example-element-row"> Nombre</th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
 
-    <!-- Ruc Column -->
-    <ng-container matColumnDef="ruc">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ruc </th>
-      <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
-    </ng-container>
+      <!-- Ruc Column -->
+      <ng-container matColumnDef="ruc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ruc </th>
+        <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
+      </ng-container>
 
-    <!-- Habitacion Column -->
-    <ng-container matColumnDef="cantidadH">
-      <th mat-header-cell *matHeaderCellDef> C. Habit</th>
-      <td mat-cell *matCellDef="let element"> {{element.cantidadHabitacion}} </td>
-    </ng-container>
+      <!-- Habitacion Column -->
+      <ng-container matColumnDef="cantidadH">
+        <th mat-header-cell *matHeaderCellDef> C. Habit</th>
+        <td mat-cell *matCellDef="let element"> {{element.cantidadHabitacion}} </td>
+      </ng-container>
 
-    <!-- Descripción Column -->
-    <ng-container matColumnDef="descripH">
-      <th mat-header-cell *matHeaderCellDef style="width:480px"> Descripción </th>
-      <td mat-cell *matCellDef="let element" style="width:480px"> {{element.descripcionHotel}} </td>
-    </ng-container>
-    <!-- Logo Column -->
-    <ng-container matColumnDef="logo">
-      <th mat-header-cell *matHeaderCellDef> Logo </th>
-      <td mat-cell *matCellDef="let element"><img src='{{baseUrl}}/api/uploads/img/{{element.logo}}'
-          alt="{{element.logo}}" style="width: 100px;" /> </td>
-    </ng-container>
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef> Acciones</th>
-      <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
-        <a class="pointer" style="color: #1f516f" matTooltip="Editar Usuario "><mat-icon>edit</mat-icon></a>
-        <a class="pointer" style="color: #e15635" matTooltip="Eliminar Usuario"
-          (click)="eliminarHotel(element)"><mat-icon>delete </mat-icon></a>
-      </td>
-    </ng-container>
+      <!-- Descripción Column -->
+      <ng-container matColumnDef="descripH">
+        <th mat-header-cell *matHeaderCellDef style="width:480px"> Descripción </th>
+        <td mat-cell *matCellDef="let element" style="width:480px"> {{element.descripcionHotel}} </td>
+      </ng-container>
+      <!-- Logo Column -->
+      <ng-container matColumnDef="logo">
+        <th mat-header-cell *matHeaderCellDef> Logo </th>
+        <td mat-cell *matCellDef="let element"><img src='{{baseUrl}}/api/uploads/img/{{element.logo}}'
+            alt="{{element.logo}}" style="width: 100px;" /> </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones</th>
+        <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
+          <a style="color: #1f516f; cursor: pointer;" matTooltip="Editar Usuario "><mat-icon>edit</mat-icon></a>
+          <a style="color: #e15635; cursor: pointer;" matTooltip="Eliminar Usuario"
+            (click)="eliminarHotel(element)"><mat-icon>delete </mat-icon></a>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No hay data "{{input.value}}"</td>
-    </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay data "{{input.value}}"</td>
+      </tr>
 
 
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
-  </mat-paginator>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
 </div>

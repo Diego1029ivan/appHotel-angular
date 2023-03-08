@@ -11,7 +11,6 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 
-/** Pass untouched request through to the next request handler. */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, private router: Router) {}

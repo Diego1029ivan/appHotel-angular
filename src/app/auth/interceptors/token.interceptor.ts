@@ -9,7 +9,6 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
-/** Pass untouched request through to the next request handler. */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}

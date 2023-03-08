@@ -8,9 +8,6 @@ table {
   font-size: 14px;
   width: 100%;
 }
-.spinner {
-  margin: 20rem auto;
-}
 .selectAncho {
   width: 400px;
   margin: 0 auto;
@@ -26,6 +23,5 @@ table {
 .dash-title {
   width: 100%;
   font-size: 1rem;
-
   margin: 1rem 0;
 }
