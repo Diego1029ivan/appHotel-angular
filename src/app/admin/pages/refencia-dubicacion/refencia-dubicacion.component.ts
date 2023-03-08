@@ -5,62 +5,47 @@ import {
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
-
+import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
-
-import { AuthService } from '../../../auth/service/auth.service';
-import { HotelesService } from '../../service/hoteles.service';
-
-import { Hoteles } from 'src/app/interfaces/hoteles';
-import { Usuario } from 'src/app/interfaces/usuario';
+import { RefenciaDUbicacionService } from '../../service/refencia-dubicacion.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
 
 @Component({
-  selector: 'app-hotel',
-  templateUrl: './hotel.component.html',
-  styleUrls: ['./hotel.component.css'],
+  selector: 'app-refencia-dubicacion',
+  templateUrl: './refencia-dubicacion.component.html',
+  styleUrls: ['./refencia-dubicacion.component.css'],
 })
-export class HotelComponent implements OnInit {
+export class RefenciaDUbicacionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  hotel: Hoteles[];
-  public userlogeado: Usuario;
-  panelOpenState = false;
+  referenciaHotel: Ubicacion[];
 
   public baseUrl: string = environment.baseUrl;
 
   dataSource!: _MatTableDataSource<any>;
 
   displayedColumns: string[] = [
-    'nombre',
-    'ruc',
-    'cantidadH',
-    'descripH',
-    'ciudad',
-    'fotoCiudad',
+    'cuidad',
+    'departamento',
+    'descripcionCiudad',
+    'fotoCuidad',
+    'pais',
     'acciones',
   ];
-  constructor(
-    private hotelServices: HotelesService,
-    private authService: AuthService
-  ) {
-    this.userlogeado = new Usuario();
-  }
+
+  constructor(private refenciaDUbicacionService: RefenciaDUbicacionService) {}
 
   ngOnInit(): void {
-    this.LoadHotel();
+    this.LoadRefenciaHotel();
   }
-
-  LoadHotel() {
-    const idlogeado = this.authService.usuario.id;
-    this.hotelServices.getusuarioxhotel(idlogeado).subscribe((data) => {
-      this.hotel = data;
-      this.dataSource = new MatTableDataSource(this.hotel);
+  LoadRefenciaHotel() {
+    this.refenciaDUbicacionService.getRefenciaDUbicacion().subscribe((data) => {
+      this.referenciaHotel = data;
+      this.dataSource = new MatTableDataSource(this.referenciaHotel);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

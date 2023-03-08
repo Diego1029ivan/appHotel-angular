@@ -37,7 +37,7 @@ export class RoleGuard implements CanActivate {
       `Hola ${this.authService.usuario.username} no tienes acceso a este recurso!`,
       'warning'
     );
-    this.router.navigate(['auth/login']); //TODO cambiar a la ruta que se desee
+    this.router.navigate(['auth/login']);
     return false;
   }
 }
