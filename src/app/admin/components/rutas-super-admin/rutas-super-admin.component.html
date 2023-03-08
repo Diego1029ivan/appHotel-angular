@@ -6,8 +6,15 @@
 </li>
 <li routerLink="/admin/listarhoteles" routerLinkActive="activelink" *ngIf="rolSuperAdmin()">
   <a>
-
     <mat-icon>hotel</mat-icon>
     <span>Hoteles</span>
+  </a>
+</li>
+
+<li routerLink="/admin/listarreferencias" routerLinkActive="activelink" *ngIf="rolSuperAdmin()">
+  <a>
+
+    <mat-icon>Refecia de Ubicacion</mat-icon>
+    <span>Ubicacion</span>
   </a>
 </li>
