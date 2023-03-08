@@ -1,0 +1,17 @@
+.tam-reserva{
+    height: 75vh;
+}
+.sec-descr{
+    position: relative;
+}
+.sec-descr h2 {
+    font-size: 100px;
+    font-weight: 500;
+    opacity: 0.1;
+    font-family: serif;
+    position: absolute;
+    top: -70px;
+    width: 100%;
+    font-family: 'Dancing Script', cursive;
+   
+  }

@@ -27,4 +27,7 @@ export class ReservaService {
       })
     );
   }
+  getReserva(): Observable<Reserva[]> {
+    return this.http.get<Reserva[]>(`${this.baseUrl}/api/reserva`);
+  }
 }

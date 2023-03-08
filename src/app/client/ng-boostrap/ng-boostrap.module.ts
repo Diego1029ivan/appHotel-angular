@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule, DecimalPipe, NgFor } from '@angular/common';
+import { NgbCarouselModule, NgbPaginationModule, NgbTypeaheadModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,11 +13,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    
+    DecimalPipe, NgFor
     
   ],
   exports:[
     NgbCarouselModule,
+    JsonPipe,
+    FormsModule,
+    NgbTypeaheadModule,
+    DecimalPipe,
+    NgbPaginationModule,
+    NgbModule,
+    FormsModule,
+    
     
     
   ]
