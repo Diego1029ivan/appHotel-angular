@@ -14,15 +14,13 @@ export class ReservasComponent implements OnInit{
   public userlogeado: Usuario;
   constructor(private reservaService:ReservaService,
     public authService: AuthService, private router: Router,){
-    this.refreshReservas()
+     
     this.userlogeado = new Usuario();
   }
   ngOnInit(): void {
-    this.LoadReservas();
     this.user=this.authService.usuario;
-    this.reservasUser 
-    
-    
+    this.LoadReservas();
+  
   }
   
   page:number
@@ -34,10 +32,11 @@ export class ReservasComponent implements OnInit{
   user:Usuario
 
   LoadReservas(){
+    console.log('Cargando reservas')
     this.reservaService.getReserva()
       .subscribe( (reserva) =>{
         this.reservas=reserva;
-       console.log(this.reservas)      
+       //console.log(this.reservas)      
         this.page = 1;
         this.pageSize = 4;
         
@@ -45,17 +44,23 @@ export class ReservasComponent implements OnInit{
           (this.reservas[i].usuario.id==this.user.id)?this.reservasUser.push(this.reservas[i]):
           false
         }
-        console.log(this.reservasUser)
+        //console.log(this.reservasUser)
         this.collectionSize = this.reservasUser.length;
+
+        this.reservaParcial = this.reservasUser.map((reservasUser, i) => ({ counter: i + 1, ...reservasUser })).slice(
+          (this.page - 1) * this.pageSize,
+          (this.page - 1) * this.pageSize + this.pageSize,
+        );
       });
       
   }
 
   refreshReservas() {
-    this.reservaParcial = this.reservasUser.map((reservasUser, i) => ({ id: i + 1, ...reservasUser })).slice(
+    this.reservaParcial = this.reservasUser.map((reservasUser, i) => ({ counter: i + 1, ...reservasUser })).slice(
       (this.page - 1) * this.pageSize,
       (this.page - 1) * this.pageSize + this.pageSize,
     );
+    console.log(this.reservaParcial) 
 		
 	}
   

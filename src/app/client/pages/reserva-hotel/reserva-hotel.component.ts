@@ -38,6 +38,7 @@ export class ReservaHotelComponent implements OnInit{
     this.userlogeado = new Usuario();
     this.fromDate = calendar.getToday();
 		this.toDate = calendar.getNext(calendar.getToday(), 'd', 2);
+    
   }
 
 	/*PRUEBA CALENDARIO */
@@ -86,7 +87,9 @@ export class ReservaHotelComponent implements OnInit{
       return '';
     }
   }
-
+  selectToday() {
+		return this.model = this.calendar.getToday();
+	}
   /************* */
 
 

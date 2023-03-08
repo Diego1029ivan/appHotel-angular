@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reserva of reservaParcial; let i=index">
-                <th scope="row">{{ reserva.id }}</th>
+                <th scope="row">{{ reserva.counter }}</th>
                 <td>{{ reserva.fechaEntrada}}</td>
                 <td>{{ reserva.fechaSalida }}</td>
                 <td>{{ reserva.adelantoReservas }}</td>
@@ -45,7 +45,7 @@
         >
         </ngb-pagination>
 
-        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshReservas()">
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="LoadReservas()">
             <option [ngValue]="2">2 items per page</option>
             <option [ngValue]="4">4 items per page</option>
             <option [ngValue]="6">6 items per page</option>
