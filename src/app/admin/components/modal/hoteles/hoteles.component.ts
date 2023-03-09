@@ -31,7 +31,7 @@ export class HotelesComponent implements OnInit {
     ruc: this.builder.control('', Validators.required),
     cantidadHabitacion: this.builder.control('', Validators.required),
     descripcionHotel: this.builder.control('', Validators.required),
-    logo: this.builder.control('', Validators.required),
+    logo: this.builder.control(''),
   });
   ngOnInit(): void {
     if (
@@ -80,7 +80,19 @@ export class HotelesComponent implements OnInit {
       };
     }
   }
-  SaveRefenUbicacion() {}
+  SaveRefenUbicacion() {
+    if (this.companyform.valid) {
+      //obtener los datos del formulario
+
+      if (
+        this.data.id != '' &&
+        this.data.id != null &&
+        this.data.id != undefined
+      ) {
+        console.log('editando');
+      }
+    }
+  }
 
   closepopup() {
     this.dialog.closeAll();

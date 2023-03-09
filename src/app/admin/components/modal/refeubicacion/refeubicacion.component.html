@@ -52,8 +52,9 @@
     <mat-divider></mat-divider>
     <div class="mat-card-footer">
       <div class="content-buttom" style="margin: 2px;">
-        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()">Save</a> | <a (click)="closepopup()"
-          mat-raised-button color="accent">Close</a>
+        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit"
+          [disabled]="companyform.invalid" [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a
+          (click)="closepopup()" mat-raised-button color="accent">Close</a>
       </div>
     </div>
   </mat-card>
