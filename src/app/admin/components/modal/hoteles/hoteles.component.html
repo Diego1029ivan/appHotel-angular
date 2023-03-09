@@ -1,0 +1,60 @@
+<form class="example-form" [formGroup]="companyform" (ngSubmit)="SaveRefenUbicacion()">
+  <mat-card>
+
+    <div class="mat-card-header ">
+      <mat-card-title>{{titlo}}</mat-card-title>
+      <a mat-icon-button (click)="closepopup()" color="primary"><mat-icon>close</mat-icon>
+      </a>
+    </div>
+
+
+    <mat-card-content>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="nombre" formControlName="nombre" autocomplete="off">
+      </mat-form-field>
+
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Ruc</mat-label>
+        <input matInput placeholder="ruc" formControlName="ruc" autocomplete="off">
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>cantidadHabitacion</mat-label>
+        <input matInput placeholder="cantidadHabitacion" formControlName="cantidadHabitacion" autocomplete="off">
+      </mat-form-field>
+
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>DescripcionHotel</mat-label>
+        <input matInput placeholder="descripcionHotel" formControlName="descripcionHotel" autocomplete="off">
+      </mat-form-field>
+      <div class="example-full-width fotoestilo" appearance="fill">
+        <mat-label>Foto*</mat-label>
+        <input (change)="seleccionarFoto($event)" type="file" placeholder="selecciones una foto" formControlName="logo"
+          autocomplete="off">
+      </div>
+
+      <div *ngIf="imageSrc != '' ">
+        <img [src]="imageSrc" width="250px" height="250px" />
+
+      </div>
+      <div *ngIf="imgurl != '' ">
+        <img src="{{imgurl}}" width="250px" height="250px" />
+      </div>
+
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <div class="mat-card-footer">
+      <div class="content-buttom" style="margin: 2px;">
+        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()">Save</a> | <a (click)="closepopup()"
+          mat-raised-button color="accent">Close</a>
+      </div>
+    </div>
+  </mat-card>
+</form>

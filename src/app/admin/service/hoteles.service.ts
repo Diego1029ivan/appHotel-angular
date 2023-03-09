@@ -17,6 +17,9 @@ export class HotelesService {
   getHoteles(): Observable<Hoteles[]> {
     return this.http.get<Hoteles[]>(`${this.baseUrl}${this.urlEndPoint}`);
   }
+  getHotelesOne(id: number): Observable<Hoteles> {
+    return this.http.get<Hoteles>(`${this.baseUrl}${this.urlEndPoint}/${id}`);
+  }
   getusuarioxhotel(id: number): Observable<Hoteles[]> {
     return this.http
       .get<Hoteles[]>(

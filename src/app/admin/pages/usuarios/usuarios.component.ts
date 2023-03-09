@@ -8,7 +8,6 @@ import { Usuario } from 'src/app/interfaces/usuario';
 import { UsuariosService } from '../../service/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UsuariosCrudComponent } from '../../components/modal/usuarios-crud/usuarios-crud.component';
-import { Hoteles } from '../../../interfaces/hoteles';
 
 @Component({
   selector: 'app-usuarios',

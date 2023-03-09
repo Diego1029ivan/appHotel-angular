@@ -24,6 +24,8 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 import { RefenciaDUbicacionComponent } from './pages/refencia-dubicacion/refencia-dubicacion.component';
 import { HotelComponent } from './pages/hotel/hotel.component';
+import { RefeubicacionComponent } from './components/modal/refeubicacion/refeubicacion.component';
+import { HotelesComponent } from './components/modal/hoteles/hoteles.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { HotelComponent } from './pages/hotel/hotel.component';
     RutasAdminComponent,
     RutasSuperAdminComponent,
     RefenciaDUbicacionComponent,
+    RefeubicacionComponent,
+    HotelesComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
   providers: [
