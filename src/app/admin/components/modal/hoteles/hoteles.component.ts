@@ -22,7 +22,7 @@ export class HotelesComponent implements OnInit {
     private builder: FormBuilder,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private hoteles: HotelesService
+    private hotelesServices: HotelesService
   ) {
     this.hotel = new Hoteles();
   }
@@ -40,7 +40,7 @@ export class HotelesComponent implements OnInit {
       this.data.id != undefined
     ) {
       this.titlo = 'Editar la lista de Hoteles';
-      this.hoteles.getHotelesOne(this.data.id).subscribe(
+      this.hotelesServices.getHotelesOne(this.data.id).subscribe(
         (data) => {
           this.editdata = data;
           this.companyform.setValue({
@@ -74,7 +74,6 @@ export class HotelesComponent implements OnInit {
     } else {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-      console.log(file);
       reader.onload = () => {
         this.imageSrc = reader.result as string;
       };
@@ -83,17 +82,66 @@ export class HotelesComponent implements OnInit {
   SaveRefenUbicacion() {
     if (this.companyform.valid) {
       //obtener los datos del formulario
+      this.hotel.nombre = this.companyform.value.nombre.trim();
+      this.hotel.ruc = Number(this.companyform.value.ruc);
+      this.hotel.cantidadHabitacion = Number(
+        this.companyform.value.cantidadHabitacion
+      );
+      this.hotel.descripcionHotel =
+        this.companyform.value.descripcionHotel.trim();
+      this.hotel.logo = '';
 
       if (
         this.data.id != '' &&
         this.data.id != null &&
         this.data.id != undefined
       ) {
-        console.log('editando');
+        this.functionpermiteEditar();
       }
     }
   }
+  functionpermiteEditar() {
+    if (this.fotoSeleccionada != null) {
+      //si se selecciono una foto
+      this.hotelesServices.updateHotel(this.hotel, this.data.id).subscribe(
+        (data) => {
+          this.hotelesServices
+            .subirFotoDHoteles(this.fotoSeleccionada, this.data.id)
+            .subscribe(
+              (data) => {
+                swal.fire(
+                  'Hoteles',
+                  ` Se ha editado el hotel  ${this.hotel.nombre} con exito`,
+                  'success'
+                );
 
+                this.closepopup();
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      this.hotelesServices.updateHotel(this.hotel, this.data.id).subscribe(
+        (data) => {
+          swal.fire(
+            'Hoteles',
+            ` Se ha editado el hotel  ${this.hotel.nombre} con exito`,
+            'success'
+          );
+          this.closepopup();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
+  }
   closepopup() {
     this.dialog.closeAll();
   }

@@ -14,10 +14,11 @@ export class Hoteles {
   cantidadHabitacion: number = 0;
   descripcionHotel: string = '';
   usuario: Usuario;
+  ubicacion: Ubicacion;
   bares: Array<Bares> = [];
   cocheras: Array<Cocheras> = [];
   piscinas: Array<Piscinas> = [];
   galeria: Array<Galeria> = [];
-  ubicacion: Array<Ubicacion> = [];
+
   precioxtipohabitacion: Array<Precioxtipohabitacion> = [];
 }
