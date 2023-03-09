@@ -9,6 +9,8 @@ import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { RefenciaDUbicacionService } from '../../service/refencia-dubicacion.service';
 import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { MatDialog } from '@angular/material/dialog';
+import { RefeubicacionComponent } from '../../components/modal/refeubicacion/refeubicacion.component';
 
 @Component({
   selector: 'app-refencia-dubicacion',
@@ -33,12 +35,15 @@ export class RefenciaDUbicacionComponent implements OnInit {
     'acciones',
   ];
 
-  constructor(private refenciaDUbicacionService: RefenciaDUbicacionService) {}
+  constructor(
+    private refenciaDUbicacionService: RefenciaDUbicacionService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.LoadRefenciaHotel();
+    this.LoadRefenciaUbicacion();
   }
-  LoadRefenciaHotel() {
+  LoadRefenciaUbicacion() {
     this.refenciaDUbicacionService.getRefenciaDUbicacion().subscribe((data) => {
       this.referenciaHotel = data;
       this.dataSource = new MatTableDataSource(this.referenciaHotel);
@@ -46,6 +51,25 @@ export class RefenciaDUbicacionComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+  Openpopup(id: any) {
+    const _popup = this.dialog.open(RefeubicacionComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadRefenciaUbicacion();
+    });
+  }
+
+  EditRefenciaUbicacion(id: any) {
+    this.Openpopup(id);
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

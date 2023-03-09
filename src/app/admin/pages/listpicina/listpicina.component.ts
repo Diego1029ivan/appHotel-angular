@@ -54,7 +54,6 @@ export class ListpicinaComponent implements OnInit {
       (data) => {
         this.hotel = data;
         this.picina = this.hotel[0].piscinas;
-        // console.log(this.hotel);
         this.dataSource = new MatTableDataSource(this.picina);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -74,7 +73,6 @@ export class ListpicinaComponent implements OnInit {
     );
 
     this.picina = picinal[0].piscinas;
-    console.log(this.picina);
     if (this.picina.length > 0) {
       this.LoadHotel();
     }

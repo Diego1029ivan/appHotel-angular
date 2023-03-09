@@ -9,6 +9,8 @@ import swal from 'sweetalert2';
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { environment } from 'src/environments/environment';
 import { HotelesService } from '../../service/hoteles.service';
+import { HotelesComponent } from '../../components/modal/hoteles/hoteles.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listhoteles',
@@ -33,7 +35,10 @@ export class ListhotelesComponent implements OnInit {
     'logo',
     'acciones',
   ];
-  constructor(private hotelServices: HotelesService) {}
+  constructor(
+    private hotelServices: HotelesService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.LoadHoteles();
@@ -76,6 +81,25 @@ export class ListhotelesComponent implements OnInit {
           );
         }
       });
+  }
+
+  Openpopup(id: any) {
+    const _popup = this.dialog.open(HotelesComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHoteles();
+    });
+  }
+
+  EditHotel(id: any) {
+    this.Openpopup(id);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

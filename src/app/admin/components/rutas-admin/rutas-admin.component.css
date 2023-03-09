@@ -16,4 +16,6 @@ li:active {
 }
 li {
   cursor: pointer;
+  list-style: none;
+  margin-bottom: 1rem;
 }

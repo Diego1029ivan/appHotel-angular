@@ -1,6 +1,6 @@
 .example-form {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0;
 }
 .example-full-width {
@@ -23,12 +23,26 @@ mat-card-content {
   padding: 0 30px;
 }
 
-mat-card-footer {
+.mat-card-footer {
   display: flex;
   justify-content: flex-end;
   padding: 10px 30px;
 }
-
+mat-divider {
+  margin-top: 20px;
+}
 .content-buttom {
   gap: 10px;
+}
+.fotoestilo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ececec;
+  color: #757575;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+  padding-left: 18px;
+  height: 90px;
 }

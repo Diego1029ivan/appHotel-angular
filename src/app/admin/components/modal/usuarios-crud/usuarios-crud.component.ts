@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsuariosService } from 'src/app/admin/service/usuarios.service';
