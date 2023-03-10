@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.authService.guardarToken(response.access_token);
         let usuario = this.authService.usuario;
         if (usuario.roles[0] == 'ROLE_USER') {
-          this.router.navigate(['../sistema-hotel/index']);
+          this.router.navigate(['/sistema-hotel/index']);
         } else if (usuario.roles[0] == 'ROLE_ADMIN') {
           this.router.navigate(['/admin/listarhotel']);
         } else if (usuario.roles[0] == 'ROLE_SUPADMIN') {

@@ -20,6 +20,7 @@ import { RegisterComponent } from './pages/register/register.component';
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

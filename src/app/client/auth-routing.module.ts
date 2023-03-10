@@ -10,6 +10,8 @@ import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.compo
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { ReservasComponent } from './pages/reservas/reservas.component';
+import { LoginComponent } from '../auth/pages/login/login.component';
+
 
 const routes: Routes = [
   {
@@ -47,6 +49,10 @@ const routes: Routes = [
         path: 'contacto',
         component: ContactoComponent,
       },
+      {
+        path: 'auth/login',
+        component: LoginComponent,
+      },   
       
       {
         path: '**',

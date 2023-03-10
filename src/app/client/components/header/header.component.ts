@@ -20,6 +20,7 @@ export class HeaderComponent {
     return this.userlogeado.username + ' (' + rol + ')';
   }
   logeado(): boolean {
+    
     return this.authService.isAuthenticated();
   }
 
@@ -31,7 +32,7 @@ export class HeaderComponent {
       `Hola ${username}, has cerrado sesión con éxito!`,
       'success'
     );
-
+    this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['../sistema-hotel/index']);
   }
 }
