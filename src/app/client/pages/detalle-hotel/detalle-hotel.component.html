@@ -1,5 +1,10 @@
 
-
+<mat-grid-list cols="1" *ngIf="!(hotelid&&Arraybares&&Arraypiscina&&Arraycochera&&Arrayprecio);else divHotel">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+<ng-template #divHotel>
  <!-- Header-->
  <section class="pt-5" *ngIf="hotelid">
     <div class="img-banner"></div>
@@ -21,37 +26,110 @@
 </section>
 
 <!-- Features section-->
-<section class="pt-3" id="features" *ngIf="hotelid">
+
+
+<section class="pt-3" id="features"  >
     <div class="container px-5 my-5">
-        <div class="row gx-5">
-            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Nuestro hotel cuenta con los siguientes servicios</h2></div>
-            <div class="col-lg-8">
-                <div class="row gx-5 row-cols-1 row-cols-md-2">
-                    <div class="col mb-5 h-100">
-                        <div class="col">
-                            <img class="img-ser" src="../../../../assets/servicios/serv-1.png" >
-                            
+        <div class="row gx-5 text-center">
+            <div class=" sec-descr pt-5 ">
+                <h2 class="pt-5 ">{{hotelid?.nombre}}</h2>
+                <h3>Servicios que se encuentran en {{hotelid?.nombre}}</h3>
+            </div>
+            <div class="col-lg-12">
+                <div class="row ">
+                    
+                    <div class="row pt-4 row-cols-md-2 ">
+                        <div class="col" >
+                            <div class="">
+                                <img class="img-ser" src="../../../../assets/servicios/serv-1.png" >
+                                
+                            </div>
+                            <h2 class="h5">Bar</h2>
+                            <p class="mb-0">algunos hoteles tienen bares que sirven bebidas alcohólicas y no alcohólicas.</p>
+                        </div>
+
+                        <div class="card fondo-card mb-3 col" style="max-width: 540px;" *ngFor="let bar of Arraybares">
+                            <div class="row g-1">
+                              <div class="col-md-4">
+                                <img src="{{baseUrl}}/api/uploads/img/{{bar?.fotoBar}}" class="card-tam-img " alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{bar?.nombrebar}}</h5>
+                                  <p class="card-text">{{bar?.descripcionBar}}</p>
+                                  <p class="card-text"><small class="text-muted">Abierto las 24h</small></p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        <h2 class="h5">Bar</h2>
-                        <p class="mb-0">algunos hoteles tienen bares que sirven bebidas alcohólicas y no alcohólicas.</p>
+                       
+                       
+                        
+                       
                     </div>
-                    <div class="col mb-5 h-100">
-                        <div class="col">
-                            <img class="img-ser" src="../../../../assets/servicios/serv-2.png" >
-                            
+
+
+                    <div class="row pt-4 row-cols-md-2">
+                        <div class="col " >
+                            <div class="">
+                                <img class="img-ser" src="../../../../assets/servicios/serv-2.png" >
+                                
+                            </div>
+                            <h2 class="h5">Cochera</h2>
+                            <p class="mb-0">algunos hoteles tienen cocheras para poder parquear sus vehículos.</p>
+                        </div>
+
+                          <div class="card fondo-card mb-3 col" style="max-width: 540px;" *ngFor="let cochera of Arraycochera">
+                            <div class="row g-1">
+                              <div class="col-md-4">
+                                <img src="{{baseUrl}}/api/uploads/img/{{cochera?.fotoCochera}}" class="card-tam-img " alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  
+                                  <p class="card-text">{{cochera?.descripcionCochera}}</p>
+                                  <p class="card-text"><small class="text-muted">Abierto las 24h</small></p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        <h2 class="h5">Estacionamiento</h2>
-                        <p class="mb-0">algunos hoteles ofrecen estacionamiento para los huéspedes, ya sea gratuito o de pago.</p>
+                       
+                        
+                       
                     </div>
-                    <div class="col mb-5 h-100">
-                        <div class="col">
-                            <img class="img-ser" src="../../../../assets/servicios/serv-3.png" >
-                            
+
+                    <div class="row pt-4 row-cols-md-2 ">
+                        <div class="col " >
+                            <div class="col">
+                                <img class="img-ser" src="../../../../assets/servicios/serv-3.png" >
+                                
+                              </div>
+                            <h2 class="h5">Piscina</h2>
+                            <p class="mb-0">algunos hoteles tienen piscinas al aire libre o 
+                                cubiertas donde los huéspedes pueden nadar o relajarse.</p>
+                        </div>
+
+                        <div class="card fondo-card mb-3 col" style="max-width: 540px;" *ngFor="let piscina of Arraypiscina">
+                            <div class="row g-1">
+                              <div class="col-md-4">
+                                <img src="{{baseUrl}}/api/uploads/img/{{piscina.fotoPicina}}" class="card-tam-img " alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  
+                                  <p class="card-text">{{piscina.descripcionPicina}}</p>
+                                  <p class="card-text"><small class="text-muted">Abierto las 24h</small></p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                        <h2 class="h5">Piscina</h2>
-                        <p class="mb-0">algunos hoteles tienen piscinas al aire libre o cubiertas donde los huéspedes pueden nadar o relajarse.</p>
+                       
+                                                
+                       
                     </div>
-                    <div class="col mb-5 h-100">
+
+                    
+                    <div class="col mb-5 h-100 pt-5">
                         <div class="col">
                             <img class="img-ser" src="../../../../assets/servicios/serv-4.png" >
                             
@@ -59,7 +137,7 @@
                         <h2 class="h5">Restaurant</h2>
                         <p class="mb-0">muchos hoteles cuentan con restaurantes que ofrecen desayuno, almuerzo y cena para los huéspedes.</p>
                     </div>
-                    <div class="col mb-5 mb-md-0 h-100">
+                    <div class="col mb-5 mb-md-0 h-100 pt-5">
                         <div class="col">
                             <img class="img-ser" src="../../../../assets/servicios/serv-5.png" >
                            
@@ -67,7 +145,7 @@
                         <h2 class="h5">Atención</h2>
                         <p class="mb-0">el personal de recepción está disponible las 24 horas del día para ayudar a los huéspedes con cualquier consulta o solicitud que puedan tener, como hacer el check-in y check-out, reservar excursiones y traslados, guardar equipajes, entre otros.</p>
                     </div>
-                    <div class="col h-100">
+                    <div class="col h-100 pt-5">
                         <div class="col">
                             <img class="img-ser" src="../../../../assets/servicios/serv-6.png" >
                             
@@ -187,3 +265,4 @@
         
     </div>
 </section>
+</ng-template>
