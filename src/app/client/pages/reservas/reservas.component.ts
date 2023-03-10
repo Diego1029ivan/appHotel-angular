@@ -59,7 +59,7 @@ this.refreshReservas()
   }
 
   refreshReservas() {
-    this.reservaParcial = this.reservasUser.map((reservasUser, i) => ({ counter: i + 1, ...reservasUser })).slice(
+    this.reservaParcial = this.reservasUser.reverse().map((reservasUser, i) => ({ counter: i + 1, ...reservasUser })).slice(
       (this.page - 1) * this.pageSize,
       (this.page - 1) * this.pageSize + this.pageSize,
     );

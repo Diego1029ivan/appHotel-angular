@@ -1,48 +1,69 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light ">
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
   <div class="container container-fluid">
-    <a class="navbar-brand" routerLink="../sistema-hotel/index" href="#">
-      Sistema Booking</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">Sistema Booking</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="./index" href="#">Principal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="./nosotros" href="#">Nosotros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="./regiones" href="#">Regiones</a>
-        </li>
-        <li class="nav-item"*ngIf="logeado()">
-          <a class="nav-link "  routerLink="./reservas" href="#">Mi Reserva</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="./contacto" href="#">Contacto</a>
-       
-        </li>
-        <li class="nav-item" *ngIf="!logeado()">
-          <a class="nav-link " routerLink="/auth/login" href="#">Login</a>
-          
-        </li>
-        
-      </ul>
-     
-      <div *ngIf=" logeado()" class="row">
-        <div class="col-2 d-flex align-items-center ms-2 ">
-          <mat-icon>account_circle</mat-icon>
-        </div>
-        <div class="col-7 text-center pt-2">
-          <p>{{mostrarNombre() | titlecase}}</p>
-        </div>
-        <div class="col-2 d-flex align-items-center ms-2">
-          <mat-icon *ngIf="logeado()" class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
-        </div>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Sistema Booking</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item ">
+            <a class="nav-link" routerLink="./index" href="#">Principal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="./nosotros" href="#">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="./regiones" href="#">Regiones</a>
+          </li>
+          <li class="nav-item"*ngIf="logeado()">
+            <a class="nav-link "  routerLink="./reservas" href="#">Mi Reserva</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " routerLink="./contacto" href="#">Contacto</a>
+         
+          </li>
+          <li class="nav-item" *ngIf="!logeado()">
+            <a class="nav-link " routerLink="./auth/login" href="#">Login</a>
+            
+          </li>
+          <li>
+            
+            <div *ngIf=" logeado()" class="row">
+              <div class="col-2 d-flex align-items-center ms-2 ">
+                <mat-icon>account_circle</mat-icon>
+              </div>
+              <div class="col-7 text-center pt-2">
+                <p>{{mostrarNombre() | titlecase}}</p>
+              </div>
+              <div class="col-2 d-flex align-items-center ms-2">
+                <mat-icon *ngIf="logeado()" class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
+              </div>
+            </div>
+            
+          </li>
+        </ul>
+        <!-- <div *ngIf=" logeado()" class="row">
+          <div class="col-2 d-flex align-items-center ms-2 ">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+          <div class="col-7 text-center pt-2">
+            <p>{{mostrarNombre() | titlecase}}</p>
+          </div>
+          <div class="col-2 d-flex align-items-center ms-2">
+            <mat-icon *ngIf="logeado()" class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
+          </div>
+        </div> -->
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
