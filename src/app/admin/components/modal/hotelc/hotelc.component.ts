@@ -2,62 +2,80 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Ubicacion } from 'src/app/interfaces/ubicacion';
-import { RefenciaDUbicacionService } from 'src/app/admin/service/refencia-dubicacion.service';
 import { environment } from 'src/environments/environment';
-
+import { Hoteles } from 'src/app/interfaces/hoteles';
+import { HotelesService } from 'src/app/admin/service/hoteles.service';
+import { RefenciaDUbicacionService } from 'src/app/admin/service/refencia-dubicacion.service';
+import { Ubicacion } from 'src/app/interfaces/ubicacion';
+import { AuthService } from '../../../../auth/service/auth.service';
+import { Usuario } from '../../../../interfaces/usuario';
 @Component({
-  selector: 'app-refeubicacion',
-  templateUrl: './refeubicacion.component.html',
-  styleUrls: ['./refeubicacion.component.css'],
+  selector: 'app-hotelc',
+  templateUrl: './hotelc.component.html',
+  styleUrls: ['./hotelc.component.css'],
 })
-export class RefeubicacionComponent implements OnInit {
-  titlo: string = 'Agregar Referencia de Ubicacion';
+export class HotelcComponent {
+  private userlogeado: Usuario;
+
+  titlo: string = 'Registrar Hotel';
   public imgurl: string = '';
   public baseUrl: string = environment.baseUrl;
   public editdata: any;
-  refeUbicacion: Ubicacion;
+  hotel: Hoteles;
   public fotoSeleccionada: File;
   imageSrc: string = '';
+  ubicacion: Ubicacion[];
+  ngSelect: any;
 
   constructor(
     private builder: FormBuilder,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private refeciaUbicacion: RefenciaDUbicacionService
+    private hotelesServices: HotelesService,
+    private refenciaDUbicacionService: RefenciaDUbicacionService,
+    private authService: AuthService
   ) {
-    this.refeUbicacion = new Ubicacion();
+    this.hotel = new Hoteles();
+    this.userlogeado = new Usuario();
   }
 
   companyform = this.builder.group({
-    id: this.builder.control(''),
-    cuidad: this.builder.control('', Validators.required),
-    departamento: this.builder.control('', Validators.required),
-    descripcionCuidad: this.builder.control('', Validators.required),
-    pais: this.builder.control('', Validators.required),
-    foto: this.builder.control(''),
+    nombre: this.builder.control('', Validators.required),
+    ruc: this.builder.control('', Validators.required),
+    cantidadHabitacion: this.builder.control('', Validators.required),
+    descripcionHotel: this.builder.control('', Validators.required),
+    logo: this.builder.control(''),
+    ubicacion: this.builder.control('', Validators.required),
   });
   ngOnInit(): void {
+    this.refenciaDUbicacionService
+      .getRefenciaDUbicacion()
+      .subscribe((data2) => {
+        this.ubicacion = data2;
+      });
+
     if (
       this.data.id != '' &&
       this.data.id != null &&
       this.data.id != undefined
     ) {
-      this.titlo = 'Editar Referencia de Ubicacion';
-      this.refeciaUbicacion.getRefenciaDUbicacionOne(this.data.id).subscribe(
+      this.titlo = 'Editar Hoteles';
+
+      this.hotelesServices.getHotelesOne(this.data.id).subscribe(
         (data) => {
           this.editdata = data;
           this.companyform.setValue({
-            id: this.editdata.id,
-            cuidad: this.editdata.ciudad,
-            departamento: this.editdata.departamento,
-            descripcionCuidad: this.editdata.descripcionCiudad,
-            pais: this.editdata.pais,
-            foto: '',
+            nombre: this.editdata.nombre,
+            ruc: this.editdata.ruc,
+            cantidadHabitacion: this.editdata.cantidadHabitacion,
+            descripcionHotel: this.editdata.descripcionHotel,
+            logo: '',
+            ubicacion: this.editdata.ubicacion.id,
           });
-          this.imgurl =
-            this.baseUrl + '/api/uploads/img/' + this.editdata.fotoCiudad;
-          this.companyform.invalid == false;
+          this.ngSelect = this.editdata.ubicacion.id;
+          //select ubicacion por defecto
+
+          this.imgurl = this.baseUrl + '/api/uploads/img/' + this.editdata.logo;
         },
         (err) => {
           console.log(err);
@@ -76,7 +94,7 @@ export class RefeubicacionComponent implements OnInit {
         'error'
       );
       //resetiar solo el campo de la foto
-      this.companyform.get('foto').setValue('');
+      this.companyform.get('logo').setValue('');
       this.fotoSeleccionada = null;
     } else {
       const [file] = event.target.files;
@@ -89,13 +107,16 @@ export class RefeubicacionComponent implements OnInit {
   SaveRefenUbicacion() {
     if (this.companyform.valid) {
       //obtener los datos del formulario
-      this.refeUbicacion.pais = this.companyform.value.pais.trim();
-      this.refeUbicacion.departamento =
-        this.companyform.value.departamento.trim();
-      this.refeUbicacion.ciudad = this.companyform.value.cuidad.trim();
-      this.refeUbicacion.descripcionCiudad =
-        this.companyform.value.descripcionCuidad.trim();
-      this.refeUbicacion.fotoCiudad = '';
+      this.hotel.nombre = this.companyform.value.nombre.trim();
+      this.hotel.ruc = Number(this.companyform.value.ruc);
+      this.hotel.cantidadHabitacion = Number(
+        this.companyform.value.cantidadHabitacion
+      );
+      this.hotel.descripcionHotel =
+        this.companyform.value.descripcionHotel.trim();
+      this.hotel.logo = '';
+
+      this.userlogeado = this.authService.usuario;
 
       if (
         this.data.id != '' &&
@@ -111,17 +132,17 @@ export class RefeubicacionComponent implements OnInit {
   functionpermiteEditar() {
     if (this.fotoSeleccionada != null) {
       //si se selecciono una foto
-      this.refeciaUbicacion
-        .updateRefereciaDUbicacion(this.refeUbicacion, this.data.id)
+      this.hotelesServices
+        .updateHotelUbicacion(this.hotel, this.data.id, this.ngSelect)
         .subscribe(
           (data) => {
-            this.refeciaUbicacion
-              .subirFotoRefereciaDUbicacion(this.fotoSeleccionada, this.data.id)
+            this.hotelesServices
+              .subirFotoDHoteles(this.fotoSeleccionada, this.data.id)
               .subscribe(
                 (data) => {
                   swal.fire(
-                    'Referencia de Ubicacion',
-                    'Se ha editado la referencia de ubicacion con exito',
+                    'Hoteles',
+                    ` Se ha editado el hotel  ${this.hotel.nombre} con exito`,
                     'success'
                   );
 
@@ -137,14 +158,13 @@ export class RefeubicacionComponent implements OnInit {
           }
         );
     } else {
-      //si no se selecciono una foto
-      this.refeciaUbicacion
-        .updateRefereciaDUbicacion(this.refeUbicacion, this.data.id)
+      this.hotelesServices
+        .updateHotelUbicacion(this.hotel, this.data.id, this.ngSelect)
         .subscribe(
           (data) => {
             swal.fire(
-              'Referencia de Ubicacion',
-              'Se ha editado la referencia de ubicacion con exito',
+              'Hoteles',
+              ` Se ha editado el hotel  ${this.hotel.nombre} con exito`,
               'success'
             );
             this.closepopup();
@@ -155,19 +175,20 @@ export class RefeubicacionComponent implements OnInit {
         );
     }
   }
+
   functionpermiteGuardar() {
     if (this.fotoSeleccionada != null) {
-      this.refeciaUbicacion
-        .crearteRefereciaDUbicacion(this.refeUbicacion)
+      this.hotelesServices
+        .createHotel(this.hotel, this.userlogeado.id, this.ngSelect)
         .subscribe(
           (data) => {
-            this.refeciaUbicacion
-              .subirFotoRefereciaDUbicacion(this.fotoSeleccionada, data.id)
+            this.hotelesServices
+              .subirFotoDHoteles(this.fotoSeleccionada, data.id)
               .subscribe(
                 (data) => {
                   swal.fire(
-                    'Referencia de Ubicacion',
-                    'Se ha creado la referencia de ubicacion con exito',
+                    'Hotel creado',
+                    ` Se ha creado el hotel  ${this.hotel.nombre} con exito`,
                     'success'
                   );
                   this.closepopup();
@@ -182,13 +203,13 @@ export class RefeubicacionComponent implements OnInit {
           }
         );
     } else {
-      this.refeciaUbicacion
-        .crearteRefereciaDUbicacion(this.refeUbicacion)
+      this.hotelesServices
+        .createHotel(this.hotel, this.userlogeado.id, this.ngSelect)
         .subscribe(
           (data) => {
             swal.fire(
-              'Referencia de Ubicacion',
-              'Se ha creado la referencia de ubicacion con exito',
+              'Hotel creado',
+              ` Se ha creado el hotel  ${this.hotel.nombre} con exito`,
               'success'
             );
             this.closepopup();
@@ -199,6 +220,7 @@ export class RefeubicacionComponent implements OnInit {
         );
     }
   }
+
   closepopup() {
     this.dialog.closeAll();
   }
