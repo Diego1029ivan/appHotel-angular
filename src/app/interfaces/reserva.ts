@@ -10,6 +10,8 @@ export class Reserva {
     adelantoReservas: number;
     estado:           1;
     cantidadHab:      number;
+    cantidad_dias:      number;
+    costo_total:      number;
     hotel?:            Hoteles;
     usuario?:          Usuario;
     tipoPago:         TipoPago;

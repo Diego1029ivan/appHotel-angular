@@ -90,16 +90,13 @@ export class ReservaHotelComponent implements OnInit{
   selectToday() {
 		return this.model = this.calendar.getToday();
 	}
+
+  diferenciaDias(fecha1:NgbDate,fecha2:NgbDate){
+     let fechaInicio = moment(fecha1);
+     let fechaFin = moment(fecha2);
+    return(fechaFin.diff(fechaInicio, 'days'));
+  }
   /************* */
-
-
-
-
-
-
-
-
-
 
 
 
@@ -227,6 +224,8 @@ export class ReservaHotelComponent implements OnInit{
     adelantoReservas: 500,
     estado: 1,
     cantidadHab: 1,
+    cantidad_dias: 2,
+    costo_total: 100,
     tipoPago: {
         id: 1,
         detalle_tipo:''
@@ -249,6 +248,8 @@ export class ReservaHotelComponent implements OnInit{
     this.reserva.cantidadHab = Number(this.miFormulario?.controls['cantidad'].value);
     this.reserva.tipohab['id'] = Number(this.miFormulario?.controls['tipo'].value);
     this.reserva.tipoPago['id'] = Number(this.miFormulario?.controls['pago'].value);
+    this.reserva.cantidad_dias = this.diferenciaDias(this.fromDate,this.toDate)
+    this.reserva.costo_total=this.diferenciaDias(this.fromDate,this.toDate)*this.valorCosto()*Number(this.miFormulario?.controls['cantidad'].value);
 
     this.reservaService.crearReserva(this.reserva,this.hotelid.id,this.user.id).subscribe(
         (response) => {

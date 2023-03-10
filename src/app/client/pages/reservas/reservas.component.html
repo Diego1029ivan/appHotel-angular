@@ -17,6 +17,7 @@
                 <th scope="col">Hotel</th>
                 <th scope="col">Tipo de pago</th>
                 <th scope="col">Tipo de Habitación</th>
+                <th scope="col">Costo</th>
                 <th scope="col">Control</th>
             </tr>
         </thead>
@@ -30,7 +31,8 @@
                 <td>{{ reserva.hotel.nombre }}</td>
                 <td>{{ reserva.tipoPago.detalle_tipo }}</td>
                 <td>{{ reserva.tipohab.tipoHabitacion }}</td>
-                <td><a href=""><i class="fa-solid fa-print"></i></a></td>
+                <td>{{ reserva.costo_total }}</td>
+                <td class="icono-cursor text-center"><i class="fa-solid fa-print" (click)="mostrarReporte(reserva.id)"></i></td>
             </tr>
         </tbody>
     </table>
@@ -45,7 +47,7 @@
         >
         </ngb-pagination>
 
-        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="LoadReservas()">
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshReservas()">
             <option [ngValue]="2">2 items per page</option>
             <option [ngValue]="4">4 items per page</option>
             <option [ngValue]="6">6 items per page</option>

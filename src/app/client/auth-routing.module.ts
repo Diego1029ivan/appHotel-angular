@@ -47,6 +47,7 @@ const routes: Routes = [
         path: 'contacto',
         component: ContactoComponent,
       },
+      
       {
         path: '**',
         redirectTo: 'index',
