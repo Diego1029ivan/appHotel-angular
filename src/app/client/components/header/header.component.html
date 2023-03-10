@@ -17,8 +17,8 @@
         <li class="nav-item">
           <a class="nav-link " routerLink="./regiones" href="#">Regiones</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="./reservas" href="#">Reserva</a>
+        <li class="nav-item"*ngIf="logeado()">
+          <a class="nav-link "  routerLink="./reservas" href="#">Mi Reserva</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " routerLink="./contacto" href="#">Contacto</a>
