@@ -14,7 +14,7 @@ import { Usuario } from '../../../../interfaces/usuario';
   templateUrl: './hotelc.component.html',
   styleUrls: ['./hotelc.component.css'],
 })
-export class HotelcComponent {
+export class HotelcComponent implements OnInit {
   private userlogeado: Usuario;
 
   titlo: string = 'Registrar Hotel';

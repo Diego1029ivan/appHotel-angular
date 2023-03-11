@@ -1,7 +1,7 @@
 <div class="dash-title">
   <h2>Listado de Bares </h2>
 </div>
-<a mat-raised-button color="primary" (click)="Openpopup('')">Crear</a>
+<a mat-raised-button color="primary" (click)="Openpopup('','')">Crear</a>
 <br>
 <br>
 
@@ -45,7 +45,7 @@
         <th mat-header-cell *matHeaderCellDef> Acciones</th>
         <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
           <a style="color: #1f516f; cursor: pointer;" matTooltip="Editar Usuario "
-            (click)="EditBar(element.id)"><mat-icon>edit</mat-icon></a>
+            (click)="EditBar(element.id, hotelSeleccionadoId)"><mat-icon>edit</mat-icon></a>
         </td>
       </ng-container>
 

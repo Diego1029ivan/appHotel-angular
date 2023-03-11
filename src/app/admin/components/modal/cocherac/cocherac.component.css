@@ -1,0 +1,54 @@
+.example-form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0;
+}
+.example-full-width {
+  width: 48%;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+mat-card-content {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}
+
+.mat-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 30px;
+}
+mat-divider {
+  margin-top: 20px;
+}
+.content-buttom {
+  gap: 10px;
+}
+.fotoestilo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ececec;
+  color: #757575;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+  padding-left: 18px;
+  height: 90px;
+}
+.selectAncho {
+  width: 50%;
+}
+mat-form-field {
+  width: 100%;
+}

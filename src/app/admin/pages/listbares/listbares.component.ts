@@ -55,7 +55,7 @@ export class ListbaresComponent implements OnInit {
       (data) => {
         this.hotel = data;
         this.bares = this.hotel[0].bares;
-        this.dataSource = new MatTableDataSource(this.bares);
+               this.dataSource = new MatTableDataSource(this.bares);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -65,8 +65,8 @@ export class ListbaresComponent implements OnInit {
     );
   }
 
-  EditBar(id: any) {
-    this.Openpopup(id);
+  EditBar(id: any, ide: any) {
+    this.Openpopup(id, ide);
   }
   onSelect(hotel: Hoteles) {
     let bar: any;
@@ -78,13 +78,14 @@ export class ListbaresComponent implements OnInit {
     }
   }
 
-  Openpopup(id: any) {
+  Openpopup(id: any, ide: any) {
     const _popup = this.dialog.open(BarcComponent, {
       width: '800px',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {
         id: id,
+        ide: ide,
       },
       disableClose: true,
     });

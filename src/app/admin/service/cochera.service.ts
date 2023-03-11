@@ -13,15 +13,17 @@ export class CocheraService {
   private urlEndPoint: string = '/api/cochera';
   constructor(private http: HttpClient) {}
 
-  getCocheraOne(): Observable<Cocheras> {
-    return this.http.get<Cocheras>(`${this.baseUrl}${this.urlEndPoint}`).pipe(
-      catchError((e) => {
-        if (e.error.mensaje) {
-          console.error(e.error.mensaje);
-        }
-        return throwError(e);
-      })
-    );
+  getCocheraOne(id: number): Observable<Cocheras> {
+    return this.http
+      .get<Cocheras>(`${this.baseUrl}${this.urlEndPoint}/${id}`)
+      .pipe(
+        catchError((e) => {
+          if (e.error.mensaje) {
+            console.error(e.error.mensaje);
+          }
+          return throwError(e);
+        })
+      );
   }
 
   crearCochera(cochera: Cocheras, idHotel: number): Observable<Cocheras> {
