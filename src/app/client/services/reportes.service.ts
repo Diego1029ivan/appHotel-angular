@@ -36,4 +36,16 @@ export class ReportesService {
       })
     );
   }
+
+  getEmail(correo:string,nombre:string,celular:string,asunto:string) {
+    return this.http.get(`${this.baseUrl}/reporte/email/${correo}/${nombre}/${asunto}/cel/${celular}`)
+          .pipe(
+            catchError((e) => {
+              if (e.error) {
+                console.error(e.error);
+              }
+              return throwError(e);
+            })
+          );
+  }
 }

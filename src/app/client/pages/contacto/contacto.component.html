@@ -32,39 +32,35 @@
                                     <label for="email">Email</label>
                                     <span  class="form-text text-danger"
                                            *ngIf="campoEsValido('email')">
-                                    Un email es requerido
+                                    Un email es requerido o revisa bien 
                                     </span>
                                 </div>
                                 <div class="form-floating">
                                     <input class="form-control" id="phone" type="tel" formControlName="celular" placeholder="Enter your phone number..." />
                                     <label for="phone">Celular</label>
-                                    <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                    
+                                    <span  class="form-text text-danger"
+                                           *ngIf="campoEsValido('celular')">
+                                    El celular es requerido o debe tener 9 números
+                                    </span>
                                 </div>
                                 <div class="form-floating">
                                     <textarea class="form-control" id="message" formControlName="mnj" placeholder="Enter your message here..." style="height: 12rem"></textarea>
                                     <label for="message">Mensaje</label>
-                                    <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                    
+                                    <span  class="form-text text-danger"
+                                           *ngIf="campoEsValido('mnj')">
+                                    El mensaje es requerido
+                                    </span>
                                 </div>
                                 <br />
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" >
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        To activate this form, sign up at
-                                        <br />
-                                        
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                              
                                 <!-- Submit Button-->
-                                <button class="btn btn-primary text-uppercase " type="submit">Enviar</button>
+                                <button [disabled]="miFormulario.invalid" class="btn btn-primary text-uppercase control-boton active" id="enviar" type="submit">Enviar</button>
+                                <button class="btn btn-primary control-boton"id="cargar"  type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading...
+                                  </button>
                             </form>
                         </div>
                     </div>
