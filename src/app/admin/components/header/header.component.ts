@@ -29,6 +29,6 @@ export class HeaderComponent {
       `Hola ${username}, has cerrado sesión con éxito!`,
       'success'
     );
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['sistema-hotel/auth/login']);
   }
 }

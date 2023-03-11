@@ -25,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
           if (this.authService.isAuthenticated()) {
             this.authService.logout();
           }
-          this.router.navigate(['auth/login']);
+          this.router.navigate(['sistema-hotel/auth/login']);
         }
 
         if (e.status == 403) {
@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
             `Hola ${this.authService.usuario.username} no tienes acceso a este recurso!`,
             'warning'
           );
-          this.router.navigate(['auth/clientes']);
+          this.router.navigate(['sistema-hotel/auth/login']);
         }
         return throwError(e);
       })
