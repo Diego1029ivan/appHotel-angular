@@ -1,3 +1,4 @@
+<div class="containerlogin">
 <div class="box">
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2>Register</h2>
@@ -62,9 +63,10 @@
     </div>
     <div class="links">
       <span></span>
-      <a routerLink="/auth/login">Login</a>
+      <a routerLink="../">Login</a>
     </div>
     <input type="submit" value="Register" class="center" [disabled]="registerForm.invalid"
       [ngClass]="registerForm.invalid ?  'desactive': '' ">
   </form>
+</div>
 </div>
