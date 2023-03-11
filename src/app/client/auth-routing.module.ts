@@ -11,6 +11,7 @@ import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.compo
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { ReservasComponent } from './pages/reservas/reservas.component';
 import { LoginComponent } from '../auth/pages/login/login.component';
+import { RegisterComponent } from '../auth/pages/register/register.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
         path: 'auth/login',
         component: LoginComponent,
       },   
+      {
+        path: 'auth/login/registro',
+        component: RegisterComponent,
+      },
       
       {
         path: '**',
