@@ -14,6 +14,8 @@ import { HotelesService } from '../../service/hoteles.service';
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Bares } from './../../../interfaces/bares';
+import { MatDialog } from '@angular/material/dialog';
+import { BarcComponent } from '../../components/modal/barc/barc.component';
 
 @Component({
   selector: 'app-listbares',
@@ -36,23 +38,24 @@ export class ListbaresComponent implements OnInit {
   displayedColumns: string[] = ['Description', 'Foto', 'acciones'];
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
 
   ngOnInit(): void {
-    this.LoadHotel();
+    this.LoadBar();
   }
 
-  LoadHotel() {
+  LoadBar() {
     const idlogeado = this.authService.usuario.id;
 
     this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
         this.hotel = data;
         this.bares = this.hotel[0].bares;
-        this.dataSource = new MatTableDataSource(this.bares);
+               this.dataSource = new MatTableDataSource(this.bares);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -61,14 +64,34 @@ export class ListbaresComponent implements OnInit {
       }
     );
   }
+
+  EditBar(id: any, ide: any) {
+    this.Openpopup(id, ide);
+  }
   onSelect(hotel: Hoteles) {
     let bar: any;
     this.hotelSeleccionadoId = +hotel;
     bar = this.hotel.filter((hotel) => hotel.id === this.hotelSeleccionadoId);
     this.bares = bar[0].bares;
     if (this.bares.length > 0) {
-      this.LoadHotel();
+      this.LoadBar();
     }
+  }
+
+  Openpopup(id: any, ide: any) {
+    const _popup = this.dialog.open(BarcComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+        ide: ide,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadBar();
+    });
   }
 
   applyFilter(event: Event) {

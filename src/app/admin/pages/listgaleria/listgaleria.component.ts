@@ -1,3 +1,4 @@
+import { GaleriacComponent } from './../../components/modal/galeriac/galeriac.component';
 import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,6 +15,7 @@ import { HotelesService } from '../../service/hoteles.service';
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Galeria } from './../../../interfaces/galeria';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-listgaleria',
   templateUrl: './listgaleria.component.html',
@@ -44,7 +46,8 @@ export class ListgaleriaComponent implements OnInit {
   }
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
@@ -74,6 +77,25 @@ export class ListgaleriaComponent implements OnInit {
     if (this.galeria.length > 0) {
       this.LoadHotel();
     }
+  }
+
+  EditGaleria(id: any, ide: any) {
+    this.Openpopup(id, ide);
+  }
+  Openpopup(id: any, ide: any) {
+    const _popup = this.dialog.open(GaleriacComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+        ide: ide,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHotel();
+    });
   }
 
   applyFilter(event: Event) {

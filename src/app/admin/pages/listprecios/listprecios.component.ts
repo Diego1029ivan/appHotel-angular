@@ -14,6 +14,8 @@ import { HotelesService } from '../../service/hoteles.service';
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Precioxtipohabitacion } from '../../../interfaces/precioxtipohabitacion';
+import { MatDialog } from '@angular/material/dialog';
+import { PrecioscComponent } from '../../components/modal/preciosc/preciosc.component';
 
 @Component({
   selector: 'app-listprecios',
@@ -45,7 +47,8 @@ export class ListpreciosComponent implements OnInit {
   }
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
@@ -75,6 +78,24 @@ export class ListpreciosComponent implements OnInit {
     if (this.precioxhabitacio.length > 0) {
       this.LoadHotel();
     }
+  }
+  EditPrecio(id: any, ide: any) {
+    this.Openpopup(id, ide);
+  }
+  Openpopup(id: any, ide: any) {
+    const _popup = this.dialog.open(PrecioscComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+        ide: ide,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHotel();
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

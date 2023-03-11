@@ -156,30 +156,48 @@ export class RefeubicacionComponent implements OnInit {
     }
   }
   functionpermiteGuardar() {
-    this.refeciaUbicacion
-      .crearteRefereciaDUbicacion(this.refeUbicacion)
-      .subscribe(
-        (data) => {
-          this.refeciaUbicacion
-            .subirFotoRefereciaDUbicacion(this.fotoSeleccionada, data.id)
-            .subscribe(
-              (data) => {
-                swal.fire(
-                  'Referencia de Ubicacion',
-                  'Se ha creado la referencia de ubicacion con exito',
-                  'success'
-                );
-                this.closepopup();
-              },
-              (err) => {
-                console.log(err);
-              }
+    if (this.fotoSeleccionada != null) {
+      this.refeciaUbicacion
+        .crearteRefereciaDUbicacion(this.refeUbicacion)
+        .subscribe(
+          (data) => {
+            this.refeciaUbicacion
+              .subirFotoRefereciaDUbicacion(this.fotoSeleccionada, data.id)
+              .subscribe(
+                (data) => {
+                  swal.fire(
+                    'Referencia de Ubicacion',
+                    'Se ha creado la referencia de ubicacion con exito',
+                    'success'
+                  );
+                  this.closepopup();
+                },
+                (err) => {
+                  console.log(err);
+                }
+              );
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    } else {
+      this.refeciaUbicacion
+        .crearteRefereciaDUbicacion(this.refeUbicacion)
+        .subscribe(
+          (data) => {
+            swal.fire(
+              'Referencia de Ubicacion',
+              'Se ha creado la referencia de ubicacion con exito',
+              'success'
             );
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+            this.closepopup();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    }
   }
   closepopup() {
     this.dialog.closeAll();

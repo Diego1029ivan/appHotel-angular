@@ -1,4 +1,4 @@
-<form class="example-form" [formGroup]="companyform" (ngSubmit)="SaveRefenUbicacion()">
+<form class="example-form" [formGroup]="companyform" (ngSubmit)="SaveRefenCochera()">
   <mat-card>
 
     <div class="mat-card-header ">
@@ -9,30 +9,20 @@
 
 
     <mat-card-content>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre" formControlName="nombre" autocomplete="off">
-      </mat-form-field>
-
-
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Ruc</mat-label>
-        <input type="number" matInput placeholder="ruc" formControlName="ruc" autocomplete="off">
-      </mat-form-field>
-
+      <div class="selectAncho">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecione una Hotel</mat-label>
+          <mat-select [(value)]="ngSelect" [required]="true" formControlName="hotel">
+            <mat-option *ngFor="let item of hotel" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>cantidadHabitacion</mat-label>
-        <input type="number" matInput placeholder="cantidadHabitacion" formControlName="cantidadHabitacion"
-          autocomplete="off">
-      </mat-form-field>
-
-
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>DescripcionHotel</mat-label>
-        <textarea matInput placeholder="descripcionHotel" formControlName="descripcionHotel"
+        <mat-label>DescripcionCochera</mat-label>
+        <textarea matInput placeholder="descripcionCochera" formControlName="descripcionCochera"
           autocomplete="off"></textarea>
       </mat-form-field>
       <div class="example-full-width fotoestilo" appearance="fill">
@@ -49,12 +39,13 @@
         <img src="{{imgurl}}" width="250px" height="250px" />
       </div>
 
+
     </mat-card-content>
 
     <mat-divider></mat-divider>
     <div class="mat-card-footer">
       <div class="content-buttom" style="margin: 2px;">
-        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit"
+        <a mat-raised-button color="primary" (click)=" SaveRefenCochera()" type="submit"
           [disabled]="companyform.invalid" [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a
           (click)="closepopup()" mat-raised-button color="accent">Close</a>
       </div>

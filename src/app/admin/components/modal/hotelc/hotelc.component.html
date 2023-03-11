@@ -49,13 +49,23 @@
         <img src="{{imgurl}}" width="250px" height="250px" />
       </div>
 
+      <div class="selectAncho">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecione una ubicacion</mat-label>
+          <mat-select [(value)]="ngSelect" [required]="true">
+            <mat-option *ngFor="let item of ubicacion" [value]="item.id">
+              {{item.ciudad}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
     </mat-card-content>
 
     <mat-divider></mat-divider>
     <div class="mat-card-footer">
       <div class="content-buttom" style="margin: 2px;">
-        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit"
-          [disabled]="companyform.invalid" [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a
+        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit">Save</a> | <a
           (click)="closepopup()" mat-raised-button color="accent">Close</a>
       </div>
     </div>

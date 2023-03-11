@@ -26,6 +26,13 @@ import { RefenciaDUbicacionComponent } from './pages/refencia-dubicacion/refenci
 import { HotelComponent } from './pages/hotel/hotel.component';
 import { RefeubicacionComponent } from './components/modal/refeubicacion/refeubicacion.component';
 import { HotelesComponent } from './components/modal/hoteles/hoteles.component';
+import { HotelcComponent } from './components/modal/hotelc/hotelc.component';
+import { BarcComponent } from './components/modal/barc/barc.component';
+import { CocheracComponent } from './components/modal/cocherac/cocherac.component';
+import { PicinacComponent } from './components/modal/picinac/picinac.component';
+
+import { PrecioscComponent } from './components/modal/preciosc/preciosc.component';
+import { GaleriacComponent } from './components/modal/galeriac/galeriac.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +54,13 @@ import { HotelesComponent } from './components/modal/hoteles/hoteles.component';
     RefenciaDUbicacionComponent,
     RefeubicacionComponent,
     HotelesComponent,
+    HotelcComponent,
+    BarcComponent,
+    CocheracComponent,
+    PicinacComponent,
+
+    PrecioscComponent,
+      GaleriacComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
   providers: [

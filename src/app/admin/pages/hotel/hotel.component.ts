@@ -5,7 +5,7 @@ import {
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
-
+import swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../../../auth/service/auth.service';
@@ -13,6 +13,8 @@ import { HotelesService } from '../../service/hoteles.service';
 
 import { Hoteles } from 'src/app/interfaces/hoteles';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { MatDialog } from '@angular/material/dialog';
+import { HotelcComponent } from '../../components/modal/hotelc/hotelc.component';
 
 @Component({
   selector: 'app-hotel',
@@ -36,13 +38,14 @@ export class HotelComponent implements OnInit {
     'ruc',
     'cantidadH',
     'descripH',
-    'ciudad',
+    'logo',
     'fotoCiudad',
     'acciones',
   ];
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
@@ -59,6 +62,54 @@ export class HotelComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+  Openpopup(id: any) {
+    const _popup = this.dialog.open(HotelcComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHotel();
+    });
+  }
+  EditHotel(id: any) {
+    this.Openpopup(id);
+  }
+  eliminarHotel(hotel: Hoteles) {
+    console.log(hotel.id);
+    swal
+      .fire({
+        title: '¿Estas seguro?',
+        text: `¿Seguro que desea eliminar el Hotel ${hotel.nombre}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.hotelServices.deleteHotel(hotel.id).subscribe(
+            (data) => {
+              swal.fire(
+                'Eliminado',
+                `El Hotel ${hotel.nombre} ha sido eliminado`,
+                'success'
+              );
+              this.LoadHotel();
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        }
+      });
   }
 
   applyFilter(event: Event) {

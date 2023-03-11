@@ -13,6 +13,8 @@ import { AuthService } from './../../../auth/service/auth.service';
 import { HotelesService } from '../../service/hoteles.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { Hoteles } from '../../../interfaces/hoteles';
+import { CocheracComponent } from '../../components/modal/cocherac/cocherac.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listcocheras',
@@ -37,7 +39,8 @@ export class ListcocherasComponent implements OnInit {
 
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
@@ -72,6 +75,24 @@ export class ListcocherasComponent implements OnInit {
     if (this.cochera.length > 0) {
       this.LoadHotel();
     }
+  }
+  EditCochera(id: any, ide: any) {
+    this.Openpopup(id, ide);
+  }
+  Openpopup(id: any, ide: any) {
+    const _popup = this.dialog.open(CocheracComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+        ide: ide,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHotel();
+    });
   }
 
   applyFilter(event: Event) {

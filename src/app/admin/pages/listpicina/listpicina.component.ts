@@ -11,6 +11,8 @@ import { Piscinas } from 'src/app/interfaces/piscinas';
 import { environment } from 'src/environments/environment';
 import { HotelesService } from '../../service/hoteles.service';
 import { AuthService } from './../../../auth/service/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PicinacComponent } from '../../components/modal/picinac/picinac.component';
 
 @Component({
   selector: 'app-listpicina',
@@ -39,7 +41,8 @@ export class ListpicinaComponent implements OnInit {
   ];
   constructor(
     private hotelServices: HotelesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.userlogeado = new Usuario();
   }
@@ -76,6 +79,24 @@ export class ListpicinaComponent implements OnInit {
     if (this.picina.length > 0) {
       this.LoadHotel();
     }
+  }
+  EditPicina(id: any, ide: any) {
+    this.Openpopup(id, ide);
+  }
+  Openpopup(id: any, ide: any) {
+    const _popup = this.dialog.open(PicinacComponent, {
+      width: '800px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: id,
+        ide: ide,
+      },
+      disableClose: true,
+    });
+    _popup.afterClosed().subscribe((r) => {
+      this.LoadHotel();
+    });
   }
 
   applyFilter(event: Event) {
