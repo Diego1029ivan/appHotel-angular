@@ -28,6 +28,7 @@ h2,h3 {
     width: 100%;
     background-image: url("../../../../assets/img/publi1.jpg");
     background-size: cover;
+    border-radius: 5px;
     
 }
 .about-tam2{
@@ -36,10 +37,15 @@ h2,h3 {
     background-image: url("../../../../assets/img/publi2.jpg");
     background-size: cover;
     background-repeat:space;
+    border-radius: 5px;
 }
 .about-tam3{
     height: 400px;
     width: 100%;
     background-image: url("../../../../assets/img/publi3.jpg");
     background-size: cover;
+    border-radius: 5px;
+}
+.fondo-card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

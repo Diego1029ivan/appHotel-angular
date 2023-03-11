@@ -12,9 +12,9 @@
   <div class="container marketing mt-3">
 
     <!-- Three columns of text below the carousel -->
-    <div class="row">
+    <div class="row ">
       <div class="col-lg-4 " *ngFor="let ubicacion of ubicaciones">
-        <div class="card" style="width: 18rem;">
+        <div class="card fondo-card" style="width: 18rem;">
           <div class="card-img-top card-tam">
             <img src='{{baseUrl}}/api/uploads/img/{{ubicacion.fotoCiudad}}' alt="">
           </div>
@@ -45,7 +45,7 @@
         <button class="btn btn-primary"routerLink="../regiones">Reservar</button>
       </div>
       <div class="col-md-5">
-        <div class="about-tam1"></div>
+        <div class="about-tam1 fondo-card"></div>
 
       </div>
     </div>
@@ -67,7 +67,7 @@
         <button class="btn btn-primary"routerLink="../regiones">Reservar</button>
       </div>
       <div class="col-md-5 order-md-1">
-        <div class="about-tam2"></div>
+        <div class="about-tam2 fondo-card"></div>
 
       </div>
     </div>
@@ -87,7 +87,7 @@
         <button class="btn btn-primary"routerLink="../regiones">Reservar</button>
       </div>
       <div class="col-md-5">
-        <div class="about-tam3"></div>
+        <div class="about-tam3 fondo-card"></div>
 
       </div>
     </div>

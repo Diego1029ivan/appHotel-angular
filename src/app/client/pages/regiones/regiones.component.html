@@ -21,7 +21,7 @@
         
         <div class="col" *ngFor="let hotel of hotelesL" >
 
-          <div class="card shadow-sm" >
+          <div class="card fondo-card" >
 
               <div class="foto-hotel" *ngIf="hotel.galeria[0].foto">
                   <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
@@ -68,7 +68,7 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let hotel of hotelesM">
-          <div class="card shadow-sm" >
+          <div class="card fondo-card" >
 
             <div class="foto-hotel" *ngIf="hotel.galeria[0].foto">
                 <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
@@ -116,7 +116,7 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let hotel of hotelesT">
-          <div class="card shadow-sm" >
+          <div class="card fondo-card" >
 
             <div class="foto-hotel" *ngIf="hotel.galeria[0]">
                 <img src="{{baseUrl}}/api/uploads/img/{{hotel.galeria[0].foto}}" alt="">
