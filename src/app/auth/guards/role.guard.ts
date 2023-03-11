@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['auth/login']);
+      this.router.navigate(['sistema-hotel/auth/login']);
       return false;
     }
 
@@ -37,7 +37,7 @@ export class RoleGuard implements CanActivate {
       `Hola ${this.authService.usuario.username} no tienes acceso a este recurso!`,
       'warning'
     );
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['sistema-hotel/auth/login']);
     return false;
   }
 }

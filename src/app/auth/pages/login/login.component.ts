@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         if (usuario.roles[0] == 'ROLE_USER') {
           this.router.navigate(['/sistema-hotel/index']);
         } else if (usuario.roles[0] == 'ROLE_ADMIN') {
-          this.router.navigate(['/admin/listarhotel']);
+          this.router.navigate(['admin/listarhotel']);
         } else if (usuario.roles[0] == 'ROLE_SUPADMIN') {
           this.router.navigate(['/admin/listarusuario']);
         }
