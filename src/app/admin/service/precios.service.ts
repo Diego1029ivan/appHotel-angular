@@ -12,9 +12,9 @@ export class PreciosService {
   private baseUrl: string = environment.baseUrl;
   private urlEndPoint: string = '/api/tipoHabitacion';
   constructor(private http: HttpClient) {}
-  getPrecioOne(): Observable<Precioxtipohabitacion> {
+  getPrecioOne(id: number): Observable<Precioxtipohabitacion> {
     return this.http
-      .get<Precioxtipohabitacion>(`${this.baseUrl}${this.urlEndPoint}`)
+      .get<Precioxtipohabitacion>(`${this.baseUrl}${this.urlEndPoint}/${id}}`)
       .pipe(
         catchError((e) => {
           if (e.error.mensaje) {

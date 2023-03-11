@@ -13,15 +13,17 @@ export class PicinaService {
   private urlEndPoint: string = '/api/picina';
   constructor(private http: HttpClient) {}
 
-  getPicinaOne(): Observable<Piscinas> {
-    return this.http.get<Piscinas>(`${this.baseUrl}${this.urlEndPoint}`).pipe(
-      catchError((e) => {
-        if (e.error.mensaje) {
-          console.error(e.error.mensaje);
-        }
-        return throwError(e);
-      })
-    );
+  getPicinaOne(id: number): Observable<Piscinas> {
+    return this.http
+      .get<Piscinas>(`${this.baseUrl}${this.urlEndPoint}/${id}`)
+      .pipe(
+        catchError((e) => {
+          if (e.error.mensaje) {
+            console.error(e.error.mensaje);
+          }
+          return throwError(e);
+        })
+      );
   }
   crearPicina(picina: Piscinas, idHotel: number): Observable<Piscinas> {
     return this.http
