@@ -28,7 +28,7 @@ export class ListcocherasComponent implements OnInit {
   public userlogeado: Usuario;
   hotel!: Hoteles[];
   cochera!: Cocheras[];
-
+  ngSelect: any;
   hotelSeleccionadoId: number;
 
   public baseUrl: string = environment.baseUrl; //para mostrar la imagen
@@ -55,6 +55,7 @@ export class ListcocherasComponent implements OnInit {
       (data) => {
         this.hotel = data;
         this.cochera = this.hotel[0].cocheras;
+        this.ngSelect = this.hotel[0].id;
         this.dataSource = new MatTableDataSource(this.cochera);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -72,9 +73,10 @@ export class ListcocherasComponent implements OnInit {
       (hotel) => hotel.id === this.hotelSeleccionadoId
     );
     this.cochera = cocher[0].cocheras;
-    if (this.cochera.length > 0) {
-      this.LoadHotel();
-    }
+
+    this.dataSource = new MatTableDataSource(this.cochera);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   EditCochera(id: any, ide: any) {
     this.Openpopup(id, ide);
@@ -92,6 +94,7 @@ export class ListcocherasComponent implements OnInit {
     });
     _popup.afterClosed().subscribe((r) => {
       this.LoadHotel();
+      this.ngSelect = this.hotelSeleccionadoId;
     });
   }
 

@@ -52,7 +52,7 @@
       <div class="selectAncho">
         <mat-form-field appearance="fill">
           <mat-label>Selecione una ubicacion</mat-label>
-          <mat-select [(value)]="ngSelect" [required]="true">
+          <mat-select [(value)]="ngSelect" [required]="true" formControlName="ubicacion">
             <mat-option *ngFor="let item of ubicacion" [value]="item.id">
               {{item.ciudad}}
             </mat-option>
@@ -65,7 +65,8 @@
     <mat-divider></mat-divider>
     <div class="mat-card-footer">
       <div class="content-buttom" style="margin: 2px;">
-        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit">Save</a> | <a
+        <a mat-raised-button color="primary" (click)=" SaveRefenUbicacion()" type="submit"
+          [disabled]="companyform.invalid" [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a
           (click)="closepopup()" mat-raised-button color="accent">Close</a>
       </div>
     </div>

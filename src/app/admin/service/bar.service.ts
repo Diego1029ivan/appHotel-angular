@@ -54,9 +54,9 @@ export class BarService {
     );
     return this.http.request(req);
   }
-  updateBar(bar: Bares, idHotel: number): Observable<Bares> {
+  updateBar(id: number, bar: Bares, idHotel: number): Observable<Bares> {
     return this.http
-      .put(`${this.baseUrl}${this.urlEndPoint}/hotel/${idHotel}`, bar)
+      .put(`${this.baseUrl}${this.urlEndPoint}/${id}/hotel/${idHotel}`, bar)
       .pipe(
         map((response: any) => response.bar as Bares),
         catchError((e) => {

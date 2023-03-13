@@ -1,1 +1,97 @@
-<p>galeriac works!</p>
+<form class="example-form" [formGroup]="companyform" (ngSubmit)="SaveRefenGaleria()">
+  <mat-card>
+
+    <div class="mat-card-header ">
+      <mat-card-title>{{titlo}}</mat-card-title>
+      <a mat-icon-button (click)="closepopup()" color="primary"><mat-icon>close</mat-icon>
+      </a>
+    </div>
+
+
+    <mat-card-content>
+      <div class="selectAncho">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecione una Hotel</mat-label>
+          <mat-select [(value)]="ngSelect" [required]="true" formControlName="hotel">
+            <mat-option *ngFor="let item of hotel" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Descripcion General</mat-label>
+        <textarea matInput placeholder="Descripcion Foto1" formControlName="descripcion" autocomplete="off"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width  aa" appearance="fill">
+        <mat-label>Descripcion Foto1</mat-label>
+        <textarea matInput placeholder="Descripcion Foto1" formControlName="descripcionf1"
+          autocomplete="off"></textarea>
+      </mat-form-field>
+
+      <div class="example-full-width fotoestilo" appearance="fill">
+        <mat-label>Foto1*</mat-label>
+        <input (change)="seleccionarFoto($event)" type="file" placeholder="selecciones una foto" formControlName="foto"
+          autocomplete="off">
+      </div>
+
+      <div *ngIf="imageSrc != '' ">
+        <img [src]="imageSrc" width="250px" height="250px" style="margin-left: 14px;" />
+
+      </div>
+      <div *ngIf="imgurl != '' ">
+        <img src="{{imgurl}}" width="250px" height="250px" style="margin-left: 14px;" />
+      </div>
+      <mat-form-field class="example-full-width  aa" appearance="fill">
+        <mat-label>Descripcion Foto2</mat-label>
+        <textarea matInput placeholder="Descripcion Foto2" formControlName="descripcionf2"
+          autocomplete="off"></textarea>
+      </mat-form-field>
+
+      <div class="example-full-width fotoestilo" appearance="fill">
+        <mat-label>Foto2*</mat-label>
+        <input (change)="seleccionarFoto2($event)" type="file" placeholder="selecciones una foto"
+          formControlName="foto2" autocomplete="off">
+      </div>
+
+      <div *ngIf="imageSrc2 != '' ">
+        <img [src]="imageSrc2" width="250px" height="250px" style="margin-left: 14px;" />
+
+      </div>
+      <div *ngIf="imgurl2 != '' ">
+        <img src="{{imgurl2}}" width="250px" height="250px" style="margin-left: 14px;" />
+      </div>
+
+      <mat-form-field class="example-full-width  aa" appearance="fill">
+        <mat-label>Descripcion Foto3</mat-label>
+        <textarea matInput placeholder="Descripcion Foto3" formControlName="descripcionf3"
+          autocomplete="off"></textarea>
+      </mat-form-field>
+
+      <div class="example-full-width fotoestilo" appearance="fill">
+        <mat-label>Foto3*</mat-label>
+        <input (change)="seleccionarFoto3($event)" type="file" placeholder="selecciones una foto"
+          formControlName="foto3" autocomplete="off">
+      </div>
+
+      <div *ngIf="imageSrc3 != '' ">
+        <img [src]="imageSrc3" width="250px" height="250px" style="margin-left: 14px;" />
+
+      </div>
+      <div *ngIf="imgurl3 != '' ">
+        <img src="{{imgurl3}}" width="250px" height="250px" style="margin-left: 14px;" />
+      </div>
+
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <div class="mat-card-footer">
+      <div class="content-buttom" style="margin: 2px;">
+        <a mat-raised-button color="primary" (click)=" SaveRefenGaleria()" type="submit"
+          [disabled]="companyform.invalid" [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a
+          (click)="closepopup()" mat-raised-button color="accent">Close</a>
+      </div>
+    </div>
+  </mat-card>
+</form>

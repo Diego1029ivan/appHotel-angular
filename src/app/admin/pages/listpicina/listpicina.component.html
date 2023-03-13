@@ -1,5 +1,5 @@
 <div class="dash-title">
-  <h2>Listado de Picinas</h2>
+  <h2>Listado de Piscina</h2>
 </div>
 <button mat-raised-button color="primary" (click)="Openpopup('','')">Crear</button>
 <br>
@@ -8,7 +8,7 @@
 <div class="selectAncho">
   <mat-form-field appearance="fill">
     <mat-label>Selecione un Hotel</mat-label>
-    <mat-select (selectionChange)="onSelect($event.value)">
+    <mat-select (selectionChange)="onSelect($event.value)" [(value)]="ngSelect">
       <mat-option *ngFor="let item of hotel" [value]="item.id">
         {{item.nombre}}
       </mat-option>

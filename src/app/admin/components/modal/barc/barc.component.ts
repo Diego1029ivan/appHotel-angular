@@ -25,7 +25,7 @@ export class BarcComponent implements OnInit {
   hotel: Hoteles[];
   public fotoSeleccionada: File;
   imageSrc: string = '';
-  bar: Bares[];
+  bar: Bares;
   ngSelect: any;
   constructor(
     private builder: FormBuilder,
@@ -36,6 +36,7 @@ export class BarcComponent implements OnInit {
     private barService: BarService
   ) {
     this.userlogeado = new Usuario();
+    this.bar = new Bares();
   }
 
   companyform = this.builder.group({
@@ -89,7 +90,7 @@ export class BarcComponent implements OnInit {
         'error'
       );
       //resetiar solo el campo de la foto
-      // this.companyform.get('logo').setValue('');
+      this.companyform.get('logo').setValue('');
       this.fotoSeleccionada = null;
     } else {
       const [file] = event.target.files;
@@ -100,8 +101,108 @@ export class BarcComponent implements OnInit {
     }
   }
 
-  SaveRefenBar() {}
+  SaveRefenBar() {
+    if (this.companyform.valid) {
+      this.bar.descripcionBar = this.companyform.value.descripcionBar;
 
+      if (
+        this.data.id != '' &&
+        this.data.id != null &&
+        this.data.id != undefined
+      ) {
+        this.functionpermiteEditar();
+      } else {
+        this.functionpermiteGuardar();
+      }
+    }
+  }
+  functionpermiteEditar() {
+    if (this.fotoSeleccionada != null) {
+      //si se selecciono una foto
+      this.barService
+        .updateBar(this.data.id, this.bar, Number(this.companyform.value.hotel))
+        .subscribe(
+          (data) => {
+            this.barService
+              .subirFotoBar(this.fotoSeleccionada, this.data.id)
+              .subscribe(
+                (data) => {
+                  swal.fire(
+                    'Bar Actualizado',
+                    `Bar  actualizado con éxito`,
+                    'success'
+                  );
+                  this.closepopup();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      //si no se selecciono una foto
+      this.barService
+        .updateBar(this.data.id, this.bar, Number(this.companyform.value.hotel))
+        .subscribe(
+          (data) => {
+            swal.fire(
+              'Bar Actualizado',
+              `Bar  actualizado con éxito`,
+              'success'
+            );
+            this.closepopup();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }
+
+  functionpermiteGuardar() {
+    if (this.fotoSeleccionada != null) {
+      this.barService
+        .crearBar(this.bar, Number(this.companyform.value.hotel))
+        .subscribe(
+          (data) => {
+            this.barService
+              .subirFotoBar(this.fotoSeleccionada, data.id)
+              .subscribe(
+                (data) => {
+                  swal.fire(
+                    'Bar Registrado',
+                    `Bar  registrado con éxito`,
+                    'success'
+                  );
+                  this.closepopup();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.barService
+        .crearBar(this.bar, Number(this.companyform.value.hotel))
+        .subscribe(
+          (data) => {
+            swal.fire('Bar Registrado', `Bar  registrado con éxito`, 'success');
+            this.closepopup();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }
   closepopup() {
     this.dialog.closeAll();
   }

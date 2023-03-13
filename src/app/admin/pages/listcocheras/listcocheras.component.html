@@ -9,7 +9,7 @@
 <div class="selectAncho">
   <mat-form-field appearance="fill">
     <mat-label>Selecione un Hotel</mat-label>
-    <mat-select (selectionChange)="onSelect($event.value)">
+    <mat-select (selectionChange)="onSelect($event.value)" [(value)]="ngSelect">
       <mat-option *ngFor="let item of hotel" [value]="item.id">
         {{item.nombre}}
       </mat-option>

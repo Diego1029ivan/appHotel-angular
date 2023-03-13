@@ -1,1 +1,48 @@
-<p>preciosc works!</p>
+<form class="example-form" [formGroup]="companyform" (ngSubmit)="SaveRefenPrecio()">
+  <mat-card>
+
+    <div class="mat-card-header ">
+      <mat-card-title>{{titlo}}</mat-card-title>
+      <a mat-icon-button (click)="closepopup()" color="primary"><mat-icon>close</mat-icon>
+      </a>
+    </div>
+
+
+    <mat-card-content>
+      <div class="selectAncho">
+        <mat-form-field appearance="fill">
+          <mat-label>Selecione una Hotel</mat-label>
+          <mat-select [(value)]="ngSelect" [required]="true" formControlName="hotel">
+            <mat-option *ngFor="let item of hotel" [value]="item.id">
+              {{item.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input type="number" matInput placeholder="cantidad" formControlName="cantidad" autocomplete="off">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput placeholder="precio" formControlName="precio" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>TipoHabitacion</mat-label>
+        <input type="input" matInput placeholder="tipoHabitacion" formControlName="tipoHabitacion" autocomplete="off">
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <div class="mat-card-footer">
+      <div class="content-buttom" style="margin: 2px;">
+        <a mat-raised-button color="primary" (click)=" SaveRefenPrecio()" type="submit" [disabled]="companyform.invalid"
+          [ngClass]="companyform.invalid ?  'desactive': '' ">Save</a> | <a (click)="closepopup()" mat-raised-button
+          color="accent">Close</a>
+      </div>
+    </div>
+  </mat-card>
+</form>
