@@ -8,7 +8,7 @@
 <div class="selectAncho">
   <mat-form-field appearance="fill">
     <mat-label>Selecione un Hotel</mat-label>
-    <mat-select (selectionChange)="onSelect($event.value)">
+    <mat-select (selectionChange)="onSelect($event.value)" [(value)]="ngSelect">
       <mat-option *ngFor="let item of hotel" [value]="item.id">
         {{item.nombre}}
       </mat-option>
@@ -30,24 +30,41 @@
         <th mat-header-cell *matHeaderCellDef> Descripción </th>
         <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
       </ng-container>
+      <!-- DescripciónFOTO1 Column -->
+      <ng-container matColumnDef="descripcionf1">
+        <th mat-header-cell *matHeaderCellDef> Descripción F1 </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcionf1}} </td>
+      </ng-container>
+
 
       <!-- Foto Column -->
       <ng-container matColumnDef="foto">
-        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <th mat-header-cell *matHeaderCellDef>Foto1 </th>
         <td mat-cell *matCellDef="let element">
           <img src='{{baseUrl}}/api/uploads/img/{{element.foto}}' alt="{{element.foto}}" style="width: 100px;" />
         </td>
       </ng-container>
+
+      <!--  DescripciónFOTO1 Column -->
+      <ng-container matColumnDef="descripcionf2">
+        <th mat-header-cell *matHeaderCellDef> Descripción F2 </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcionf2}} </td>
+      </ng-container>
       <!-- Foto2 Column -->
       <ng-container matColumnDef="foto2">
-        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <th mat-header-cell *matHeaderCellDef>Foto2 </th>
         <td mat-cell *matCellDef="let element">
           <img src='{{baseUrl}}/api/uploads/img/{{element.foto2}}' alt="{{element.foto2}}" style="width: 100px;" />
         </td>
       </ng-container>
+      <!-- DescripciónFOTO1 Column -->
+      <ng-container matColumnDef="descripcionf3">
+        <th mat-header-cell *matHeaderCellDef> Descripción F3 </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcionf3}} </td>
+      </ng-container>
       <!-- Foto3 Column -->
       <ng-container matColumnDef="foto3">
-        <th mat-header-cell *matHeaderCellDef>Foto </th>
+        <th mat-header-cell *matHeaderCellDef>Foto3 </th>
         <td mat-cell *matCellDef="let element">
           <img src='{{baseUrl}}/api/uploads/img/{{element.foto3}}' alt="{{element.foto3}}" style="width: 100px;" />
         </td>

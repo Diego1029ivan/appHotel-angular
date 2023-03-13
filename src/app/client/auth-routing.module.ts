@@ -13,7 +13,6 @@ import { ReservasComponent } from './pages/reservas/reservas.component';
 import { LoginComponent } from '../auth/pages/login/login.component';
 import { RegisterComponent } from '../auth/pages/register/register.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -40,7 +39,7 @@ const routes: Routes = [
         path: 'regiones/detalle-hotel/:id',
         component: DetalleHotelComponent,
       },
-      
+
       {
         path: 'regiones/detalle-hotel/:id/reserva-hotel',
         component: ReservaHotelComponent,
@@ -53,12 +52,12 @@ const routes: Routes = [
       {
         path: 'auth/login',
         component: LoginComponent,
-      },   
+      },
       {
         path: 'auth/login/registro',
         component: RegisterComponent,
       },
-      
+
       {
         path: '**',
         redirectTo: 'index',

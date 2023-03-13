@@ -29,15 +29,18 @@ export class ListgaleriaComponent implements OnInit {
   galeria!: Galeria[];
   public userlogeado: Usuario;
   hotelSeleccionadoId: number;
-
+  ngSelect: any;
   public baseUrl: string = environment.baseUrl; //para mostrar la imagen
 
   dataSource!: _MatTableDataSource<any>;
 
   displayedColumns: string[] = [
     'descripcion',
+    'descripcionf1',
     'foto',
+    'descripcionf2',
     'foto2',
+    'descripcionf3',
     'foto3',
     'acciones',
   ];
@@ -57,7 +60,9 @@ export class ListgaleriaComponent implements OnInit {
     this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
         this.hotel = data;
+
         this.galeria = this.hotel[0].galeria;
+        this.ngSelect = this.hotel[0].id;
         this.dataSource = new MatTableDataSource(this.galeria);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -74,9 +79,9 @@ export class ListgaleriaComponent implements OnInit {
       (hotel) => hotel.id === this.hotelSeleccionadoId
     );
     this.galeria = listgaleria[0].galeria;
-    if (this.galeria.length > 0) {
-      this.LoadHotel();
-    }
+    this.dataSource = new MatTableDataSource(this.galeria);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   EditGaleria(id: any, ide: any) {
@@ -95,6 +100,7 @@ export class ListgaleriaComponent implements OnInit {
     });
     _popup.afterClosed().subscribe((r) => {
       this.LoadHotel();
+      this.ngSelect = this.hotelSeleccionadoId;
     });
   }
 

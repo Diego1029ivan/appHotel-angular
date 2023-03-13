@@ -41,9 +41,13 @@ export class PicinaService {
         })
       );
   }
-  updatePicina(picina: Piscinas, idHotel: number): Observable<Piscinas> {
+  updatePicina(
+    id: number,
+    picina: Piscinas,
+    idHotel: number
+  ): Observable<Piscinas> {
     return this.http
-      .put(`${this.baseUrl}${this.urlEndPoint}/hotel/${idHotel}`, picina)
+      .put(`${this.baseUrl}${this.urlEndPoint}/${id}/hotel/${idHotel}`, picina)
       .pipe(
         map((response: any) => response.picina as Piscinas),
         catchError((e) => {
@@ -63,7 +67,7 @@ export class PicinaService {
     formData.append('id', id.toString());
     const req = new HttpRequest(
       'POST',
-      `${this.baseUrl}/api/upload/picina`,
+      `${this.baseUrl}${this.urlEndPoint}/upload`,
       formData,
       {
         reportProgress: true,
