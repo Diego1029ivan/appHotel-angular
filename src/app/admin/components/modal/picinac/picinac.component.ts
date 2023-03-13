@@ -17,7 +17,7 @@ import { PicinaService } from 'src/app/admin/service/picina.service';
 })
 export class PicinacComponent implements OnInit {
   private userlogeado: Usuario;
-  titlo: string = 'Registrar Picina';
+  titlo: string = 'Registrar Piscina';
 
   public imgurl: string = '';
   public baseUrl: string = environment.baseUrl;
@@ -60,7 +60,7 @@ export class PicinacComponent implements OnInit {
       this.data.id != null &&
       this.data.id != undefined
     ) {
-      this.titlo = 'Editar Picina';
+      this.titlo = 'Editar Piscina';
       this.piscinasService.getPicinaOne(this.data.id).subscribe((data) => {
         this.editdata = data;
 

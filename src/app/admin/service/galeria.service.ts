@@ -84,9 +84,13 @@ export class GaleriaService {
     );
     return this.http.request(req);
   }
-  updateGaleria(galeria: Galeria, idHotel: number): Observable<Galeria> {
+  updateGaleria(
+    id: number,
+    galeria: Galeria,
+    idHotel: number
+  ): Observable<Galeria> {
     return this.http
-      .put(`${this.baseUrl}${this.urlEndPoint}/hotel/${idHotel}`, galeria)
+      .put(`${this.baseUrl}${this.urlEndPoint}/${id}/hotel/${idHotel}`, galeria)
       .pipe(
         map((response: any) => response.galeria as Galeria),
         catchError((e) => {

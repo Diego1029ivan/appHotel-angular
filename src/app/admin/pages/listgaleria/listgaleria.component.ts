@@ -36,8 +36,11 @@ export class ListgaleriaComponent implements OnInit {
 
   displayedColumns: string[] = [
     'descripcion',
+    'descripcionf1',
     'foto',
+    'descripcionf2',
     'foto2',
+    'descripcionf3',
     'foto3',
     'acciones',
   ];
@@ -57,6 +60,7 @@ export class ListgaleriaComponent implements OnInit {
     this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
         this.hotel = data;
+
         this.galeria = this.hotel[0].galeria;
         this.ngSelect = this.hotel[0].id;
         this.dataSource = new MatTableDataSource(this.galeria);
