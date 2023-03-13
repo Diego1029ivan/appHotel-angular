@@ -5,3 +5,27 @@
 .logout {
   cursor: pointer;
 }
+.activelink {
+  border:1px solid #3B71CA;
+  width: 100% !important;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+.nav-item {
+    width: 50%;
+    transition: width 2s;
+    
+}
+.nav-item:hover{
+  color: #fff;
+  width: 100%;
+  background-color: #3B71CA;
+ 
+  
+}
+
+
+.salida{
+  cursor: pointer;
+}

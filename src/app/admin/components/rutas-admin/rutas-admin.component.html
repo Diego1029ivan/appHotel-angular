@@ -1,4 +1,4 @@
-<li routerLink="/admin/listarhotel" routerLinkActive="activelink" *ngIf="rolAdmin()  ">
+<li class="list-admin" routerLink="/admin/listarhotel" routerLinkActive="activelink" *ngIf="rolAdmin()  ">
   <a>
 
     <mat-icon>hotel</mat-icon>
@@ -7,32 +7,32 @@
 </li>
 
 <div *ngIf="hoteles?.length !=0">
-  <li routerLink="/admin/listarbares" routerLinkActive="activelink" *ngIf="rolAdmin() ">
+  <li class="list-admin" routerLink="/admin/listarbares" routerLinkActive="activelink" *ngIf="rolAdmin() ">
     <a>
       <mat-icon aria-hidden="false">sports_bar</mat-icon>
       <span> Bares</span>
     </a>
   </li>
 
-  <li routerLink="/admin/listarcocheras" routerLinkActive="activelink" *ngIf="rolAdmin()">
+  <li class="list-admin" routerLink="/admin/listarcocheras" routerLinkActive="activelink" *ngIf="rolAdmin()">
     <a>
       <mat-icon>garage</mat-icon>
       <span>Cocheras</span>
     </a>
   </li>
-  <li routerLink="/admin/listarpicina" routerLinkActive="activelink" *ngIf="rolAdmin()">
+  <li class="list-admin" routerLink="/admin/listarpicina" routerLinkActive="activelink" *ngIf="rolAdmin()">
     <a>
       <mat-icon>pool</mat-icon>
       <span>Picinas</span>
     </a>
   </li>
-  <li routerLink="/admin/listargaleria" routerLinkActive="activelink" *ngIf="rolAdmin()">
+  <li class="list-admin" routerLink="/admin/listargaleria" routerLinkActive="activelink" *ngIf="rolAdmin()">
     <a>
       <mat-icon>collections_bookmark</mat-icon>
       <span> Galerias</span>
     </a>
   </li>
-  <li routerLink="/admin/listarprecios" routerLinkActive="activelink" *ngIf="rolAdmin()">
+  <li class="list-admin" routerLink="/admin/listarprecios" routerLinkActive="activelink" *ngIf="rolAdmin()">
     <a>
       <mat-icon>price_change</mat-icon>
       <span> Precios</span>

@@ -11,25 +11,25 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item ">
-            <a class="nav-link" routerLink="./index" href="#"><i class="fa-solid fa-house pe-4"></i>Principal</a>
+        <ul class="navbar-nav  flex-grow-1 ">
+          <li class="nav-item ps-4" routerLinkActive="activelink" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link"  routerLink="./index"  href="#"><i class="fa-solid fa-house pe-4"></i>Principal</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ps-4" routerLinkActive="activelink">
             <a class="nav-link " routerLink="./nosotros" href="#"><i class="fa-solid fa-address-card pe-4"></i>Nosotros</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ps-4"  routerLinkActive="activelink">
             <a class="nav-link " routerLink="./regiones" href="#"><i class="fa-solid fa-map-location-dot pe-4"></i>Regiones</a>
           </li>
-          <li class="nav-item"*ngIf="logeado()">
+          <li class="nav-item ps-4"*ngIf="logeado()" routerLinkActive="activelink">
             <a class="nav-link "  routerLink="./reservas" href="#"><i class="fa-solid fa-ticket pe-4"></i>Mi Reserva</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ps-4" routerLinkActive="activelink">
             <a class="nav-link " routerLink="./contacto" href="#"><i class="fa-solid fa-address-book pe-4"></i>Contacto</a>
          
           </li>
-          <li class="nav-item" *ngIf="!logeado()">
-            <a class="nav-link " routerLink="./auth/login" href="#"><i class="fa-solid fa-user-tie pe-4"></i>Login</a>
+          <li class="nav-item ps-4" *ngIf="!logeado()" routerLinkActive="activelink">
+            <a class="nav-link " routerLink="./auth/login" href="#"><i class="fa-solid fa-user-tie pe-4 "></i>Login</a>
             
           </li>
           <li>
@@ -42,7 +42,7 @@
                 <p>{{mostrarNombre() | titlecase}}</p>
               </div>
               <div class="col-2 d-flex align-items-center ms-2">
-                <mat-icon *ngIf="logeado()" class="marge" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
+                <mat-icon *ngIf="logeado()" class="marge salida" matTooltip="Cerrar Session" (click)="logout()">logout</mat-icon>
               </div>
             </div>
             
