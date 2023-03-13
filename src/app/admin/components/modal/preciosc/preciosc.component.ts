@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, MinValidator, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
@@ -25,8 +25,8 @@ export class PrecioscComponent implements OnInit {
   hotel: Hoteles[];
   public fotoSeleccionada: File;
   imageSrc: string = '';
-  precioxtipohabitacion: Precioxtipohabitacion[];
-
+  precioxtipohabitacion: Precioxtipohabitacion;
+  ngSelect: any;
   constructor(
     private builder: FormBuilder,
     private dialog: MatDialog,
@@ -35,8 +35,17 @@ export class PrecioscComponent implements OnInit {
     private authService: AuthService,
     private preciosService: PreciosService
   ) {
+    this.precioxtipohabitacion = new Precioxtipohabitacion();
     this.userlogeado = new Usuario();
   }
+
+  companyform = this.builder.group({
+    cantidad: this.builder.control('', Validators.required),
+    precio: this.builder.control('', Validators.required),
+    tipoHabitacion: this.builder.control('', Validators.required),
+    hotel: this.builder.control('', Validators.required),
+  });
+
   ngOnInit(): void {
     this.userlogeado = this.authService.usuario;
     this.hotelesServices
@@ -51,23 +60,72 @@ export class PrecioscComponent implements OnInit {
       this.data.id != undefined
     ) {
       this.titlo = 'Editar Precios';
-      console.log(this.data.id, '-', this.data.ide);
       this.preciosService.getPrecioOne(this.data.id).subscribe((data) => {
         this.editdata = data;
-        console.log(this.editdata);
-        // this.companyform.patchValue({
-        //   descripcionPiscina: this.editdata.descripcionPiscina,
-        //   hotel: this.editdata.hotel.id,
-        // });
-        // this.imgurl = this.baseUrl + this.editdata.logo;
+        this.companyform.patchValue({
+          cantidad: this.editdata.cantidad,
+          precio: this.editdata.precio,
+          tipoHabitacion: this.editdata.tipoHabitacion,
+          hotel: this.editdata.hotel.id,
+        });
+        this.ngSelect = this.data.ide;
       });
     }
   }
 
   SaveRefenPrecio() {
-    // console.log(this.companyform.value.hotel);
+    if (this.companyform.valid) {
+      this.precioxtipohabitacion.cantidad = Number(
+        this.companyform.value.cantidad
+      );
+      this.precioxtipohabitacion.precio = Number(this.companyform.value.precio);
+      this.precioxtipohabitacion.tipoHabitacion =
+        this.companyform.value.tipoHabitacion;
+
+      if (
+        this.data.id != '' &&
+        this.data.id != null &&
+        this.data.id != undefined
+      ) {
+        this.functionpermiteEditar();
+      } else {
+        this.functionpermiteGuardar();
+      }
+    }
+  }
+  functionpermiteEditar() {
+    this.preciosService
+      .updatePrecio(
+        this.data.id,
+        this.precioxtipohabitacion,
+        Number(this.companyform.value.hotel)
+      )
+
+      .subscribe((data) => {
+        swal.fire(
+          'Registro Actualizado',
+          'El registro se actualizo correctamente',
+          'success'
+        );
+        this.closepopup();
+      });
   }
 
+  functionpermiteGuardar() {
+    this.preciosService
+      .crearPrecio(
+        this.precioxtipohabitacion,
+        Number(this.companyform.value.hotel)
+      )
+      .subscribe((data) => {
+        swal.fire(
+          'Registro Guardado',
+          'El registro se guardo correctamente',
+          'success'
+        );
+        this.closepopup();
+      });
+  }
   closepopup() {
     this.dialog.closeAll();
   }

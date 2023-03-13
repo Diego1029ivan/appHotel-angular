@@ -57,9 +57,13 @@ export class CocheraService {
     );
     return this.http.request(req);
   }
-  updateCochera(cochera: Cocheras, idHotel: number): Observable<Cocheras> {
+  updateCochera(
+    id: number,
+    cochera: Cocheras,
+    idHotel: number
+  ): Observable<Cocheras> {
     return this.http
-      .put(`${this.baseUrl}${this.urlEndPoint}/hotel/${idHotel}`, cochera)
+      .put(`${this.baseUrl}${this.urlEndPoint}/${id}/hotel/${idHotel}`, cochera)
       .pipe(
         map((response: any) => response.cochera as Cocheras),
         catchError((e) => {

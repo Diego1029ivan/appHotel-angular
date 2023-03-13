@@ -27,7 +27,7 @@ export class ListpicinaComponent implements OnInit {
   hotel!: Hoteles[];
   picina!: Piscinas[];
   hotelSeleccionadoId: number;
-
+  ngSelect: any;
   public baseUrl: string = environment.baseUrl; //para mostrar la imagen
 
   dataSource!: _MatTableDataSource<any>;
@@ -57,6 +57,7 @@ export class ListpicinaComponent implements OnInit {
       (data) => {
         this.hotel = data;
         this.picina = this.hotel[0].piscinas;
+        this.ngSelect = this.hotel[0].id;
         this.dataSource = new MatTableDataSource(this.picina);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -76,9 +77,10 @@ export class ListpicinaComponent implements OnInit {
     );
 
     this.picina = picinal[0].piscinas;
-    if (this.picina.length > 0) {
-      this.LoadHotel();
-    }
+
+    this.dataSource = new MatTableDataSource(this.picina);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   EditPicina(id: any, ide: any) {
     this.Openpopup(id, ide);
@@ -96,6 +98,7 @@ export class ListpicinaComponent implements OnInit {
     });
     _popup.afterClosed().subscribe((r) => {
       this.LoadHotel();
+      this.ngSelect = this.hotelSeleccionadoId;
     });
   }
 

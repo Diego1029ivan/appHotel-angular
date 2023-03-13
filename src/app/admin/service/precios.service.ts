@@ -14,7 +14,7 @@ export class PreciosService {
   constructor(private http: HttpClient) {}
   getPrecioOne(id: number): Observable<Precioxtipohabitacion> {
     return this.http
-      .get<Precioxtipohabitacion>(`${this.baseUrl}${this.urlEndPoint}/${id}}`)
+      .get<Precioxtipohabitacion>(`${this.baseUrl}${this.urlEndPoint}/${id}`)
       .pipe(
         catchError((e) => {
           if (e.error.mensaje) {
@@ -44,11 +44,12 @@ export class PreciosService {
       );
   }
   updatePrecio(
+    id: number,
     precio: Precioxtipohabitacion,
     idHotel: number
   ): Observable<Precioxtipohabitacion> {
     return this.http
-      .put(`${this.baseUrl}${this.urlEndPoint}/hotel/${idHotel}`, precio)
+      .put(`${this.baseUrl}${this.urlEndPoint}/${id}/hotel/${idHotel}`, precio)
       .pipe(
         map((response: any) => response.precio as Precioxtipohabitacion),
         catchError((e) => {

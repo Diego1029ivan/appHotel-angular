@@ -25,7 +25,7 @@ export class CocheracComponent implements OnInit {
   hotel: Hoteles[];
   public fotoSeleccionada: File;
   imageSrc: string = '';
-  cochera: Cocheras[];
+  cochera: Cocheras;
   ngSelect: any;
   constructor(
     private builder: FormBuilder,
@@ -35,6 +35,7 @@ export class CocheracComponent implements OnInit {
     private authService: AuthService,
     private cocheraService: CocheraService
   ) {
+    this.cochera = new Cocheras();
     this.userlogeado = new Usuario();
   }
 
@@ -58,7 +59,7 @@ export class CocheracComponent implements OnInit {
       this.data.id != undefined
     ) {
       this.titlo = 'Editar Cochera';
-      console.log(this.data.id, '-', this.data.ide);
+
       this.cocheraService.getCocheraOne(this.data.id).subscribe(
         (data) => {
           this.editdata = data;
@@ -90,7 +91,7 @@ export class CocheracComponent implements OnInit {
         'error'
       );
       //resetiar solo el campo de la foto
-      // this.companyform.get('logo').setValue('');
+      this.companyform.get('logo').setValue('');
       this.fotoSeleccionada = null;
     } else {
       const [file] = event.target.files;
@@ -102,9 +103,105 @@ export class CocheracComponent implements OnInit {
   }
 
   SaveRefenCochera() {
-    console.log(this.companyform.value.hotel);
+    this.cochera.descripcionCochera = this.companyform.value.descripcionCochera;
+    if (
+      this.data.id != '' &&
+      this.data.id != null &&
+      this.data.id != undefined
+    ) {
+      this.functionpermiteEditar();
+    } else {
+      this.functionpermiteGuardar();
+    }
   }
-
+  functionpermiteEditar() {
+    if (this.fotoSeleccionada != null) {
+      //si se selecciono una foto
+      this.cocheraService
+        .updateCochera(
+          this.data.id,
+          this.cochera,
+          Number(this.companyform.value.hotel)
+        )
+        .subscribe(
+          (data) => {
+            this.cocheraService
+              .subirFotoCochera(this.fotoSeleccionada, this.data.id)
+              .subscribe(
+                (data) => {
+                  swal.fire(
+                    'Cochera Actualizada',
+                    `Cochera actualizada con éxito`,
+                    'success'
+                  );
+                  this.closepopup();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.cocheraService
+        .updateCochera(
+          this.data.id,
+          this.cochera,
+          Number(this.companyform.value.hotel)
+        )
+        .subscribe((data) => {
+          swal.fire(
+            'Cochera Actualizada',
+            `Cochera actualizada con éxito`,
+            'success'
+          );
+          this.closepopup();
+        });
+    }
+  }
+  functionpermiteGuardar() {
+    if (this.fotoSeleccionada != null) {
+      //si se selecciono una foto
+      this.cocheraService
+        .crearCochera(this.cochera, Number(this.companyform.value.hotel))
+        .subscribe(
+          (data) => {
+            this.cocheraService
+              .subirFotoCochera(this.fotoSeleccionada, data.id)
+              .subscribe(
+                (data) => {
+                  swal.fire(
+                    'Cochera Registrada',
+                    `Cochera registrada con éxito`,
+                    'success'
+                  );
+                  this.closepopup();
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    } else {
+      this.cocheraService
+        .crearCochera(this.cochera, Number(this.companyform.value.hotel))
+        .subscribe((data) => {
+          swal.fire(
+            'Cochera Registrada',
+            `Cochera registrada con éxito`,
+            'success'
+          );
+          this.closepopup();
+        });
+    }
+  }
   closepopup() {
     this.dialog.closeAll();
   }

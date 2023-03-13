@@ -30,7 +30,7 @@ export class ListbaresComponent implements OnInit {
   bares!: Bares[];
   public userlogeado: Usuario;
   hotelSeleccionadoId: number;
-
+  ngSelect: any;
   public baseUrl: string = environment.baseUrl; //para mostrar la imagen
 
   dataSource!: _MatTableDataSource<any>;
@@ -55,7 +55,8 @@ export class ListbaresComponent implements OnInit {
       (data) => {
         this.hotel = data;
         this.bares = this.hotel[0].bares;
-               this.dataSource = new MatTableDataSource(this.bares);
+        this.ngSelect = this.hotel[0].id;
+        this.dataSource = new MatTableDataSource(this.bares);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       },
@@ -73,9 +74,9 @@ export class ListbaresComponent implements OnInit {
     this.hotelSeleccionadoId = +hotel;
     bar = this.hotel.filter((hotel) => hotel.id === this.hotelSeleccionadoId);
     this.bares = bar[0].bares;
-    if (this.bares.length > 0) {
-      this.LoadBar();
-    }
+    this.dataSource = new MatTableDataSource(this.bares);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   Openpopup(id: any, ide: any) {
@@ -91,6 +92,7 @@ export class ListbaresComponent implements OnInit {
     });
     _popup.afterClosed().subscribe((r) => {
       this.LoadBar();
+      this.ngSelect = this.hotelSeleccionadoId;
     });
   }
 

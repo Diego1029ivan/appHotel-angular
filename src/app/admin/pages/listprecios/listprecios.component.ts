@@ -28,7 +28,7 @@ export class ListpreciosComponent implements OnInit {
 
   hotel!: Hoteles[];
   precioxhabitacio!: Precioxtipohabitacion[];
-
+  ngSelect: any;
   public userlogeado: Usuario;
   hotelSeleccionadoId: number;
 
@@ -58,7 +58,9 @@ export class ListpreciosComponent implements OnInit {
     this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
         this.hotel = data;
+
         this.precioxhabitacio = this.hotel[0].precioxtipohabitacion;
+        this.ngSelect = this.hotel[0].id;
         this.dataSource = new MatTableDataSource(this.precioxhabitacio);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -68,16 +70,19 @@ export class ListpreciosComponent implements OnInit {
       }
     );
   }
-  onSelect(hotel: Hoteles) {
+  onSelect(hotel: any) {
     let listprecio: any;
     this.hotelSeleccionadoId = +hotel;
+
     listprecio = this.hotel.filter(
       (hotel) => hotel.id === this.hotelSeleccionadoId
     );
+
     this.precioxhabitacio = listprecio[0].precioxtipohabitacion;
-    if (this.precioxhabitacio.length > 0) {
-      this.LoadHotel();
-    }
+
+    this.dataSource = new MatTableDataSource(this.precioxhabitacio);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   EditPrecio(id: any, ide: any) {
     this.Openpopup(id, ide);
@@ -95,6 +100,7 @@ export class ListpreciosComponent implements OnInit {
     });
     _popup.afterClosed().subscribe((r) => {
       this.LoadHotel();
+      this.ngSelect = this.hotelSeleccionadoId;
     });
   }
   applyFilter(event: Event) {

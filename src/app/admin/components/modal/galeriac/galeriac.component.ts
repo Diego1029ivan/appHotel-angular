@@ -8,6 +8,7 @@ import { HotelesService } from 'src/app/admin/service/hoteles.service';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { GaleriaService } from 'src/app/admin/service/galeria.service';
+import { Galeria } from 'src/app/interfaces/galeria';
 
 @Component({
   selector: 'app-galeriac',
@@ -24,7 +25,8 @@ export class GaleriacComponent {
   hotel: Hoteles[];
   public fotoSeleccionada: File;
   imageSrc: string = '';
-  galeria: GaleriaService[];
+  galeria: Galeria;
+  ngSelect: any;
   constructor(
     private builder: FormBuilder,
     private dialog: MatDialog,
@@ -34,6 +36,7 @@ export class GaleriacComponent {
     private galeriaService: GaleriaService
   ) {
     this.userlogeado = new Usuario();
+    this.galeria =  new Galeria();
   }
 
   ngOnInit(): void {
@@ -61,7 +64,27 @@ export class GaleriacComponent {
       });
     }
   }
-
+  seleccionarFoto(event: any) {
+    this.imgurl = '';
+    this.fotoSeleccionada = event.target.files[0];
+    const reader = new FileReader();
+    if (this.fotoSeleccionada.type.indexOf('image') < 0) {
+      swal.fire(
+        'Error seleccionar imagen: ',
+        'El archivo debe ser del tipo imagen',
+        'error'
+      );
+      //resetiar solo el campo de la foto
+      // this.companyform.get('logo').setValue('');
+      this.fotoSeleccionada = null;
+    } else {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      };
+    }
+  }
   SaveRefenGaleria() {
     // console.log(this.companyform.value.hotel);
   }
