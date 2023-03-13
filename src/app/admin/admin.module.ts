@@ -33,6 +33,7 @@ import { PicinacComponent } from './components/modal/picinac/picinac.component';
 
 import { PrecioscComponent } from './components/modal/preciosc/preciosc.component';
 import { GaleriacComponent } from './components/modal/galeriac/galeriac.component';
+import { ReservaxhotelComponent } from './pages/reservaxhotel/reservaxhotel.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { GaleriacComponent } from './components/modal/galeriac/galeriac.componen
 
     PrecioscComponent,
       GaleriacComponent,
+      ReservaxhotelComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule],
   providers: [

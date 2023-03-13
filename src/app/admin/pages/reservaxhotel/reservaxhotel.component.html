@@ -1,0 +1,96 @@
+<div class="dash-title">
+  <h2>Listado de Reservas </h2>
+</div>
+
+<div class="selectAncho">
+  <mat-form-field appearance="fill">
+    <mat-label>Selecione un Hotel</mat-label>
+    <mat-select (selectionChange)="onSelect($event.value)" [(value)]="ngSelect">
+      <mat-option *ngFor="let item of hotel" [value]="item.id">
+        {{item.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div *ngIf="reserva?.length != 0">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!--  fechaEntrada -->
+      <ng-container matColumnDef="fechaEntrada">
+        <th mat-header-cell *matHeaderCellDef> fechaEntrada </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaEntrada}} </td>
+      </ng-container>
+
+      <!--  fechaSalida -->
+      <ng-container matColumnDef="fechaSalida">
+        <th mat-header-cell *matHeaderCellDef> fechaSalida </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaSalida}} </td>
+      </ng-container>
+
+      <!--  adelantoReservas -->
+      <ng-container matColumnDef="adelantoReservas">
+        <th mat-header-cell *matHeaderCellDef> adelanto </th>
+        <td mat-cell *matCellDef="let element"> {{element.adelantoReservas}} </td>
+      </ng-container>
+      <!--  cantidadHab -->
+      <ng-container matColumnDef="cantidadHab">
+        <th mat-header-cell *matHeaderCellDef> cantidadHab </th>
+        <td mat-cell *matCellDef="let element"> {{element.cantidadHab}} </td>
+      </ng-container>
+      <!--  cantidad_dias -->
+      <ng-container matColumnDef="cantidad_dias">
+        <th mat-header-cell *matHeaderCellDef> cantidad_dias </th>
+        <td mat-cell *matCellDef="let element"> {{element.cantidad_dias}} </td>
+      </ng-container>
+
+      <!--  costo_total -->
+      <ng-container matColumnDef="costo_total">
+        <th mat-header-cell *matHeaderCellDef> costo_total </th>
+        <td mat-cell *matCellDef="let element"> {{element.costo_total}} </td>
+      </ng-container>
+      <!--  hotel -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+      </ng-container>
+      <!--  tipoPago -->
+      <ng-container matColumnDef="tipoPago">
+        <th mat-header-cell *matHeaderCellDef> tipoPago </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipoPago.detalle_tipo}} </td>
+      </ng-container>
+      <!--  tipohab -->
+      <ng-container matColumnDef="tipohab">
+        <th mat-header-cell *matHeaderCellDef> tipohab </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipohab.tipoHabitacion}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones</th>
+        <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
+          <a style="color: #1f516f; cursor: pointer;" matTooltip="Editar Usuario "
+            (click)="EditBar(element.id, hotelSeleccionadoId)"><mat-icon>edit</mat-icon></a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay data "{{input.value}}"</td>
+      </tr>
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="reserva?.length == 0" class="alert alert-info">
+  No hay registros en la base de datos!
+</div>

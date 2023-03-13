@@ -17,6 +17,8 @@ import { ListgaleriaComponent } from './pages/listgaleria/listgaleria.component'
 import { ListpreciosComponent } from './pages/listprecios/listprecios.component';
 import { HotelComponent } from './pages/hotel/hotel.component';
 
+import { ReservaxhotelComponent } from './pages/reservaxhotel/reservaxhotel.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -46,6 +48,12 @@ const routes: Routes = [
         component: RefenciaDUbicacionComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: { role: 'ROLE_SUPADMIN' },
+      },
+      {
+        path: 'reserva',
+        component: ReservaxhotelComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: { role: 'ROLE_ADMIN' },
       },
       {
         path: 'listarhotel',
