@@ -55,14 +55,18 @@
         <td mat-cell *matCellDef="let element"> {{element.costo_total}} </td>
       </ng-container>
       <!--  hotel -->
+
       <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef> estado </th>
-        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+
+        <td mat-cell *matCellDef="let element" [ngClass]="element.estado ==1 ? 'PENDIENTE' : 'ATENDIDO'"> {{
+          element.estado ==1 ? 'PENDIENTE' : 'ATENDIDO'}} </td>
       </ng-container>
+
       <!--  tipoPago -->
       <ng-container matColumnDef="tipoPago">
         <th mat-header-cell *matHeaderCellDef> tipoPago </th>
-        <td mat-cell *matCellDef="let element"> {{element.tipoPago.detalle_tipo}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.tipoPago.detalle_tipo}}</td>
       </ng-container>
       <!--  tipohab -->
       <ng-container matColumnDef="tipohab">
@@ -74,8 +78,20 @@
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones</th>
         <td mat-cell *matCellDef="let element; let i=index" style="text-align: center;">
-          <a style="color: #1f516f; cursor: pointer;" matTooltip="Editar Usuario "
-            (click)="EditBar(element.id, hotelSeleccionadoId)"><mat-icon>edit</mat-icon></a>
+          <a style="color: #1f516f; cursor: pointer;" matTooltip="Cambiar Estado"
+            (click)="EditarReserva(element.id,  element.estado)">
+
+            <button *ngIf=" element.estado ==1" mat-icon-button
+              aria-label="Example icon button with a open in new tab icon" color="accent">
+              <mat-icon>toggle_off</mat-icon>
+            </button>
+            <button *ngIf=" element.estado ==2" mat-icon-button
+              aria-label="Example icon button with a open in new tab icon" color="primary">
+              <mat-icon>toggle_on</mat-icon>
+            </button>
+
+          </a>
+
         </td>
       </ng-container>
 

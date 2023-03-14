@@ -23,6 +23,7 @@ export class ReservaxhotelComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   hotel!: Hoteles[];
   reser: any;
+  reservaregistrar: Reserva;
   reserva: Reserva[];
   public userlogeado: Usuario;
   hotelSeleccionadoId: number;
@@ -46,18 +47,19 @@ export class ReservaxhotelComponent implements OnInit {
     private reservaService: ReservaService
   ) {
     this.userlogeado = new Usuario();
+    this.reservaregistrar = new Reserva();
   }
   ngOnInit(): void {
     this.LoadReserva();
   }
   LoadReserva() {
     const idlogeado = this.authService.usuario.id;
-    // console.log(idlogeado);
     this.hotelServices.getusuarioxhotel(idlogeado).subscribe(
       (data) => {
         this.hotel = data;
 
         this.ngSelect = this.hotel[0].id;
+        this.hotelSeleccionadoId = this.hotel[0].id;
         this.reservaService
           .getReservaxHotel(this.ngSelect)
           .subscribe((data) => {
@@ -74,12 +76,11 @@ export class ReservaxhotelComponent implements OnInit {
   }
   onSelect(hotel: Hoteles) {
     this.hotelSeleccionadoId = +hotel;
-    console.log(this.hotelSeleccionadoId);
+
     this.reservaService
       .getReservaxHotel(this.hotelSeleccionadoId)
       .subscribe((data) => {
         this.reserva = data;
-        console.log(this.reserva);
         this.dataSource = new MatTableDataSource(this.reserva);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -93,5 +94,24 @@ export class ReservaxhotelComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  EditarReserva(idreserva: number, estado: number) {
+    if (estado == 1) {
+      estado = 2;
+    } else {
+      estado = 1;
+    }
+    this.reservaregistrar.estado = Number(estado);
+    this.reservaService
+      .updateReserva(idreserva, this.reservaregistrar )
+      .subscribe(
+        (data) => {
+          this.reser = data;
+          this.LoadReserva();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
