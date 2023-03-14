@@ -15,19 +15,19 @@
                     <h1 class="display-5 fw-bolder  mb-2">Conoce el {{hotelid?.nombre}}</h1>
                     <p class="lead fw-normal  mb-4">Estos son algunos de los servicios comunes que se pueden encontrar en un hotel, aunque algunos hoteles pueden ofrecer servicios adicionales dependiendo de las necesidades y preferencias de sus huéspedes.</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" routerLink="./reserva-hotel">Reservar ahora</a>
-                        <ng-template #t let-fill="fill">
-                            <i class="fa-regular fa-star">
-                                <i *ngIf="fill > 0" class="fa-solid fa-star" [style.width.%]="fill"></i>
-                            </i>
-                        </ng-template>
+                        <a class="btn btn-primary btn-lg col boton-reserva" routerLink="./reserva-hotel">Reservar ahora</a>
                         
-                        <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                       
+                        <div *ngIf="valor" class="col">
+                            <ngb-rating rate="{{valor}}"  [readonly]="true" [max]="5"></ngb-rating>
+                            
+                            <pre>Promedio: <b>{{valor}}</b> Estrellas</pre>
+                        </div>
+                        <div *ngIf="!valor" class="col">
+                                                       
+                            <pre>Puede calificarnos</pre>
+                        </div>
                         
-                        <hr />
-                        <pre>Rate: <b>{{currentRate}}</b></pre>
-                        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 1.35">1.35</button>
-                        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 4.72">4.72</button>
                         
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <div class="col-lg-12">
                 <div class="row ">
                     
-                    <div class="row pt-4 row-cols-md-2 ">
+                    <div class="row pt-4 row-cols-md-2 row-cols-sm-1">
                         <div class="col" >
                             <div class="">
                                 <img class="img-ser" src="../../../../assets/servicios/serv-1.png" >
@@ -81,7 +81,7 @@
                     </div>
 
 
-                    <div class="row pt-4 row-cols-md-2">
+                    <div class="row pt-4 row-cols-md-2 row-cols-sm-1 row-cols-xs-1">
                         <div class="col " >
                             <div class="">
                                 <img class="img-ser" src="../../../../assets/servicios/serv-2.png" >
@@ -110,7 +110,7 @@
                        
                     </div>
 
-                    <div class="row pt-4 row-cols-md-2 ">
+                    <div class="row pt-4 row-cols-md-2 row-cols-sm-1">
                         <div class="col " >
                             <div class="col">
                                 <img class="img-ser" src="../../../../assets/servicios/serv-3.png" >
