@@ -29,11 +29,6 @@ export class TestimonioComponent implements OnInit{
       })
   }
 
-
-
-
-
-  title = 'hoteles';
   customOptions: any = {
     loop: true,
     mouseDrag: true,

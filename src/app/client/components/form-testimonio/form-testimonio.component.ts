@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/interfaces/usuario';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-testimonio',
@@ -17,19 +18,21 @@ export class FormTestimonioComponent implements OnInit{
   constructor(private fb:FormBuilder,
     private testimonioService:TestimonioService,
             public authService: AuthService,
-            private calendar: NgbCalendar){
+            private calendar: NgbCalendar,
+            private router: Router){
 
     
     this.fecha = calendar.getToday();
 		this.user=this.authService.usuario;
+    
     }
 
     
   
   miFormulario:FormGroup = this.fb.group({  //reduce el tamño y los news
-  detalle:[,[Validators.required]],
-  id:[],
-  nombre:[,[Validators.required]]
+  detalle:['',[Validators.required]],
+  id:[{value:'',disabled:true}],
+  nombre:[{value:'',disabled:true},[Validators.required]]
   
   })
 
@@ -105,7 +108,7 @@ this.testimonioService.crearTestimonio(this.testimonioNuevo,this.user.id)
           })
           })
           console.log(this.testimonioNuevo,this.user.id,this.detalle)
-
+          this.router.navigate(['sistema-hotel/index']);
           }
           console.log(this.miFormulario.value)
 

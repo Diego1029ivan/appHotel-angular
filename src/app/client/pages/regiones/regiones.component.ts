@@ -3,8 +3,10 @@ import { Galeria } from 'src/app/interfaces/galeria';
 
 import { environment } from 'src/environments/environment';
 import { HotelesService } from '../../services/hoteles.service';
-import { ReqResResponse } from '../../models/reqres-response';
+
 import { Hoteles } from 'src/app/interfaces/hoteles';
+
+import { Rating } from 'src/app/interfaces/rating';
 
 @Component({
   selector: 'app-regiones',
@@ -19,16 +21,21 @@ export class RegionesComponent implements OnInit{
   hotelesL:Hoteles[]=[]
   hotelesM:Hoteles[]=[]
   hotelesT:Hoteles[]=[]
-  
-  
+  ratingTotal:Rating[]=[]
+  ratingHotel:Rating[]=[]
+  promedio:number=0
   galerias:Galeria[]=[]
  
   ngOnInit(): void {
     this.LoadHoteles();
     
+    
+    
+    
   }
 
-  constructor(private hotelesService: HotelesService){}
+  constructor(private hotelesService: HotelesService,
+              ){}
   LoadHoteles(){
     this.hotelesService.getHoteles()
       .subscribe( (hoteles) =>{
@@ -44,19 +51,12 @@ export class RegionesComponent implements OnInit{
           (this.hoteles[i].ubicacion['ciudad']=='Lamas')?this.hotelesL.push(this.hoteles[i]):
           false
         }
-        
-        // console.log(this.hoteles[0].galeria[0].foto)
-        // console.log(this.galerias[0].foto)
-        //  console.log(this.hotelesT)
-        //  console.log(this.hotelesL)
-        //  console.log(this.hotelesM)
-        // console.log(this.galerias)
-         
-        
-        
-        
+             
       });
       
   }
+
+
+ 
   
 }

@@ -8,13 +8,17 @@
                     <div class="row">
                         <div class="col-6">
                             <form  (ngSubmit)="guardarTestimonio()" autocomplete="off" class="sombra mb-3" [formGroup]="miFormulario">
-                                <div class="form-floating">
+                                <div class="form-floating mb-2">
                                     <input class="form-control" formControlName="id" type="text" disabled/>
                                     <label >ID</label>
                                     
                                 </div>
-                                <div class="form-floating">
-                                    <input class="form-control"  type="text" formControlName="nombre" placeholder="Enter your nombre..." disabled/>
+                                <div class="form-floating mb-2">
+                                    <input class="form-control" 
+                                           type="text" 
+                                           formControlName="nombre" 
+                                           placeholder="Enter your nombre..." 
+                                           />
                                     <label >Nombre</label>
                                     <span  class="form-text text-danger"
                                         *ngIf="campoEsValido('nombre')">
@@ -50,4 +54,9 @@
             </div>
         </div>
     </div>
+    
 </section>
+
+<div class="mt-5 pt-3" *ngIf="!logeado()">
+    <a class="btn btn-primary" routerLink="../auth/login" href="#">Login</a>
+</div>
