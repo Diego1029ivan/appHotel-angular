@@ -243,7 +243,7 @@ export class ReservaHotelComponent implements OnInit{
       // console.log(dateen, "valor de la fecha",typeof(dateen))
       this.reserva.fechaEntrada= moment(this.formatDate(this.fromDate)).toDate();
     console.log(this.reserva.fechaEntrada)
-    this.reserva.fechaSalida = moment(this.formatDate(this.toDate)).toDate();;
+    this.reserva.fechaSalida = moment(this.formatDate(this.toDate)).toDate();
     this.reserva.adelantoReservas = Number(this.miFormulario?.controls['pagadelantado'].value);
     this.reserva.cantidadHab = Number(this.miFormulario?.controls['cantidad'].value);
     this.reserva.tipohab['id'] = Number(this.miFormulario?.controls['tipo'].value);

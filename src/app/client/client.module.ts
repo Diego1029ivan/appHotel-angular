@@ -23,6 +23,7 @@ import { DetalleHotelComponent } from './pages/detalle-hotel/detalle-hotel.compo
 import { ReservaHotelComponent } from './pages/reserva-hotel/reserva-hotel.component';
 import { MaterialModule } from '../material/material.module';
 import { ReservasComponent } from './pages/reservas/reservas.component';
+import { FormTestimonioComponent } from './components/form-testimonio/form-testimonio.component';
 
 
 
@@ -44,6 +45,7 @@ import { ReservasComponent } from './pages/reservas/reservas.component';
     DetalleHotelComponent,
     ReservaHotelComponent,
     ReservasComponent,
+    FormTestimonioComponent,
   ],
   imports: [
     CommonModule,

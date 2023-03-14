@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Galeria } from 'src/app/interfaces/galeria';
 
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,7 @@ import { Hoteles } from 'src/app/interfaces/hoteles';
   templateUrl: './regiones.component.html',
   styleUrls: ['./regiones.component.css']
 })
-export class RegionesComponent {
+export class RegionesComponent implements OnInit{
 
   //public galeria : any =[]
   private baseUrl: string = environment.baseUrl;
