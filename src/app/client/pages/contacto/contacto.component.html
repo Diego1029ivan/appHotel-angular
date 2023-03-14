@@ -11,57 +11,63 @@
             </div>
 </section>
         <!-- Main Content-->
-        <main class="mb-4">
+        <main class="mb-5">
             <div class="container pt-4 pt-lg-5">
                 <div class="row g-4 g-lg-5 justify-content-center ">
-                    <div class="col-md-10 col-lg-8 col-xl-7 text-center">
+                    <div class=" text-center">
                         <p>La sección de contacto es una parte esencial de cualquier sitio web que busca brindar una atención personalizada y efectiva a sus usuarios. Esta sección generalmente se encuentra en la barra de navegación o en el pie de página del sitio web, y en ella se pueden encontrar diversas opciones para comunicarse con la empresa o el proyecto.</p>
                         <div class="mt-5">
-                            
-                            <form  (ngSubmit)="guardar()" autocomplete="off" class="sombra mb-3" [formGroup]="miFormulario">
-                                <div class="form-floating">
-                                    <input class="form-control" formControlName="nombre" type="text" placeholder="Ingrese su nombre..." />
-                                    <label for="name">Nombre</label>
-                                    <span  class="form-text text-danger"
-                                           *ngIf="campoEsValido('nombre')">
-                                    Un nombre es requerido
-                                    </span>
-                                </div>
-                                <div class="form-floating">
-                                    <input class="form-control"  type="email" formControlName="email" placeholder="Enter your email..." />
-                                    <label for="email">Email</label>
-                                    <span  class="form-text text-danger"
-                                           *ngIf="campoEsValido('email')">
-                                    Un email es requerido o revisa bien 
-                                    </span>
-                                </div>
-                                <div class="form-floating">
-                                    <input class="form-control" id="phone" type="tel" formControlName="celular" placeholder="Enter your phone number..." />
-                                    <label for="phone">Celular</label>
+                            <div class="row">
+                                <div class="col">
+                                    <form  (ngSubmit)="guardar()" autocomplete="off" class="sombra mb-3" [formGroup]="miFormulario">
+                                        <div class="form-floating">
+                                            <input class="form-control" formControlName="nombre" type="text" placeholder="Ingrese su nombre..." />
+                                            <label for="name">Nombre</label>
+                                            <span  class="form-text text-danger"
+                                                *ngIf="campoEsValido('nombre')">
+                                            Un nombre es requerido
+                                            </span>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input class="form-control"  type="email" formControlName="email" placeholder="Enter your email..." />
+                                            <label for="email">Email</label>
+                                            <span  class="form-text text-danger"
+                                                *ngIf="campoEsValido('email')">
+                                            Un email es requerido o revisa bien 
+                                            </span>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input class="form-control" id="phone" type="tel" formControlName="celular" placeholder="Enter your phone number..." />
+                                            <label for="phone">Celular</label>
+                                            
+                                            <span  class="form-text text-danger"
+                                                *ngIf="campoEsValido('celular')">
+                                            El celular es requerido o debe tener 9 números
+                                            </span>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" formControlName="mnj" placeholder="Enter your message here..." style="height: 12rem"></textarea>
+                                            <label for="message">Mensaje</label>
+                                            
+                                            <span  class="form-text text-danger"
+                                                *ngIf="campoEsValido('mnj')">
+                                            El mensaje es requerido
+                                            </span>
+                                        </div>
+                                        <br />
                                     
-                                    <span  class="form-text text-danger"
-                                           *ngIf="campoEsValido('celular')">
-                                    El celular es requerido o debe tener 9 números
-                                    </span>
+                                        <!-- Submit Button-->
+                                        <button [disabled]="miFormulario.invalid" class="btn btn-primary text-uppercase control-boton active" id="enviar" type="submit">Enviar</button>
+                                        <button class="btn btn-primary control-boton"id="cargar"  type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Loading...
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="message" formControlName="mnj" placeholder="Enter your message here..." style="height: 12rem"></textarea>
-                                    <label for="message">Mensaje</label>
-                                    
-                                    <span  class="form-text text-danger"
-                                           *ngIf="campoEsValido('mnj')">
-                                    El mensaje es requerido
-                                    </span>
+                                <div class="col">
+                                    <img src="../../../../assets/foto-hotel/foto-hotel-4.jpg" class="imagen-nosotros pb-3" alt="">
                                 </div>
-                                <br />
-                              
-                                <!-- Submit Button-->
-                                <button [disabled]="miFormulario.invalid" class="btn btn-primary text-uppercase control-boton active" id="enviar" type="submit">Enviar</button>
-                                <button class="btn btn-primary control-boton"id="cargar"  type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    Loading...
-                                  </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

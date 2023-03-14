@@ -1,0 +1,62 @@
+<!-- Main Content-->
+<section class="mb-5" *ngIf="logeado()">
+    <div class=" pt-4 pt-lg-5">
+        <div class="row justify-content-center">
+            <div class="text-center">
+                <p>La sección de testimonios es una parte esencial de cualquier sitio web que busca brindar una atención personalizada y efectiva a sus usuarios. Esta sección generalmente se encuentra en la barra de navegación o en el pie de página del sitio web, y en ella se pueden encontrar diversas opciones para comunicarse con la empresa o el proyecto.</p>
+                <div class="mt-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <form  (ngSubmit)="guardarTestimonio()" autocomplete="off" class="sombra mb-3" [formGroup]="miFormulario">
+                                <div class="form-floating mb-2">
+                                    <input class="form-control" formControlName="id" type="text" disabled/>
+                                    <label >ID</label>
+                                    
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input class="form-control" 
+                                           type="text" 
+                                           formControlName="nombre" 
+                                           placeholder="Enter your nombre..." 
+                                           />
+                                    <label >Nombre</label>
+                                    <span  class="form-text text-danger"
+                                        *ngIf="campoEsValido('nombre')">
+                                    El nombre es requerido
+                                    </span>
+                                    
+                                </div>
+                                
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" formControlName="detalle" placeholder="Enter your message here..." style="height: 12rem"></textarea>
+                                    <label >Mensaje</label>
+                                    
+                                    <span  class="form-text text-danger"
+                                        *ngIf="campoEsValido('detalle')">
+                                    El mensaje es requerido
+                                    </span>
+                                </div>
+                                <br />
+                            
+                                <!-- Submit Button-->
+                                <button [disabled]="miFormulario.invalid" class="btn btn-primary text-uppercase control-boton active" id="enviar" type="submit">Enviar</button>
+                                <button class="btn btn-primary control-boton"id="cargar"  type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading...
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <img src="../../../../assets/foto-hotel/foto-hotel-4.jpg" class="imagen-nosotros pb-3" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<div class="mt-5 pt-3" *ngIf="!logeado()">
+    <a class="btn btn-primary" routerLink="../auth/login" href="#">Login</a>
+</div>

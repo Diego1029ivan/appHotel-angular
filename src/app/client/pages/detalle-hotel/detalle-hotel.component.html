@@ -16,7 +16,19 @@
                     <p class="lead fw-normal  mb-4">Estos son algunos de los servicios comunes que se pueden encontrar en un hotel, aunque algunos hoteles pueden ofrecer servicios adicionales dependiendo de las necesidades y preferencias de sus huéspedes.</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                         <a class="btn btn-primary btn-lg px-4 me-sm-3" routerLink="./reserva-hotel">Reservar ahora</a>
-                        <a class="btn btn-outline-primary btn-lg px-4" href="#!">Más información</a>
+                        <ng-template #t let-fill="fill">
+                            <i class="fa-regular fa-star">
+                                <i *ngIf="fill > 0" class="fa-solid fa-star" [style.width.%]="fill"></i>
+                            </i>
+                        </ng-template>
+                        
+                        <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                        
+                        <hr />
+                        <pre>Rate: <b>{{currentRate}}</b></pre>
+                        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 1.35">1.35</button>
+                        <button class="btn btn-sm btn-outline-primary me-2" (click)="currentRate = 4.72">4.72</button>
+                        
                     </div>
                 </div>
             </div>
@@ -159,8 +171,10 @@
         </div>
     </div>
 </section>
-<!-- Testimonial section-->
-<div class="py-5 bg-light">
+<!-- Testimonios-->
+<app-form-rating></app-form-rating>
+<!--Comentario Gerente-->
+<section class="py-5 bg-light">
     <div class="container px-5 my-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-10 col-xl-7">
@@ -178,7 +192,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
     <div class="container pt-3">
         <app-slider-fotos></app-slider-fotos>
     </div>

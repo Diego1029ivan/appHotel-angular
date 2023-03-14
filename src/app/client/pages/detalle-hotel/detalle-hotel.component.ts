@@ -9,6 +9,9 @@ import { Bares } from '../../../interfaces/bares';
 import { Piscinas } from '../../../interfaces/piscinas';
 import { Cocheras } from '../../../interfaces/cocheras';
 import { Precioxtipohabitacion } from '../../../interfaces/precioxtipohabitacion';
+import { RatingService } from '../../services/rating.service';
+import { Rating } from 'src/app/interfaces/rating';
+
 
 @Component({
   selector: 'app-detalle-hotel',
@@ -25,13 +28,18 @@ export class DetalleHotelComponent implements OnInit{
   foto3:string=''
   constructor(private hotelesService: HotelesService,
               private activatedRoute: ActivatedRoute,
-              private router:Router){}
+              private router:Router,
+              private ratingService : RatingService){}
   
   
   Arraybares:Bares[]=[]
   Arraypiscina:Piscinas[]=[]
   Arraycochera:Cocheras[]=[]
   Arrayprecio:Precioxtipohabitacion[]=[]
+
+  ratingTotal:Rating[]=[]
+  ratingHotel:Rating[]=[]
+  promedio:number=0
   ngOnInit() :void {
     
     this.activatedRoute.params
@@ -47,14 +55,31 @@ export class DetalleHotelComponent implements OnInit{
         this.Arraypiscina = this.hotelid.piscinas
         this.Arraycochera = this.hotelid.cocheras
         this.Arrayprecio = this.hotelid.precioxtipohabitacion
-        
+        this.ratingHotelId(this.hotelid.id)
       }
       )
       
     }
    
+    ratingHotelId(id:number){
+      this.ratingService.getRating()
+          .subscribe((rating)=>{
+            this.ratingTotal=rating
+            
+            for(let i = 0 ; i < this.ratingTotal.length ; i++){
+              (this.ratingTotal[i].hotel.id==id)?this.ratingHotel.push(this.ratingTotal[i]):false
+            }
   
+           
+            for(let j = 0 ; j < this.ratingHotel.length ; j++){
+              this.promedio+=this.ratingHotel[j].clasificacion
+            }
+           
+            console.log ((this.promedio/this.ratingHotel.length).toFixed(2) )
+          })
+    }
   
+    
     
   
 }

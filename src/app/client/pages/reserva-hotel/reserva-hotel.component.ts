@@ -119,9 +119,11 @@ export class ReservaHotelComponent implements OnInit{
       cantidad:2,
       pago:"1",
       tipo:this.hotelid?.precioxtipohabitacion[0].id
+
+      
       
     })
-
+    this.miFormulario?.controls['id'].disable()
     this.activatedRoute.params
     .pipe(
       switchMap((param) => this.hotelesService.getHotelPorId(param['id'])))
@@ -139,7 +141,7 @@ export class ReservaHotelComponent implements OnInit{
 
   miFormulario:FormGroup=this.fb.group({
     
-    id:['',[Validators.required]],
+    id:[{value:'',disbled:true},[Validators.required]],
     
     pagadelantado:['',[Validators.required]],
     cantidad:['',[Validators.required]],
@@ -243,7 +245,7 @@ export class ReservaHotelComponent implements OnInit{
       // console.log(dateen, "valor de la fecha",typeof(dateen))
       this.reserva.fechaEntrada= moment(this.formatDate(this.fromDate)).toDate();
     console.log(this.reserva.fechaEntrada)
-    this.reserva.fechaSalida = moment(this.formatDate(this.toDate)).toDate();;
+    this.reserva.fechaSalida = moment(this.formatDate(this.toDate)).toDate();
     this.reserva.adelantoReservas = Number(this.miFormulario?.controls['pagadelantado'].value);
     this.reserva.cantidadHab = Number(this.miFormulario?.controls['cantidad'].value);
     this.reserva.tipohab['id'] = Number(this.miFormulario?.controls['tipo'].value);
