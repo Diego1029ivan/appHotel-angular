@@ -25,4 +25,16 @@ export class ReservaService {
         })
       );
   }
+  updateReserva(idReserva: number, reserva: Reserva): Observable<Reserva> {
+    return this.http
+      .put<Reserva>(`${this.baseUrl}${this.urlEndPoint}/${idReserva}`, reserva)
+      .pipe(
+        catchError((e) => {
+          if (e.error.mensaje) {
+            console.error(e.error.mensaje);
+          }
+          return throwError(e);
+        })
+      );
+  }
 }
