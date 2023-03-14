@@ -19,7 +19,7 @@
                         
                        
                         <div *ngIf="valor" class="col">
-                            <ngb-rating rate="{{valor}}"  [readonly]="true" [max]="5"></ngb-rating>
+                            <ngb-rating rate="{{ redondeo }}"  [readonly]="true" [max]="5"></ngb-rating>
                             
                             <pre>Promedio: <b>{{valor}}</b> Estrellas</pre>
                         </div>

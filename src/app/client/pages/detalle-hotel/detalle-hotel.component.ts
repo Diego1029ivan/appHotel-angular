@@ -41,6 +41,7 @@ export class DetalleHotelComponent implements OnInit{
   ratingHotel:Rating[]=[]
   promedio:number=0
   valor
+  redondeo
   ngOnInit() :void {
     
     this.activatedRoute.params
@@ -71,7 +72,8 @@ export class DetalleHotelComponent implements OnInit{
                   this.promedio+=this.ratingHotel[j].clasificacion
                 }
                
-                this.valor= Math.ceil(Number((this.promedio/this.ratingHotel.length).toFixed(2)) )
+                this.valor=Number((this.promedio/this.ratingHotel.length).toFixed(2)) 
+                this.redondeo=Math.ceil(this.valor)
                 console.log(this.valor)
                 
               })
