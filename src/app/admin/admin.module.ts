@@ -34,6 +34,7 @@ import { PicinacComponent } from './components/modal/picinac/picinac.component';
 import { PrecioscComponent } from './components/modal/preciosc/preciosc.component';
 import { GaleriacComponent } from './components/modal/galeriac/galeriac.component';
 import { ReservaxhotelComponent } from './pages/reservaxhotel/reservaxhotel.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -59,12 +60,11 @@ import { ReservaxhotelComponent } from './pages/reservaxhotel/reservaxhotel.comp
     BarcComponent,
     CocheracComponent,
     PicinacComponent,
-
     PrecioscComponent,
-      GaleriacComponent,
-      ReservaxhotelComponent,
+    GaleriacComponent,
+    ReservaxhotelComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, MaterialModule],
+  imports: [CommonModule, AuthRoutingModule, MaterialModule, NgbRatingModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

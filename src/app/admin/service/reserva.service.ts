@@ -4,6 +4,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Reserva } from 'src/app/interfaces/reserva';
+import { Rating } from 'src/app/interfaces/rating';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class ReservaService {
       );
   }
 
-  getAllrating(): Observable<any> {
+  getAllrating(): Observable<Rating[]> {
     return this.http.get<any>(`${this.baseUrl}${this.urlEndPoint2}`).pipe(
       catchError((e) => {
         if (e.error.mensaje) {

@@ -5,6 +5,7 @@ import {
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
+import { Rating } from 'src/app/interfaces/rating';
 import { ReservaService } from '../../service/reserva.service';
 
 @Component({
@@ -14,40 +15,45 @@ import { ReservaService } from '../../service/reserva.service';
 })
 export class AdminindexComponent implements OnInit {
   dataSource!: _MatTableDataSource<any>;
-
+  rantingdata: Rating[];
+  promedio: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  DATA: any[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  ];
-  displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
-    'acciones',
-  ];
+  displayedColumns: string[] = ['hotel', 'cali', 'estrellas'];
   constructor(private ranting: ReservaService) {}
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.DATA);
     this.LoadRanting();
   }
   LoadRanting() {
-    this.ranting.getAllrating().subscribe((data) => {
-      console.log(data);
+    this.ranting.getAllrating().subscribe((ranting1) => {
+      this.rantingdata = ranting1;
+      this.calcularPrimedios();
     });
   }
-  ngAfterViewInit() {
+  calcularPrimedios() {
+    let gropedRating = this.rantingdata.reduce((r, a) => {
+      let hotel = a.hotel.nombre;
+      let rating = a.clasificacion;
+      if (!r[hotel]) {
+        r[hotel] = { hotel: hotel, rating: rating, count: 1 };
+      } else {
+        r[hotel].rating += rating;
+        r[hotel].count++;
+      }
+      return r;
+    }, {});
+    this.promedio = {};
+    for (let hotel in gropedRating) {
+      let total = gropedRating[hotel].rating;
+
+      let count = gropedRating[hotel].count;
+      let promedio = total / count;
+      gropedRating[hotel].rating = promedio;
+      gropedRating[hotel].redondeo = Math.ceil(promedio);
+    }
+    let promedios = Object.values(gropedRating);
+    this.dataSource = new MatTableDataSource(promedios);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

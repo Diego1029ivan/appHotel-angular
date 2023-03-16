@@ -8,3 +8,7 @@ table {
   font-size: 14px;
   width: 100%;
 }
+ngb-rating {
+  font-size: 2.5rem;
+  color: rgb(216, 169, 13);
+}
