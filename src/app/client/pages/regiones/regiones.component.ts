@@ -6,7 +6,7 @@ import { HotelesService } from '../../services/hoteles.service';
 
 import { Hoteles } from 'src/app/interfaces/hoteles';
 
-import { Rating } from 'src/app/interfaces/rating';
+
 
 @Component({
   selector: 'app-regiones',
@@ -21,9 +21,7 @@ export class RegionesComponent implements OnInit{
   hotelesL:Hoteles[]=[]
   hotelesM:Hoteles[]=[]
   hotelesT:Hoteles[]=[]
-  ratingTotal:Rating[]=[]
-  ratingHotel:Rating[]=[]
-  promedio:number=0
+
   galerias:Galeria[]=[]
  
   ngOnInit(): void {
@@ -51,6 +49,7 @@ export class RegionesComponent implements OnInit{
           (this.hoteles[i].ubicacion['ciudad']=='Lamas')?this.hotelesL.push(this.hoteles[i]):
           false
         }
+        
              
       });
       

@@ -40,6 +40,8 @@ export class DetalleHotelComponent implements OnInit{
   ratingTotal:Rating[]=[]
   ratingHotel:Rating[]=[]
   promedio:number=0
+  valor
+  redondeo
   ngOnInit() :void {
     
     this.activatedRoute.params
@@ -55,30 +57,36 @@ export class DetalleHotelComponent implements OnInit{
         this.Arraypiscina = this.hotelid.piscinas
         this.Arraycochera = this.hotelid.cocheras
         this.Arrayprecio = this.hotelid.precioxtipohabitacion
-        this.ratingHotelId(this.hotelid.id)
-      }
+        
+        
+          this.ratingService.getRating()
+              .subscribe((rating)=>{
+                this.ratingTotal=rating
+                
+                for(let i = 0 ; i < this.ratingTotal.length ; i++){
+                  (this.ratingTotal[i].hotel.id==this.hotelid.id)?this.ratingHotel.push(this.ratingTotal[i]):false
+                }
+      
+               
+                for(let j = 0 ; j < this.ratingHotel.length ; j++){
+                  this.promedio+=this.ratingHotel[j].clasificacion
+                }
+               
+                this.valor=Number((this.promedio/this.ratingHotel.length).toFixed(2)) 
+                this.redondeo=Math.ceil(this.valor)
+                console.log(this.valor)
+                
+              })
+        }
+      
+      
       )
+      
+      
       
     }
    
-    ratingHotelId(id:number){
-      this.ratingService.getRating()
-          .subscribe((rating)=>{
-            this.ratingTotal=rating
-            
-            for(let i = 0 ; i < this.ratingTotal.length ; i++){
-              (this.ratingTotal[i].hotel.id==id)?this.ratingHotel.push(this.ratingTotal[i]):false
-            }
-  
-           
-            for(let j = 0 ; j < this.ratingHotel.length ; j++){
-              this.promedio+=this.ratingHotel[j].clasificacion
-            }
-           
-            console.log ((this.promedio/this.ratingHotel.length).toFixed(2) )
-          })
-    }
-  
+    
     
     
   
