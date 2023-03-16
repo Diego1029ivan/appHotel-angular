@@ -23,41 +23,41 @@
 
       <!--  fechaEntrada -->
       <ng-container matColumnDef="fechaEntrada">
-        <th mat-header-cell *matHeaderCellDef> fechaEntrada </th>
+        <th mat-header-cell *matHeaderCellDef> FechaEntrada </th>
         <td mat-cell *matCellDef="let element"> {{element.fechaEntrada}} </td>
       </ng-container>
 
       <!--  fechaSalida -->
       <ng-container matColumnDef="fechaSalida">
-        <th mat-header-cell *matHeaderCellDef> fechaSalida </th>
+        <th mat-header-cell *matHeaderCellDef> FechaSalida </th>
         <td mat-cell *matCellDef="let element"> {{element.fechaSalida}} </td>
       </ng-container>
 
       <!--  adelantoReservas -->
       <ng-container matColumnDef="adelantoReservas">
-        <th mat-header-cell *matHeaderCellDef> adelanto </th>
+        <th mat-header-cell *matHeaderCellDef> Adelanto </th>
         <td mat-cell *matCellDef="let element"> {{element.adelantoReservas}} </td>
       </ng-container>
       <!--  cantidadHab -->
       <ng-container matColumnDef="cantidadHab">
-        <th mat-header-cell *matHeaderCellDef> cantidadHab </th>
+        <th mat-header-cell *matHeaderCellDef> CantiHabi</th>
         <td mat-cell *matCellDef="let element"> {{element.cantidadHab}} </td>
       </ng-container>
       <!--  cantidad_dias -->
       <ng-container matColumnDef="cantidad_dias">
-        <th mat-header-cell *matHeaderCellDef> cantidad_dias </th>
+        <th mat-header-cell *matHeaderCellDef> Días </th>
         <td mat-cell *matCellDef="let element"> {{element.cantidad_dias}} </td>
       </ng-container>
 
       <!--  costo_total -->
       <ng-container matColumnDef="costo_total">
-        <th mat-header-cell *matHeaderCellDef> costo_total </th>
+        <th mat-header-cell *matHeaderCellDef> Total</th>
         <td mat-cell *matCellDef="let element"> {{element.costo_total}} </td>
       </ng-container>
       <!--  hotel -->
 
       <ng-container matColumnDef="estado">
-        <th mat-header-cell *matHeaderCellDef> estado </th>
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
 
         <td mat-cell *matCellDef="let element" [ngClass]="element.estado ==1 ? 'PENDIENTE' : 'ATENDIDO'"> {{
           element.estado ==1 ? 'PENDIENTE' : 'ATENDIDO'}} </td>
@@ -65,12 +65,12 @@
 
       <!--  tipoPago -->
       <ng-container matColumnDef="tipoPago">
-        <th mat-header-cell *matHeaderCellDef> tipoPago </th>
+        <th mat-header-cell *matHeaderCellDef> TipoPago </th>
         <td mat-cell *matCellDef="let element"> {{element.tipoPago.detalle_tipo}}</td>
       </ng-container>
       <!--  tipohab -->
       <ng-container matColumnDef="tipohab">
-        <th mat-header-cell *matHeaderCellDef> tipohab </th>
+        <th mat-header-cell *matHeaderCellDef> Tipohab </th>
         <td mat-cell *matCellDef="let element"> {{element.tipohab.tipoHabitacion}} </td>
       </ng-container>
 

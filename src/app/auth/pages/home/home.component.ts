@@ -32,6 +32,6 @@ export class HomeComponent {
       'success'
     );
 
-    this.router.navigate(['/']);
+    this.router.navigate(['sistema-hotel/index']);
   }
 }
