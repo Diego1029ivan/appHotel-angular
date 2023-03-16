@@ -11,6 +11,7 @@ import { Reserva } from 'src/app/interfaces/reserva';
 export class ReservaService {
   private baseUrl: string = environment.baseUrl;
   private urlEndPoint: string = '/api/reserva';
+  private urlEndPoint2: string = '/api/rating';
   constructor(private http: HttpClient) {}
 
   getReservaxHotel(idHotel: number): Observable<Reserva[]> {
@@ -36,5 +37,16 @@ export class ReservaService {
           return throwError(e);
         })
       );
+  }
+
+  getAllrating(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}${this.urlEndPoint2}`).pipe(
+      catchError((e) => {
+        if (e.error.mensaje) {
+          console.error(e.error.mensaje);
+        }
+        return throwError(e);
+      })
+    );
   }
 }

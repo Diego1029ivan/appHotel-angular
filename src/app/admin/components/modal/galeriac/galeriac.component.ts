@@ -190,32 +190,19 @@ export class GaleriacComponent implements OnInit {
         .subscribe(
           (data) => {
             this.galeriaService
-              .subirFotoGaleria(this.fotoSeleccionada, this.data.id)
+              .subirFotoGaleriatriple(
+                this.fotoSeleccionada,
+                this.fotoSeleccionada2,
+                this.fotoSeleccionada3,
+                this.data.id
+              )
               .subscribe((data) => {
-                this.galeriaService
-                  .subirFotoGaleria2(this.fotoSeleccionada2, this.data.id)
-                  .subscribe(
-                    (data) => {
-                      this.galeriaService
-                        .subirFotoGaleria3(this.fotoSeleccionada3, this.data.id)
-                        .subscribe(
-                          (data) => {
-                            swal.fire(
-                              'Galeria Actualizada',
-                              `Galeria  actualizada con éxito!`,
-                              'success'
-                            );
-                            this.closepopup();
-                          },
-                          (err) => {
-                            console.log(err);
-                          }
-                        );
-                    },
-                    (err) => {
-                      console.log(err);
-                    }
-                  );
+                swal.fire(
+                  'Galeria Actualizada',
+                  `Galeria  actualizada con éxito!`,
+                  'success'
+                );
+                this.closepopup();
               });
           },
           (err) => {
@@ -451,45 +438,21 @@ export class GaleriacComponent implements OnInit {
         .crearGaleria(this.galeria, Number(this.companyform.value.hotel))
         .subscribe(
           (data4) => {
-            this.variable = data4.id;
-            console.log('this.variable');
-            console.log(this.variable);
             this.galeriaService
-              .subirFotoGaleria(this.fotoSeleccionada, this.variable)
-              .subscribe(
-                (data) => {
-                  this.galeriaService
-                    .subirFotoGaleria2(this.fotoSeleccionada2, this.variable)
-                    .subscribe(
-                      (data) => {
-                        this.galeriaService
-                          .subirFotoGaleria3(
-                            this.fotoSeleccionada3,
-                            this.variable
-                          )
-                          .subscribe(
-                            (data) => {
-                              swal.fire(
-                                'Galeria Creada',
-                                `Galeria  creada con éxito!`,
-                                'success'
-                              );
-                              this.closepopup();
-                            },
-                            (err) => {
-                              console.log(err);
-                            }
-                          );
-                      },
-                      (err) => {
-                        console.log(err);
-                      }
-                    );
-                },
-                (err) => {
-                  console.log(err);
-                }
-              );
+              .subirFotoGaleriatriple(
+                this.fotoSeleccionada,
+                this.fotoSeleccionada2,
+                this.fotoSeleccionada3,
+                data4.id
+              )
+              .subscribe((data) => {
+                swal.fire(
+                  'Galeria Creada',
+                  `Galeria  creada con éxito!`,
+                  'success'
+                );
+                this.closepopup();
+              });
           },
           (err) => {
             console.log(err);

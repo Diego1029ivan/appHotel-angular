@@ -5,6 +5,7 @@ import {
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
+import { ReservaService } from '../../service/reserva.service';
 
 @Component({
   selector: 'app-adminindex',
@@ -36,11 +37,16 @@ export class AdminindexComponent implements OnInit {
     'symbol',
     'acciones',
   ];
-  constructor() {}
+  constructor(private ranting: ReservaService) {}
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.DATA);
+    this.LoadRanting();
   }
-
+  LoadRanting() {
+    this.ranting.getAllrating().subscribe((data) => {
+      console.log(data);
+    });
+  }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

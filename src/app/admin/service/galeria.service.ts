@@ -41,6 +41,29 @@ export class GaleriaService {
         })
       );
   }
+
+  subirFotoGaleriatriple(
+    archivo: File,
+    archivo2: File,
+    archivo3: File,
+    id
+  ): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append('archivo', archivo);
+    formData.append('id', id);
+    formData.append('archivo2', archivo2);
+    formData.append('archivo3', archivo3);
+
+    const req = new HttpRequest(
+      'POST',
+      `${this.baseUrl}${this.urlEndPoint}/uploadfoto33`,
+      formData,
+      {
+        reportProgress: true,
+      }
+    );
+    return this.http.request(req);
+  }
   subirFotoGaleria(archivo: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append('archivo', archivo);
